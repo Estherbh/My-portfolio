@@ -206,13 +206,13 @@
     .card,
     .achievement,
     .delivery-card,
-    .contact-card,
-    .photo-card {
+    .contact-card {
       padding: 22px;
     }
 
     .photo-card {
       background: var(--surface-alt);
+      padding: 16px;
     }
 
     .photo-frame {
@@ -225,7 +225,7 @@
       color: var(--muted);
       text-align: center;
       font-size: 0.95rem;
-      padding: 20px;
+      padding: 0;
       overflow: hidden;
     }
 
@@ -238,11 +238,6 @@
 
     .photo-placeholder {
       display: none;
-    }
-
-    .photo-note {
-      margin-top: 14px;
-      font-size: 0.92rem;
     }
 
     .hero__pillar {
@@ -514,7 +509,6 @@
               <img src="assets/profile.jpg" alt="Professional portrait of Esther Bahati" onerror="this.style.display='none'; this.parentNode.querySelector('.photo-placeholder').style.display='block';">
               <div class="photo-placeholder">Place your photo at<br><strong>/assets/profile.jpg</strong></div>
             </div>
-            <p class="photo-note">The public portfolio now includes a professional portrait, and the downloadable CV contains the full experience, projects, and measurable impact behind this work.</p>
           </aside>
         </div>
 
