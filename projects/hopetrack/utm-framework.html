@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HopeTrack International's UTM naming framework for Education for All 2026, including rules, examples, and an interactive UTM builder.">
+  <meta property="og:title" content="HopeTrack International | UTM Naming Framework">
+  <meta property="og:description" content="Campaign tracking standards for HopeTrack International with a functional UTM builder and documentation.">
+  <title>HopeTrack International | UTM Naming Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B0PG7TN6C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-7B0PG7TN6C');
+  </script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #f97316;
+      --accent: #dc2626;
+      --danger: #dc2626;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: rgba(15,23,42,0.06);
+      --surface: rgba(255, 255, 255, 0.92);
+      --container: 1200px;
+      --radius: 18px;
+      --radius-sm: 10px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #ffffff;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; transition: all 0.2s ease; }
+    .container { width: min(100% - 32px, var(--container)); margin: 0 auto; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 16px 40px rgba(8,15,24,0.08);
+    }
+    .header__inner {
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #111827;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+    .logo__mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,42,0.06);
+      background: rgba(15,23,42,0.05);
+    }
+    .nav { display: none; justify-self: center; gap: 28px; }
+    .nav a { color: #475569; font-weight: 500; }
+    .nav a:hover, .nav .active { color: #0f172a; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(15,23,42,0.08);
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .button--accent {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .hero {
+      padding: 92px 0 54px;
+      text-align: center;
+    }
+    .hero__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+    }
+    .hero__pill::after {
+      width: 36px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--secondary);
+      content: "";
+    }
+    h1, h2, h3 {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+    h1 { margin-top: 24px; font-size: clamp(3rem, 7vw, 5rem); }
+    h2 { font-size: clamp(2rem, 4.8vw, 3rem); }
+    h3 { font-size: 1.2rem; }
+    .hero p,
+    .intro p,
+    .card p,
+    .builder p,
+    .warning p,
+    .footer__column p,
+    .footer__links a { color: var(--muted); }
+    .hero p {
+      max-width: 760px;
+      margin: 22px auto 0;
+      font-size: 1.18rem;
+    }
+    .section { padding: 100px 0; }
+    .intro {
+      max-width: 760px;
+      margin-bottom: 32px;
+    }
+    .table-card,
+    .card,
+    .builder,
+    .warning,
+    .footer__column {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.9);
+    }
+    .table-card,
+    .card,
+    .builder,
+    .warning { padding: 24px; }
+    .grid,
+    .warnings,
+    .footer__grid {
+      display: grid;
+      gap: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+    }
+    th, td {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-size: 0.84rem;
+      letter-spacing: 0.03em;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .builder-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    label {
+      display: grid;
+      gap: 8px;
+      color: #334155;
+      font-size: 0.94rem;
+    }
+    input {
+      min-height: 52px;
+      width: 100%;
+      padding: 0 16px;
+      border: 1px solid rgba(15,23,42,0.1);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+    }
+    .builder__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .builder__output {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,42,0.06);
+      background: rgba(15,23,42,0.03);
+      color: #1e293b;
+      word-break: break-all;
+    }
+    .builder__feedback {
+      min-height: 22px;
+      margin-top: 12px;
+      color: var(--secondary);
+      font-size: 0.92rem;
+    }
+    .warning {
+      border-color: rgba(220,38,38,0.18);
+      background: rgba(220,38,38,0.05);
+    }
+    .site-footer {
+      padding: 56px 0 34px;
+      background: #0f1117;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer__column h4 {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .footer__links {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+    .footer__base {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (min-width: 900px) {
+      .nav { display: inline-flex; }
+      .grid,
+      .warnings { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .builder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer__grid { grid-template-columns: 1.2fr repeat(5, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html"><span class="logo__mark">HT</span><span>HopeTrack</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="donate.html">Donate</a>
+        <a class="active" href="utm-framework.html">UTM Framework</a>
+      </nav>
+      <a class="button button--accent" href="donate.html">Open donate page</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__pill">Campaign tracking standards and attribution logic</div>
+        <h1>Campaign Tracking Standards - Education for All 2026</h1>
+        <p>A stakeholder-friendly framework for consistent UTM naming, cleaner reporting, and more trustworthy channel attribution across the campaign lifecycle.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="intro" data-reveal>
+          <h2>Why UTM parameters matter</h2>
+          <p>UTM parameters tell us where traffic came from, what campaign drove it, and which creative version performed best. Without consistent naming, reporting quickly becomes noisy and hard to trust. With consistent naming, teams can compare paid, owned, partner, and offline activity through one shared structure.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="table-card" data-reveal>
+          <h2>Parameter definitions</h2>
+          <table>
+            <thead><tr><th>Parameter</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>utm_source</td><td>Identifies the referring platform, sender, or traffic source.</td></tr>
+              <tr><td>utm_medium</td><td>Describes the channel type such as paid_social, email, referral, or offline.</td></tr>
+              <tr><td>utm_campaign</td><td>Groups links into the main campaign initiative.</td></tr>
+              <tr><td>utm_content</td><td>Separates creative versions, placements, or messaging variants.</td></tr>
+              <tr><td>utm_term</td><td>Optional field for keywords or extra classification when needed.</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="intro" data-reveal>
+          <h2>Naming convention rules</h2>
+          <p>These rules are meant to reduce ambiguity and keep campaign reporting readable across teams, partners, and channels.</p>
+        </div>
+        <div class="grid">
+          <article class="card" data-reveal><h3>Use lowercase only</h3><p>Lowercase values prevent the same source from appearing as multiple entries in reporting.</p></article>
+          <article class="card" data-reveal><h3>Use underscores</h3><p>Separate words with underscores rather than spaces or mixed punctuation.</p></article>
+          <article class="card" data-reveal><h3>Keep campaign naming stable</h3><p>Use one canonical campaign value, such as <code>education_for_all_2026</code>, across every channel.</p></article>
+          <article class="card" data-reveal><h3>Describe the medium precisely</h3><p>Choose values like <code>paid_social</code>, <code>organic_social</code>, <code>email</code>, or <code>offline</code>.</p></article>
+          <article class="card" data-reveal><h3>Version creative with content</h3><p>Use content values like <code>carousel_v1</code> or <code>launch_video_link</code> for comparison.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="table-card" data-reveal>
+          <h2>UTM examples</h2>
+          <table>
+            <thead><tr><th>Channel</th><th>Example URL</th></tr></thead>
+            <tbody>
+              <tr><td>Facebook paid</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=facebook&utm_medium=paid_social&utm_campaign=education_for_all_2026&utm_content=carousel_v1</td></tr>
+              <tr><td>Instagram paid</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=instagram&utm_medium=paid_social&utm_campaign=education_for_all_2026&utm_content=story_v2</td></tr>
+              <tr><td>LinkedIn organic</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=linkedin&utm_medium=organic_social&utm_campaign=education_for_all_2026&utm_content=impact_post_v1</td></tr>
+              <tr><td>Google Search</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=google&utm_medium=paid_search&utm_campaign=education_for_all_2026&utm_content=donate_search_ad</td></tr>
+              <tr><td>Newsletter</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=newsletter&utm_medium=email&utm_campaign=education_for_all_2026&utm_content=march_appeal</td></tr>
+              <tr><td>Partner referral</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=partner_network&utm_medium=referral&utm_campaign=education_for_all_2026&utm_content=partner_badge</td></tr>
+              <tr><td>Twitter or X organic</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=x&utm_medium=organic_social&utm_campaign=education_for_all_2026&utm_content=thread_v1</td></tr>
+              <tr><td>YouTube</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=youtube&utm_medium=video&utm_campaign=education_for_all_2026&utm_content=launch_video_link</td></tr>
+              <tr><td>WhatsApp</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=whatsapp&utm_medium=messaging&utm_campaign=education_for_all_2026&utm_content=community_broadcast_v1</td></tr>
+              <tr><td>QR code offline</td><td>https://estherbh.github.io/hopetrack/donate.html?utm_source=qr_code&utm_medium=offline&utm_campaign=education_for_all_2026&utm_content=event_poster</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="builder" data-reveal>
+          <h2>Interactive UTM builder</h2>
+          <p>Enter source, medium, campaign, and content values to generate a ready-to-use HopeTrack donation link.</p>
+          <div class="builder-grid">
+            <label>Source<input type="text" id="utm-source" placeholder="facebook"></label>
+            <label>Medium<input type="text" id="utm-medium" placeholder="paid_social"></label>
+            <label>Campaign<input type="text" id="utm-campaign" placeholder="education_for_all_2026"></label>
+            <label>Content<input type="text" id="utm-content" placeholder="carousel_v1"></label>
+          </div>
+          <div class="builder__actions">
+            <button class="button button--accent" type="button" id="generate-link">Generate Link</button>
+            <button class="button" type="button" id="copy-link">Copy to clipboard</button>
+          </div>
+          <div class="builder__output" id="utm-output">https://estherbh.github.io/hopetrack/donate.html</div>
+          <div class="builder__feedback" id="utm-feedback" aria-live="polite"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="intro" data-reveal>
+          <h2>Common mistakes</h2>
+          <p>These are the naming mistakes most likely to compromise reporting clarity.</p>
+        </div>
+        <div class="warnings">
+          <article class="warning" data-reveal><h3>Mixing uppercase and lowercase</h3><p><code>Facebook</code> and <code>facebook</code> should never become separate source values in reporting.</p></article>
+          <article class="warning" data-reveal><h3>Changing campaign names mid-flight</h3><p>If one team uses <code>education_for_all_2026</code> and another uses a different convention, campaign rollup becomes unreliable.</p></article>
+          <article class="warning" data-reveal><h3>Writing long sentences in content</h3><p>UTM values should stay short, repeatable, and easy to compare in dashboards.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <section class="footer__column"><h4>HopeTrack</h4><p>A fictional NGO website built to demonstrate senior-level campaign design, GA4 implementation, and attribution strategy.</p></section>
+        <section class="footer__column"><h4>Platform</h4><ul class="footer__links"><li><a href="index.html">Homepage</a></li><li><a href="donate.html">Donation flow</a></li><li><a href="utm-framework.html">UTM framework</a></li></ul></section>
+        <section class="footer__column"><h4>Programs</h4><ul class="footer__links"><li><a href="programs.html">DRC Congo</a></li><li><a href="programs.html">Kenya</a></li><li><a href="programs.html">Bangladesh</a></li></ul></section>
+        <section class="footer__column"><h4>Company</h4><ul class="footer__links"><li><a href="about.html">Mission</a></li><li><a href="about.html">Leadership</a></li><li><a href="about.html">Values</a></li></ul></section>
+        <section class="footer__column"><h4>Connect</h4><ul class="footer__links"><li><a href="mailto:hello@hopetrack.org">hello@hopetrack.org</a></li><li><a href="donate.html">Support now</a></li><li><a href="utm-framework.html">Resources</a></li></ul></section>
+        <section class="footer__column"><h4>Legal</h4><ul class="footer__links"><li><a href="mailto:hello@hopetrack.org">Privacy</a></li><li><a href="mailto:hello@hopetrack.org">Terms</a></li><li><a href="mailto:hello@hopetrack.org">Safeguarding</a></li></ul></section>
+      </div>
+      <div class="footer__base">Copyright 2026 HopeTrack International. Built as a portfolio demonstration for Save the Children International applications.</div>
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const output = document.getElementById('utm-output');
+    const feedback = document.getElementById('utm-feedback');
+    const fields = {
+      source: document.getElementById('utm-source'),
+      medium: document.getElementById('utm-medium'),
+      campaign: document.getElementById('utm-campaign'),
+      content: document.getElementById('utm-content')
+    };
+    const baseUrl = 'https://estherbh.github.io/hopetrack/donate.html';
+    const sanitize = (value) => value.trim().toLowerCase().replace(/\s+/g, '_');
+
+    document.getElementById('generate-link').addEventListener('click', () => {
+      const params = new URLSearchParams();
+      Object.entries(fields).forEach(([key, field]) => {
+        const value = sanitize(field.value);
+        if (value) params.set(`utm_${key}`, value);
+      });
+      output.textContent = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
+      feedback.textContent = 'Link generated.';
+    });
+
+    document.getElementById('copy-link').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(output.textContent);
+        feedback.textContent = 'Link copied to clipboard.';
+      } catch (error) {
+        feedback.textContent = 'Copy failed. Please copy the link manually.';
+      }
+    });
+  </script>
+</body>
+</html>

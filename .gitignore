@@ -1,0 +1,11 @@
+.agents/
+.git/
+node_modules/
+outputs/
+tools/
+files.zip
+instruction pr ecrire comme senior.txt
+hopetrack_looker_studio_dashboard.html
+*.inspect.ndjson
+*.png
+*.xlsx

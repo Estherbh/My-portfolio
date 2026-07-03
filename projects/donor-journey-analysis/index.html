@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio case study showing donor journey analysis, first-gift conversion, retention, and membership performance using fictional HopeTrack data.">
+  <meta property="og:title" content="Donor Journey & Membership Funnel Analysis">
+  <meta property="og:description" content="A stakeholder-ready donor funnel report covering acquisition, conversion, repeat giving, and monthly membership.">
+  <title>Donor Journey & Membership Funnel Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8f6;
+      --surface: #ffffff;
+      --surface-alt: #eef1ed;
+      --text: #1e2421;
+      --muted: #5e6961;
+      --line: #d8ddd7;
+      --line-strong: #bcc5bc;
+      --accent: #295c4f;
+      --accent-soft: #dce8e2;
+      --accent-warm: #8a5a2b;
+      --success: #2f6b45;
+      --shadow: 0 4px 24px rgba(16, 24, 20, 0.08);
+      --shadow-hover: 0 8px 40px rgba(16, 24, 20, 0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --container: 1160px;
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 48px;
+      --space-6: 64px;
+      --space-7: 88px;
+      --space-8: 112px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(41, 92, 79, 0.24);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 16px;
+      z-index: 100;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .container {
+      width: min(100% - 32px, var(--container));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid transparent;
+      background: rgba(247, 248, 246, 0.84);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .site-header.is-scrolled {
+      border-bottom-color: var(--line);
+      box-shadow: 0 8px 30px rgba(16, 24, 20, 0.06);
+    }
+
+    .header__inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand__mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--accent);
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+    }
+
+    .nav {
+      display: none;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .nav a:hover { color: var(--text); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .button--primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .hero {
+      padding: var(--space-8) 0 var(--space-7);
+    }
+
+    .hero__grid {
+      display: grid;
+      gap: var(--space-5);
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-top: 16px;
+      font-size: clamp(3.2rem, 6vw, 4rem);
+      line-height: 1.08;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.8vw, 2.5rem);
+      line-height: 1.15;
+    }
+
+    h3 {
+      font-size: 1.28rem;
+      line-height: 1.25;
+    }
+
+    .hero__lead,
+    .section__lead,
+    .card p,
+    .summary-list,
+    .table-note,
+    .footer__note {
+      color: var(--muted);
+    }
+
+    .hero__lead {
+      max-width: 760px;
+      margin: 24px 0 0;
+      font-size: 1.08rem;
+    }
+
+    .hero__meta {
+      display: grid;
+      gap: 16px;
+    }
+
+    .summary-card,
+    .card,
+    .table-card,
+    .insight-card,
+    .footer-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card,
+    .card,
+    .table-card,
+    .insight-card,
+    .footer-card {
+      padding: 24px;
+    }
+
+    .summary-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f1f4ef 100%);
+    }
+
+    .summary-card__value {
+      margin-top: 8px;
+      font-family: "Poppins", sans-serif;
+      font-size: 2rem;
+      letter-spacing: -0.05em;
+    }
+
+    .summary-list {
+      margin: 16px 0 0;
+      padding-left: 18px;
+    }
+
+    .summary-list li + li { margin-top: 8px; }
+
+    .section {
+      padding: var(--space-7) 0 0;
+    }
+
+    .section__head {
+      max-width: 780px;
+      margin-bottom: var(--space-4);
+    }
+
+    .section__lead {
+      margin-top: 16px;
+    }
+
+    .kpi-grid,
+    .funnel-grid,
+    .insight-grid,
+    .footer-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .metric__label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .metric__value {
+      margin-top: 10px;
+      font-family: "Poppins", sans-serif;
+      font-size: 2rem;
+      letter-spacing: -0.05em;
+    }
+
+    .metric__detail {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .funnel-step {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .funnel-step::before {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      background: var(--accent);
+      content: "";
+    }
+
+    .funnel-step__value {
+      margin-top: 12px;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: -0.05em;
+    }
+
+    .funnel-step__drop {
+      display: inline-flex;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .table-card {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.84rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .highlight {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .insight-card {
+      transition: all 0.3s ease;
+    }
+
+    .insight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .insight-card__index {
+      color: var(--accent-warm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      padding: var(--space-7) 0;
+    }
+
+    .footer-card {
+      background: #1f2522;
+      border-color: #2f3733;
+      color: #f5f6f4;
+    }
+
+    .footer-card h2,
+    .footer-card h3,
+    .footer-card a {
+      color: #f5f6f4;
+    }
+
+    .footer__note {
+      color: #b4beb6;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .nav { display: inline-flex; }
+      .hero__grid { grid-template-columns: 1.3fr 0.8fr; }
+      .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .funnel-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .insight-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .footer-grid { grid-template-columns: 1.3fr 1fr; }
+    }
+
+    @media (min-width: 1024px) {
+      .funnel-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" data-header>
+    <div class="container header__inner">
+      <a class="brand" href="../../README.md" aria-label="Return to portfolio overview">
+        <span class="brand__mark">HB</span>
+        <span>Portfolio Analysis</span>
+      </a>
+      <nav class="nav" aria-label="Section navigation">
+        <a href="#funnel">Funnel</a>
+        <a href="#channel">Channel quality</a>
+        <a href="#insights">Insights</a>
+        <a href="#actions">Actions</a>
+      </nav>
+      <a class="button button--primary" href="donor-journey-data.csv">Open dataset</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero__grid">
+        <article data-reveal>
+          <p class="eyebrow">Portfolio project · CRM and fundraising analytics</p>
+          <h1>Donor Journey & Membership Funnel Analysis</h1>
+          <p class="hero__lead">
+            This report shows how fictional HopeTrack campaign traffic moves from acquisition to first gift, repeat giving, and monthly membership.
+            The purpose is not to showcase a decorative dashboard, but to show the decision logic a communications or fundraising team would use to improve conversion quality.
+          </p>
+        </article>
+
+        <aside class="summary-card" data-reveal>
+          <h3>Executive summary</h3>
+          <div class="summary-card__value">$98,729</div>
+          <p class="metric__detail">New donor revenue generated across six acquisition segments in the quarter.</p>
+          <ul class="summary-list">
+            <li>Email converted best into first gifts and monthly membership.</li>
+            <li>Paid social prospecting delivered scale but weaker donor quality.</li>
+            <li>Retargeting created the clearest upgrade path into membership.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>What the quarter says at a glance</h2>
+          <p class="section__lead">The objective of this view is to separate volume from donor quality. Traffic alone does not answer whether a channel is moving people into sustainable support.</p>
+        </div>
+
+        <div class="kpi-grid">
+          <article class="card" data-reveal>
+            <div class="metric__label">Total sessions</div>
+            <div class="metric__value">43,400</div>
+            <div class="metric__detail">All campaign sessions included in the simplified donor journey model.</div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="metric__label">First donations</div>
+            <div class="metric__value">1,993</div>
+            <div class="metric__detail">Overall session-to-first-donation conversion rate: <span class="highlight">4.6%</span>.</div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="metric__label">Repeat donors in 90 days</div>
+            <div class="metric__value">563</div>
+            <div class="metric__detail">Repeat rate from first-time donors: <span class="highlight">28.2%</span>.</div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="metric__label">Monthly members</div>
+            <div class="metric__value">297</div>
+            <div class="metric__detail">Membership activation rate from first-time donors: <span class="highlight">14.9%</span>.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="funnel">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>Funnel performance by stage</h2>
+          <p class="section__lead">The main leak is not at the donation completion step. It starts earlier, between donation page arrival and donation start, which suggests message-to-form continuity needs work.</p>
+        </div>
+
+        <div class="funnel-grid">
+          <article class="card funnel-step" data-reveal>
+            <h3>Sessions</h3>
+            <div class="funnel-step__value">43,400</div>
+            <div class="metric__detail">Acquired users across paid, owned, organic, and partner channels.</div>
+          </article>
+          <article class="card funnel-step" data-reveal>
+            <h3>Donation page visits</h3>
+            <div class="funnel-step__value">15,840</div>
+            <div class="funnel-step__drop">36.5% of sessions</div>
+          </article>
+          <article class="card funnel-step" data-reveal>
+            <h3>Donation starts</h3>
+            <div class="funnel-step__value">6,894</div>
+            <div class="funnel-step__drop">56.5% drop from donation page visits</div>
+          </article>
+          <article class="card funnel-step" data-reveal>
+            <h3>First donations</h3>
+            <div class="funnel-step__value">1,993</div>
+            <div class="funnel-step__drop">28.9% of donation starts</div>
+          </article>
+          <article class="card funnel-step" data-reveal>
+            <h3>Repeat donors</h3>
+            <div class="funnel-step__value">563</div>
+            <div class="funnel-step__drop">28.2% of first-time donors</div>
+          </article>
+          <article class="card funnel-step" data-reveal>
+            <h3>Monthly members</h3>
+            <div class="funnel-step__value">297</div>
+            <div class="funnel-step__drop">14.9% of first-time donors</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="channel">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>Channel quality matters more than channel volume</h2>
+          <p class="section__lead">This table is intentionally simple: it helps non-technical stakeholders compare efficiency, not just traffic contribution.</p>
+        </div>
+
+        <article class="table-card" data-reveal>
+          <table>
+            <thead>
+              <tr>
+                <th>Channel / audience</th>
+                <th>Sessions</th>
+                <th>First donations</th>
+                <th>First gift CVR</th>
+                <th>90-day repeat rate</th>
+                <th>Membership rate</th>
+                <th>New donor revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Paid Social / Prospecting</td>
+                <td>18,240</td>
+                <td>486</td>
+                <td>2.7%</td>
+                <td>18.9%</td>
+                <td>7.8%</td>
+                <td>$21,384</td>
+              </tr>
+              <tr>
+                <td>Paid Social / Retargeting</td>
+                <td>6,240</td>
+                <td>438</td>
+                <td class="highlight">7.0%</td>
+                <td>26.9%</td>
+                <td>14.2%</td>
+                <td>$21,024</td>
+              </tr>
+              <tr>
+                <td>Email / Existing supporters</td>
+                <td>4,980</td>
+                <td>514</td>
+                <td class="highlight">10.3%</td>
+                <td class="highlight">36.2%</td>
+                <td class="highlight">24.1%</td>
+                <td class="highlight">$28,784</td>
+              </tr>
+              <tr>
+                <td>Organic Search / High intent</td>
+                <td>7,320</td>
+                <td>205</td>
+                <td>2.8%</td>
+                <td>27.3%</td>
+                <td>8.8%</td>
+                <td>$9,225</td>
+              </tr>
+              <tr>
+                <td>Direct / Brand traffic</td>
+                <td>3,680</td>
+                <td>224</td>
+                <td>6.1%</td>
+                <td>32.1%</td>
+                <td>15.2%</td>
+                <td>$11,760</td>
+              </tr>
+              <tr>
+                <td>Referral / Partners</td>
+                <td>2,940</td>
+                <td>126</td>
+                <td>4.3%</td>
+                <td>31.0%</td>
+                <td>16.7%</td>
+                <td>$6,552</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="table-note">Interpretation: owned audiences and warmer traffic segments create the strongest downstream donor quality. Prospecting remains useful for scale, but not as the main driver of monthly membership.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="insights">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>Three insights the team can act on immediately</h2>
+          <p class="section__lead">The value of this report is in what it tells the team to do next, not in how many metrics it can display.</p>
+        </div>
+
+        <div class="insight-grid">
+          <article class="insight-card" data-reveal>
+            <div class="insight-card__index">Insight 01</div>
+            <h3>Email remains the most efficient path to valuable donors.</h3>
+            <p>Email drives the best first-gift conversion, the strongest repeat giving rate, and the highest membership activation rate. This suggests existing-supporter segments are the strongest base for sustainable revenue, not just short-term appeal response.</p>
+          </article>
+          <article class="insight-card" data-reveal>
+            <div class="insight-card__index">Insight 02</div>
+            <h3>Retargeting outperforms prospecting once donor intent is established.</h3>
+            <p>Paid social prospecting brings reach, but retargeting converts at a much higher rate and generates more membership-ready donors. This supports a tighter handoff between awareness campaigns and lower-funnel retargeting journeys.</p>
+          </article>
+          <article class="insight-card" data-reveal>
+            <div class="insight-card__index">Insight 03</div>
+            <h3>The main friction point is before donation start, not after it.</h3>
+            <p>More than half of users who reach the donation page do not begin the form. That points to message continuity, form framing, ask clarity, or page trust signals as the likely performance bottleneck.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="actions">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>Recommended actions for the next reporting cycle</h2>
+          <p class="section__lead">These actions are intentionally specific enough to guide an actual campaign test plan.</p>
+        </div>
+
+        <div class="insight-grid">
+          <article class="card" data-reveal>
+            <h3>Strengthen the bridge from campaign message to donation page.</h3>
+            <p>Reduce drop-off by aligning headline, impact promise, and donation ask more tightly between ad or email creative and the donation landing experience.</p>
+          </article>
+          <article class="card" data-reveal>
+            <h3>Invest more deliberately in retargeting and supporter reactivation.</h3>
+            <p>Shift part of upper-funnel spend toward retargeting cohorts and reactivation journeys that already show stronger first-gift and membership outcomes.</p>
+          </article>
+          <article class="card" data-reveal>
+            <h3>Design separate reporting for scale and donor quality.</h3>
+            <p>Do not evaluate channels on sessions alone. Pair acquisition volume with repeat giving and membership rates so campaign decisions reflect long-term value.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <section class="footer-card" data-reveal>
+        <h2>Why this project belongs in the portfolio</h2>
+        <p class="footer__note">This case study closes a key gap for communications and fundraising analytics roles by making CRM-linked donor journey logic visible, practical, and stakeholder-ready.</p>
+      </section>
+      <section class="footer-card" data-reveal>
+        <h3>Portfolio note</h3>
+        <p class="footer__note">All numbers are fictional and built for demonstration. The point of the project is the analytical structure, not the dataset itself.</p>
+      </section>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector("[data-header]");
+    const revealItems = document.querySelectorAll("[data-reveal]");
+
+    const updateHeader = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 12);
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.14 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
+  </script>
+</body>
+</html>

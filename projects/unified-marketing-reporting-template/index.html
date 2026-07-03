@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study for a unified marketing reporting template built in Google Sheets and connected to Looker Studio.">
+  <meta property="og:title" content="Unified Marketing Reporting Template">
+  <meta property="og:description" content="A Google Sheets reporting system designed as an interim analytics layer before full BI integration.">
+  <title>Unified Marketing Reporting Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2ec;
+      --surface: #ffffff;
+      --text: #1f1d19;
+      --muted: #655f55;
+      --line: #d6cec1;
+      --accent: #2f5d50;
+      --shadow: 0 2px 8px rgba(28, 24, 18, 0.08);
+      --radius: 10px;
+      --container: 980px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Public Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 32px, var(--container)); margin: 0 auto; }
+    .page { padding: 56px 0 72px; }
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+    h1 { font-size: clamp(2.5rem, 5vw, 3.6rem); }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.2rem); }
+    .lede, li, p { color: var(--muted); }
+    .panel {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .grid { display: grid; gap: 16px; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid #bcae9d;
+      border-radius: 8px;
+      background: #fff;
+      font-weight: 600;
+    }
+    .button--primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+    .section { padding-top: 40px; }
+    ul { margin: 14px 0 0; padding-left: 18px; }
+    li + li { margin-top: 8px; }
+    @media (min-width: 820px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="container">
+      <h1>Unified Marketing Reporting Template</h1>
+      <p class="lede">This project demonstrates how multi-source marketing and donor data can be consolidated in Google Sheets before full BI integration, then surfaced through a stakeholder-facing Looker Studio layer.</p>
+      <div class="actions">
+        <a class="button button--primary" href="https://docs.google.com/spreadsheets/d/1Jb6ThjeA4Yh59ytm_vs3oh-uj4N6mCaCMycv1Am5vJk/edit?usp=sharing" target="_blank" rel="noreferrer">Open Google Sheet</a>
+        <a class="button" href="https://datastudio.google.com/s/mzac46DbYlE" target="_blank" rel="noreferrer">Open Looker Studio</a>
+        <a class="button" href="../../index.html">Back to portfolio</a>
+      </div>
+
+      <section class="section">
+        <div class="grid">
+          <article class="panel">
+            <h2>What it includes</h2>
+            <ul>
+              <li>Source tabs for social, web, email, and CRM-style data.</li>
+              <li>A KPI dashboard structured across the marketing funnel.</li>
+              <li>Weekly and monthly reporting views for non-technical teams.</li>
+              <li>Data quality checks, governance notes, and Looker-ready tabs.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2>Why it matters</h2>
+            <ul>
+              <li>Shows Google Sheets as an interim analytics operating layer.</li>
+              <li>Demonstrates KPI structure, not just dashboard decoration.</li>
+              <li>Bridges raw reporting work and executive-level visualization.</li>
+              <li>Fits roles where teams need useful reporting before formal BI maturity.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

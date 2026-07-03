@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A stakeholder-ready one-page campaign report showing cross-channel performance, three key insights, and concrete next actions.">
+  <meta property="og:title" content="Cross-Channel Campaign Insights One-Pager">
+  <meta property="og:description" content="A one-page analytics summary translating campaign data into clear recommendations for non-technical stakeholders.">
+  <title>Cross-Channel Campaign Insights One-Pager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f6f3ee;
+      --surface: #fffdf9;
+      --surface-soft: #efe8dd;
+      --text: #201d1a;
+      --muted: #645d55;
+      --line: #d6cec3;
+      --accent: #6a4e2f;
+      --accent-soft: #ebdfd2;
+      --success: #2d6243;
+      --shadow: 0 4px 24px rgba(28, 23, 18, 0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --container: 1100px;
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 48px;
+      --space-6: 64px;
+      --space-7: 88px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--paper);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible {
+      outline: 3px solid rgba(106, 78, 47, 0.22);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 16px;
+      z-index: 100;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .container {
+      width: min(100% - 32px, var(--container));
+      margin: 0 auto;
+    }
+
+    .page {
+      padding: var(--space-7) 0;
+    }
+
+    .report {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .report__header {
+      padding: var(--space-6);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #fffdf9 0%, #f7f1e8 100%);
+    }
+
+    .report__eyebrow {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-top: 16px;
+      font-size: clamp(3rem, 5.4vw, 3.9rem);
+      line-height: 1.08;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.8vw, 2.4rem);
+      line-height: 1.15;
+    }
+
+    h3 {
+      font-size: 1.24rem;
+      line-height: 1.3;
+    }
+
+    .report__lead,
+    .section__lead,
+    .card p,
+    .data-table__note,
+    .footer-note {
+      color: var(--muted);
+    }
+
+    .report__lead {
+      max-width: 760px;
+      margin-top: 22px;
+    }
+
+    .report__body {
+      display: grid;
+      gap: var(--space-6);
+      padding: var(--space-6);
+    }
+
+    .section__head {
+      max-width: 760px;
+      margin-bottom: var(--space-4);
+    }
+
+    .section__lead {
+      margin-top: 14px;
+    }
+
+    .snapshot-grid,
+    .insight-grid,
+    .action-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card,
+    .data-table {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .card,
+    .data-table {
+      padding: 24px;
+    }
+
+    .metric__label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .metric__value {
+      margin-top: 10px;
+      font-family: "Poppins", sans-serif;
+      font-size: 2rem;
+      letter-spacing: -0.05em;
+    }
+
+    .metric__detail {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .insight-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .insight-card::before {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: var(--accent);
+      content: "";
+    }
+
+    .insight-card__label {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .data-table {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.84rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .highlight { color: var(--success); font-weight: 700; }
+
+    .footer-note {
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+      font-size: 0.94rem;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .snapshot-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .insight-grid,
+      .action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main class="page" id="main-content">
+    <div class="container">
+      <article class="report">
+        <header class="report__header" data-reveal>
+          <p class="report__eyebrow">Quarterly stakeholder brief · communications analytics</p>
+          <h1>Q1 2026 Campaign Results - What the data tells us</h1>
+          <p class="report__lead">
+            This one-pager is designed for non-technical stakeholders who need a fast, trustworthy read on campaign performance.
+            It prioritizes interpretation over dashboard volume and turns channel data into decisions.
+          </p>
+        </header>
+
+        <div class="report__body">
+          <section>
+            <div class="section__head" data-reveal>
+              <h2>Performance snapshot</h2>
+              <p class="section__lead">The campaign succeeded in generating broad awareness, but the strongest revenue contribution came from channels that already carried trust and intent.</p>
+            </div>
+
+            <div class="snapshot-grid">
+              <article class="card" data-reveal>
+                <div class="metric__label">Total visits</div>
+                <div class="metric__value">41,280</div>
+                <div class="metric__detail">Combined web traffic across paid, owned, organic, and referral activity.</div>
+              </article>
+              <article class="card" data-reveal>
+                <div class="metric__label">Total donations</div>
+                <div class="metric__value">1,696</div>
+                <div class="metric__detail">Measured donation outcomes attributed across the modeled channels.</div>
+              </article>
+              <article class="card" data-reveal>
+                <div class="metric__label">Revenue</div>
+                <div class="metric__value">$85,319</div>
+                <div class="metric__detail">Highest contribution came from email, followed by paid social.</div>
+              </article>
+              <article class="card" data-reveal>
+                <div class="metric__label">Paid media efficiency</div>
+                <div class="metric__value">1.56x</div>
+                <div class="metric__detail">Blended return on ad spend across paid social and paid search.</div>
+              </article>
+            </div>
+          </section>
+
+          <section>
+            <div class="section__head" data-reveal>
+              <h2>Channel comparison</h2>
+              <p class="section__lead">This comparison is meant to help the team separate channels that create attention from channels that create contribution.</p>
+            </div>
+
+            <article class="data-table" data-reveal>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Channel</th>
+                    <th>Visits</th>
+                    <th>Engaged sessions</th>
+                    <th>Donations</th>
+                    <th>Revenue</th>
+                    <th>Cost</th>
+                    <th>Interpretation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Paid Social</td>
+                    <td>18,240</td>
+                    <td>9,240</td>
+                    <td>486</td>
+                    <td>$21,384</td>
+                    <td>$12,840</td>
+                    <td>Strong for scale, but weaker efficiency than owned audiences.</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>4,980</td>
+                    <td>3,240</td>
+                    <td class="highlight">514</td>
+                    <td class="highlight">$28,784</td>
+                    <td>$920</td>
+                    <td>Best-performing channel for conversion and value.</td>
+                  </tr>
+                  <tr>
+                    <td>Organic Search</td>
+                    <td>7,320</td>
+                    <td>4,380</td>
+                    <td>205</td>
+                    <td>$9,225</td>
+                    <td>$0</td>
+                    <td>Reliable high-intent traffic, but still under-monetized.</td>
+                  </tr>
+                  <tr>
+                    <td>Direct</td>
+                    <td>3,680</td>
+                    <td>2,280</td>
+                    <td>224</td>
+                    <td>$11,760</td>
+                    <td>$0</td>
+                    <td>Reflects strong brand trust and campaign recall.</td>
+                  </tr>
+                  <tr>
+                    <td>Referral</td>
+                    <td>2,940</td>
+                    <td>1,640</td>
+                    <td>126</td>
+                    <td>$6,552</td>
+                    <td>$0</td>
+                    <td>Smaller scale, but credible partner-led traffic.</td>
+                  </tr>
+                  <tr>
+                    <td>Paid Search</td>
+                    <td>4,120</td>
+                    <td>2,390</td>
+                    <td>141</td>
+                    <td>$7,614</td>
+                    <td>$4,680</td>
+                    <td>Useful for intent capture, but creative and landing-page alignment should improve.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="data-table__note">Read this table alongside donor quality, not in isolation. A channel can drive traffic without being the best driver of conversion value.</p>
+            </article>
+          </section>
+
+          <section>
+            <div class="section__head" data-reveal>
+              <h2>Three key insights</h2>
+              <p class="section__lead">This section is the heart of the report: it translates performance into language a campaign, brand, or fundraising lead can act on quickly.</p>
+            </div>
+
+            <div class="insight-grid">
+              <article class="card insight-card" data-reveal>
+                <div class="insight-card__label">Insight 01</div>
+                <h3>Email outperformed every other channel on conversion efficiency.</h3>
+                <p>Email generated the most donations and the most revenue from a much smaller traffic base. That points to audience trust, message relevance, and stronger intent at the point of visit.</p>
+              </article>
+              <article class="card insight-card" data-reveal>
+                <div class="insight-card__label">Insight 02</div>
+                <h3>Paid social did its awareness job, but not its full-funnel job.</h3>
+                <p>Paid social delivered reach and visits, yet revenue efficiency lagged behind email and direct traffic. The campaign likely created interest, but did not consistently move that attention into donor-ready action.</p>
+              </article>
+              <article class="card insight-card" data-reveal>
+                <div class="insight-card__label">Insight 03</div>
+                <h3>Owned and trust-based channels are carrying the real conversion load.</h3>
+                <p>Direct, referral, and email all outperformed many higher-volume sources in terms of conversion value. This suggests the campaign works best when credibility is already established before the visit.</p>
+              </article>
+            </div>
+          </section>
+
+          <section>
+            <div class="section__head" data-reveal>
+              <h2>Recommended actions</h2>
+              <p class="section__lead">These are practical next steps, not generic “optimize the funnel” statements.</p>
+            </div>
+
+            <div class="action-grid">
+              <article class="card" data-reveal>
+                <h3>Rebuild paid social around assisted conversion, not just reach.</h3>
+                <p>Use paid social to qualify audiences into retargeting and email capture journeys, rather than judging success only on traffic volume.</p>
+              </article>
+              <article class="card" data-reveal>
+                <h3>Protect and scale high-trust channels.</h3>
+                <p>Double down on email segmentation, direct reactivation, and partner referral pathways that already show stronger donation efficiency.</p>
+              </article>
+              <article class="card" data-reveal>
+                <h3>Standardize reporting around contribution to revenue.</h3>
+                <p>Move stakeholder reporting away from isolated vanity metrics and toward visits, engaged sessions, donations, and revenue together.</p>
+              </article>
+            </div>
+          </section>
+
+          <section data-reveal>
+            <p class="footer-note">Portfolio note: all figures are fictional and included only to demonstrate how a communications analytics report can convert cross-channel data into a clear executive narrative.</p>
+          </section>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script>
+    const revealItems = document.querySelectorAll("[data-reveal]");
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.14 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  </script>
+</body>
+</html>

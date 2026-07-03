@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sanitized case study for a confidential Virunga dashboard project.">
+  <meta property="og:title" content="Virunga Performance Dashboard">
+  <meta property="og:description" content="Confidential dashboard case study focused on KPI visibility, monitoring, and stakeholder reporting.">
+  <title>Virunga Performance Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --surface: #ffffff;
+      --text: #1f1d19;
+      --muted: #676158;
+      --line: #d8d2c8;
+      --accent: #5a4a34;
+      --shadow: 0 2px 8px rgba(28, 24, 18, 0.08);
+      --radius: 10px;
+      --container: 980px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Public Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 32px, var(--container)); margin: 0 auto; }
+    .page { padding: 56px 0 72px; }
+    h1, h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+    h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+    h2 { font-size: clamp(1.7rem, 3vw, 2.1rem); }
+    .lede, p, li { color: var(--muted); }
+    .section { padding-top: 40px; }
+    .panel {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .grid { display: grid; gap: 16px; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid #bcb3a6;
+      border-radius: 8px;
+      background: #fff;
+      font-weight: 600;
+    }
+    ul { margin: 14px 0 0; padding-left: 18px; }
+    li + li { margin-top: 8px; }
+    @media (min-width: 820px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="container">
+      <h1>Virunga Performance Dashboard</h1>
+      <p class="lede">This dashboard project is presented as a public case study rather than a live demo because the professional environment and its data cannot be exposed publicly. The portfolio version focuses on KPI reporting structure, interface clarity, and stakeholder utility.</p>
+      <div class="actions">
+        <a class="button" href="../../index.html">Back to portfolio</a>
+      </div>
+
+      <section class="section">
+        <div class="grid">
+          <article class="panel">
+            <h2>Problem</h2>
+            <ul>
+              <li>Stakeholders needed a clearer way to review performance signals.</li>
+              <li>Important indicators were spread across disconnected summaries.</li>
+              <li>Monitoring required more structure and better readability.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2>Contribution</h2>
+            <ul>
+              <li>Supported KPI centralization in a structured reporting interface.</li>
+              <li>Improved readability of performance information for ongoing review.</li>
+              <li>Helped make dashboard navigation and monitoring more practical.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2>What it demonstrates</h2>
+            <ul>
+              <li>Dashboard design for non-technical stakeholder use.</li>
+              <li>Real-world reporting work beyond demo-only datasets.</li>
+              <li>Professional discretion around confidential systems.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2>Confidentiality note</h2>
+            <ul>
+              <li>No live links, exports, or private code are shared publicly.</li>
+              <li>The portfolio entry is intentionally limited to safe, high-level details.</li>
+              <li>The value shown here is in reporting logic, not in exposed records.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

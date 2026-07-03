@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Support HopeTrack International's Education for All 2026 campaign through a tracked donation experience.">
+  <meta property="og:title" content="HopeTrack International | Donate">
+  <meta property="og:description" content="Choose an amount, donor type, and submit a tracked donation form for the Education for All 2026 campaign.">
+  <title>HopeTrack International | Donate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B0PG7TN6C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-7B0PG7TN6C');
+  </script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #f97316;
+      --accent: #dc2626;
+      --danger: #dc2626;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: rgba(15,23,42,0.06);
+      --surface: rgba(255, 255, 255, 0.92);
+      --container: 1200px;
+      --radius: 18px;
+      --radius-sm: 10px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #ffffff;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; transition: all 0.2s ease; }
+    .container { width: min(100% - 32px, var(--container)); margin: 0 auto; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 16px 40px rgba(8,15,24,0.08);
+    }
+    .header__inner {
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #111827;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+    .logo__mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,42,0.06);
+      background: rgba(15,23,42,0.05);
+    }
+    .nav { display: none; justify-self: center; gap: 28px; }
+    .nav a { color: #475569; font-weight: 500; }
+    .nav a:hover, .nav .active { color: #0f172a; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(15,23,42,0.08);
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .button--accent {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .hero {
+      padding: 92px 0 54px;
+      text-align: center;
+    }
+    .hero__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+    }
+    .hero__pill::after {
+      width: 36px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--secondary);
+      content: "";
+    }
+    h1, h2, h3 {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+    h1 { margin-top: 24px; font-size: clamp(3rem, 7vw, 5rem); }
+    h2 { font-size: clamp(2rem, 4.8vw, 3rem); }
+    h3 { font-size: 1.25rem; }
+    .hero p,
+    .form-card p,
+    .support-card p,
+    .trust p,
+    .quote p,
+    .faq p,
+    .footer__column p,
+    .footer__links a { color: var(--muted); }
+    .hero p {
+      max-width: 760px;
+      margin: 22px auto 0;
+      font-size: 1.18rem;
+    }
+    .section { padding: 100px 0; }
+    .shell,
+    .trust-grid,
+    .quotes,
+    .footer__grid {
+      display: grid;
+      gap: 16px;
+    }
+    .form-card,
+    .support-card,
+    .trust,
+    .quote,
+    .faq,
+    .thanks,
+    .footer__column {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.88);
+    }
+    .form-card,
+    .support-card,
+    .thanks,
+    .quote,
+    .trust,
+    .faq { padding: 28px; }
+    .field-group {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .choice {
+      min-height: 52px;
+      border: 1px solid rgba(15,23,42,0.1);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+    }
+    .choice.is-selected {
+      border-color: var(--accent);
+      background: rgba(249,115,22,0.12);
+    }
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .form-grid--full { grid-column: 1 / -1; }
+    label {
+      display: grid;
+      gap: 8px;
+      color: #334155;
+      font-size: 0.94rem;
+    }
+    input {
+      min-height: 54px;
+      width: 100%;
+      padding: 0 16px;
+      border: 1px solid rgba(15,23,42,0.1);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+    }
+    .helper { color: var(--muted); font-size: 0.92rem; }
+    .error { min-height: 22px; color: var(--danger); font-size: 0.92rem; }
+    .hidden { display: none; }
+    .thanks { display: none; }
+    .support-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+    }
+    .trust strong,
+    .quote strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .faq button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      font-weight: 600;
+    }
+    .faq p {
+      max-height: 0;
+      overflow: hidden;
+      margin: 0;
+      transition: max-height 0.22s ease, margin-top 0.22s ease;
+    }
+    .faq.is-open p {
+      max-height: 200px;
+      margin-top: 14px;
+    }
+    .site-footer {
+      padding: 56px 0 34px;
+      background: #0f1117;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer__column h4 {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .footer__links {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+    .footer__base {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (min-width: 900px) {
+      .nav { display: inline-flex; }
+      .shell { grid-template-columns: 1.12fr 0.88fr; align-items: start; }
+      .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .trust-grid,
+      .quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .footer__grid { grid-template-columns: 1.2fr repeat(5, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html"><span class="logo__mark">HT</span><span>HopeTrack</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a class="active" href="donate.html">Donate</a>
+        <a href="utm-framework.html">UTM Framework</a>
+      </nav>
+      <a class="button button--accent" href="#donation-form">Give now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__pill">Donation journey and conversion tracking</div>
+        <h1>Make a Difference Today</h1>
+        <p>A polished donation flow that feels clear, trustworthy, and conversion-ready while preserving the measurement logic required for GA4 review.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container shell">
+        <form class="form-card" id="donation-form" novalidate data-donation-form data-reveal>
+          <h2>Support Education for All 2026</h2>
+          <p>Choose an amount, define your donor type, and complete a donation action that can be analyzed with confidence.</p>
+
+          <div class="field-group">
+            <strong>Amount</strong>
+            <div class="choice-grid">
+              <button class="choice" type="button" data-amount="10">$10</button>
+              <button class="choice" type="button" data-amount="25">$25</button>
+              <button class="choice" type="button" data-amount="50">$50</button>
+              <button class="choice" type="button" data-amount="100">$100</button>
+              <button class="choice" type="button" data-amount="custom">Custom</button>
+            </div>
+            <label class="hidden" data-custom-wrap>Custom amount
+              <input id="custom-amount-input" name="customAmount" type="number" min="1" step="1" placeholder="Enter custom amount">
+            </label>
+          </div>
+
+          <div class="field-group">
+            <strong>Donor type</strong>
+            <div class="choice-grid">
+              <button class="choice" type="button" data-type="one-time">One-time</button>
+              <button class="choice" type="button" data-type="monthly">Monthly Member</button>
+            </div>
+          </div>
+
+          <div class="field-group form-grid">
+            <label>First Name<input type="text" name="firstName" required></label>
+            <label>Last Name<input type="text" name="lastName" required></label>
+            <label class="form-grid--full">Email<input type="email" name="email" required></label>
+          </div>
+
+          <div class="helper">This is a front-end portfolio demo. The experience is designed to simulate donor intent and conversion measurement without a backend.</div>
+          <div class="error" data-form-error aria-live="polite"></div>
+          <button class="button button--accent" type="submit" data-submit-button>Complete donation</button>
+        </form>
+
+        <aside class="support-card" data-reveal>
+          <h3>Why this flow is structured this way</h3>
+          <p>The form keeps the interface calm and direct while still capturing the decision points that matter most in campaign analytics.</p>
+          <ul class="support-list">
+            <li>Preset amount tracking for clean event parameters</li>
+            <li>Monthly vs one-time donor choice for lifecycle analysis</li>
+            <li>Email domain extraction for non-sensitive conversion review</li>
+            <li>Friction-light thank-you state with no backend dependency</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="container">
+        <section class="thanks" data-thank-you aria-live="polite">
+          <h2>Donation received</h2>
+          <p data-thank-you-message></p>
+        </section>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container trust-grid">
+        <article class="trust" data-reveal><strong>Secure</strong><p>The layout is simple, focused, and designed to minimize hesitation.</p></article>
+        <article class="trust" data-reveal><strong>Transparent</strong><p>Programs, goals, and donor intent are easy to understand at every step.</p></article>
+        <article class="trust" data-reveal><strong>Impactful</strong><p>The donation action is tied to a visible campaign objective, not vague fundraising language.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container quotes">
+        <article class="quote" data-reveal><strong>Claire B. - France</strong><p>“The experience made the campaign feel credible immediately. I knew what the donation supported and why it mattered.”</p></article>
+        <article class="quote" data-reveal><strong>David O. - Kenya</strong><p>“It feels polished without being flashy. That balance gives confidence.”</p></article>
+        <article class="quote" data-reveal><strong>Nadia R. - Bangladesh</strong><p>“The girls' education program came across with clarity and dignity, not just emotional appeal.”</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container quotes">
+        <article class="faq is-open" data-reveal><button type="button">How is my donation used?<span>+</span></button><p>Funds support school access, scholarships, teacher training, and local delivery across the campaign's highlighted programs.</p></article>
+        <article class="faq" data-reveal><button type="button">Can I become a monthly member?<span>+</span></button><p>Yes. The donor type selector includes a monthly member path for recurring support.</p></article>
+        <article class="faq" data-reveal><button type="button">Will I receive a receipt?<span>+</span></button><p>This demo shows a confirmation message only, but the experience is structured like a real receipt-enabled donor flow.</p></article>
+        <article class="faq" data-reveal><button type="button">Which program does this support?<span>+</span></button><p>The flow references Education for All 2026 as the umbrella campaign that unites the featured country initiatives.</p></article>
+        <article class="faq" data-reveal><button type="button">Why collect email?<span>+</span></button><p>Email allows the site to simulate confirmation handling and enables conversion review without storing full personal details in analytics.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <section class="footer__column"><h4>HopeTrack</h4><p>A fictional NGO website built to demonstrate senior-level campaign design, GA4 implementation, and attribution strategy.</p></section>
+        <section class="footer__column"><h4>Platform</h4><ul class="footer__links"><li><a href="index.html">Homepage</a></li><li><a href="donate.html">Donation flow</a></li><li><a href="utm-framework.html">UTM framework</a></li></ul></section>
+        <section class="footer__column"><h4>Programs</h4><ul class="footer__links"><li><a href="programs.html">DRC Congo</a></li><li><a href="programs.html">Kenya</a></li><li><a href="programs.html">Bangladesh</a></li></ul></section>
+        <section class="footer__column"><h4>Company</h4><ul class="footer__links"><li><a href="about.html">Mission</a></li><li><a href="about.html">Leadership</a></li><li><a href="about.html">Values</a></li></ul></section>
+        <section class="footer__column"><h4>Connect</h4><ul class="footer__links"><li><a href="mailto:hello@hopetrack.org">hello@hopetrack.org</a></li><li><a href="donate.html">Support now</a></li><li><a href="utm-framework.html">Resources</a></li></ul></section>
+        <section class="footer__column"><h4>Legal</h4><ul class="footer__links"><li><a href="mailto:hello@hopetrack.org">Privacy</a></li><li><a href="mailto:hello@hopetrack.org">Terms</a></li><li><a href="mailto:hello@hopetrack.org">Safeguarding</a></li></ul></section>
+      </div>
+      <div class="footer__base">Copyright 2026 HopeTrack International. Built as a portfolio demonstration for Save the Children International applications.</div>
+    </div>
+  </footer>
+
+  <script>
+    const HopeTrackAnalytics = {
+      track: (eventName, params = {}) => {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', eventName, {
+            ...params,
+            timestamp: new Date().toISOString(),
+            environment: 'portfolio_demo'
+          });
+        }
+        console.log('[HopeTrack Analytics]', eventName, params);
+      }
+    };
+
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const amountButtons = document.querySelectorAll('[data-amount]');
+    const typeButtons = document.querySelectorAll('[data-type]');
+    const customWrap = document.querySelector('[data-custom-wrap]');
+    const customInput = document.getElementById('custom-amount-input');
+    const form = document.querySelector('[data-donation-form]');
+    const errorBox = document.querySelector('[data-form-error]');
+    const submitButton = document.querySelector('[data-submit-button]');
+    const thankYou = document.querySelector('[data-thank-you]');
+    const thankYouMessage = document.querySelector('[data-thank-you-message]');
+    const faqItems = document.querySelectorAll('.faq');
+
+    let selectedAmount = '';
+    let selectedType = 'one-time';
+
+    const selectButton = (buttons, activeButton) => {
+      buttons.forEach((button) => button.classList.remove('is-selected'));
+      activeButton.classList.add('is-selected');
+    };
+
+    amountButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedAmount = button.dataset.amount;
+        selectButton(amountButtons, button);
+        customWrap.classList.toggle('hidden', selectedAmount !== 'custom');
+        if (selectedAmount !== 'custom') customInput.value = '';
+        HopeTrackAnalytics.track('donation_amount_selected', {
+          amount: selectedAmount === 'custom' ? 'custom' : Number(selectedAmount),
+          page: 'donate'
+        });
+      });
+    });
+
+    typeButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedType = button.dataset.type;
+        selectButton(typeButtons, button);
+        HopeTrackAnalytics.track('donation_type_selected', {
+          type: selectedType,
+          page: 'donate'
+        });
+      });
+    });
+    typeButtons[0].classList.add('is-selected');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      errorBox.textContent = '';
+
+      const formData = new FormData(form);
+      const firstName = String(formData.get('firstName') || '').trim();
+      const lastName = String(formData.get('lastName') || '').trim();
+      const email = String(formData.get('email') || '').trim();
+      const customAmount = String(formData.get('customAmount') || '').trim();
+
+      let finalAmount = selectedAmount;
+      if (!selectedAmount) {
+        errorBox.textContent = 'Please choose a donation amount.';
+        return;
+      }
+      if (selectedAmount === 'custom') {
+        if (!customAmount || Number(customAmount) <= 0) {
+          errorBox.textContent = 'Please enter a valid custom donation amount.';
+          return;
+        }
+        finalAmount = customAmount;
+      }
+      if (!firstName || !lastName || !email.includes('@')) {
+        errorBox.textContent = 'Please complete all required fields with a valid email address.';
+        return;
+      }
+
+      submitButton.textContent = 'Processing...';
+      submitButton.disabled = true;
+
+      const emailDomain = email.split('@')[1] || 'unknown';
+      HopeTrackAnalytics.track('donation_form_submitted', {
+        amount: Number(finalAmount),
+        type: selectedType,
+        donor_email_domain: emailDomain,
+        page: 'donate'
+      });
+
+      setTimeout(() => {
+        form.style.display = 'none';
+        thankYou.style.display = 'block';
+        thankYouMessage.textContent = `Thank you, ${firstName}! Your $${finalAmount} donation to Education for All 2026 will change lives. A confirmation will be sent to ${email}.`;
+      }, 500);
+    });
+
+    faqItems.forEach((item) => {
+      item.querySelector('button').addEventListener('click', () => {
+        item.classList.toggle('is-open');
+      });
+    });
+  </script>
+</body>
+</html>

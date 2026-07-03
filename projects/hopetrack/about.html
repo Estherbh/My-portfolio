@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn about HopeTrack International's mission, leadership, and operating model behind the Education for All 2026 campaign.">
+  <meta property="og:title" content="HopeTrack International | About">
+  <meta property="og:description" content="Meet the team and mission shaping HopeTrack International's education campaign.">
+  <title>HopeTrack International | About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B0PG7TN6C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-7B0PG7TN6C');
+  </script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #f97316;
+      --accent: #dc2626;
+      --bg: #ffffff;
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-2: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: rgba(15,23,42,0.06);
+      --container: 1200px;
+      --radius: 18px;
+      --radius-sm: 10px;
+      --header-h: 82px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #ffffff;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    .container { width: min(100% - 32px, var(--container)); margin: 0 auto; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 16px 40px rgba(8,15,24,0.08);
+    }
+    .header__inner {
+      min-height: var(--header-h);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: #111827;
+    }
+    .logo__mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(15,23,42,0.05);
+      border: 1px solid rgba(15,23,42,0.06);
+    }
+    .nav {
+      display: none;
+      justify-self: center;
+      gap: 28px;
+    }
+    .nav a { color: #475569; font-weight: 500; }
+    .nav a:hover, .nav .active { color: #0f172a; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(15,23,42,0.08);
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .button--accent {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .hero {
+      padding: 90px 0 50px;
+      text-align: center;
+    }
+    .hero__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+    }
+    .hero__pill::after {
+      width: 36px;
+      height: 2px;
+      background: var(--secondary);
+      border-radius: 999px;
+      content: "";
+    }
+    h1, h2, h3 {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+    h1 { margin-top: 24px; font-size: clamp(3rem, 7vw, 5rem); }
+    h2 { font-size: clamp(2rem, 4.8vw, 3rem); }
+    h3 { font-size: 1.28rem; }
+    .hero p,
+    .intro p,
+    .card p,
+    .timeline p,
+    .footer__column p,
+    .footer__links a { color: var(--muted); }
+    .hero p {
+      max-width: 780px;
+      margin: 22px auto 0;
+      font-size: 1.18rem;
+    }
+    .section { padding: 100px 0; }
+    .intro {
+      max-width: 760px;
+      margin-bottom: 32px;
+    }
+    .panel,
+    .card,
+    .timeline article,
+    .cta {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.88);
+    }
+    .mission {
+      display: grid;
+      gap: 18px;
+    }
+    .panel {
+      padding: 30px;
+    }
+    .quote {
+      padding: 34px;
+      background: #ffffff;
+      border-left: 3px solid var(--accent);
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.35;
+    }
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+    .timeline article,
+    .card { padding: 24px; }
+    .timeline__year {
+      color: #1e293b;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .grid,
+    .values,
+    .footer__grid {
+      display: grid;
+      gap: 16px;
+    }
+    .avatar {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.04);
+      border: 1px solid rgba(15,23,42,0.06);
+      margin-bottom: 16px;
+      font-size: 1.3rem;
+    }
+    .role {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+    .cta {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: space-between;
+    }
+    .site-footer {
+      padding: 56px 0 34px;
+      background: #0f1117;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer__column h4 {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .footer__links {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+    .footer__base {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (min-width: 900px) {
+      .nav { display: inline-flex; }
+      .mission { grid-template-columns: 1.15fr 0.85fr; }
+      .grid,
+      .values { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cta { flex-direction: row; align-items: center; }
+      .footer__grid { grid-template-columns: 1.2fr repeat(5, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html"><span class="logo__mark">HT</span><span>HopeTrack</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a class="active" href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="donate.html">Donate</a>
+        <a href="utm-framework.html">UTM Framework</a>
+      </nav>
+      <a class="button button--accent" href="donate.html">Join the mission</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__pill">Mission, leadership, and operating model</div>
+        <h1>Who We Are</h1>
+        <p>HopeTrack International is a fictional organization built to demonstrate what a disciplined, donor-ready education campaign can look like when design, storytelling, and measurement work together.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container mission">
+        <article class="panel" data-reveal>
+          <div class="intro">
+            <h2>Built around measurable education outcomes.</h2>
+            <p>HopeTrack is designed around practical interventions: classroom support, teacher readiness, scholarship continuity, and youth skills development. Every page in the experience is written to feel public-facing while still supporting a serious analytics story underneath.</p>
+          </div>
+          <p>For this portfolio project, the goal is not just to “look nonprofit.” It is to create a website that shows operational clarity, credible messaging, and the ability to connect user experience with campaign measurement.</p>
+        </article>
+        <aside class="quote" data-reveal>
+          “We believe fundraising should be as transparent, intentional, and accountable as the programs it claims to support.”
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="intro" data-reveal>
+          <h2>Impact timeline</h2>
+          <p>A grounded timeline makes the organization feel real and gives the campaign narrative a sense of operating history.</p>
+        </div>
+        <div class="timeline">
+          <article data-reveal><div class="timeline__year">2020</div><h3>Founded in Geneva</h3><p>The organization launched with a focus on education access, transparency, and practical field support.</p></article>
+          <article data-reveal><div class="timeline__year">2021</div><h3>First program in Kenya</h3><p>Digital access and youth readiness became the first live initiative in the portfolio.</p></article>
+          <article data-reveal><div class="timeline__year">2022</div><h3>Expanded to DRC Congo</h3><p>Infrastructure support and teacher training extended the operating footprint into rural communities.</p></article>
+          <article data-reveal><div class="timeline__year">2023</div><h3>5,000 children reached</h3><p>A major milestone that pushed the organization toward more structured reporting and campaign planning.</p></article>
+          <article data-reveal><div class="timeline__year">2024</div><h3>Bangladesh initiative launched</h3><p>The girls' education program opened with scholarship and mentoring support at its core.</p></article>
+          <article data-reveal><div class="timeline__year">2025</div><h3>$200,000 raised</h3><p>Fundraising maturity created the case for a more sophisticated digital campaign stack.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="intro" data-reveal>
+          <h2>Leadership team</h2>
+          <p>Each card is intentionally concise and tracks hover interaction so stakeholder interest can be measured cleanly.</p>
+        </div>
+        <div class="grid">
+          <article class="card" data-reveal data-team-member="Sarah Okonkwo">
+            <div class="avatar">👩🏾‍💼</div>
+            <h3>Sarah Okonkwo</h3>
+            <div class="role">Executive Director</div>
+            <p>Leads strategy, partnerships, and campaign direction across all public-facing and field priorities.</p>
+          </article>
+          <article class="card" data-reveal data-team-member="Marc Dubois">
+            <div class="avatar">👨🏻‍💼</div>
+            <h3>Marc Dubois</h3>
+            <div class="role">Programs Manager</div>
+            <p>Oversees field implementation, partner coordination, and operating consistency across country programs.</p>
+          </article>
+          <article class="card" data-reveal data-team-member="Amina Hassan">
+            <div class="avatar">👩🏽‍💻</div>
+            <h3>Amina Hassan</h3>
+            <div class="role">Data &amp; Impact Lead</div>
+            <p>Owns reporting logic, campaign measurement, and the translation of outcomes into donor-ready stories.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="intro" data-reveal>
+          <h2>Values that shape execution</h2>
+          <p>These principles are written as operating behaviors, not generic brand language.</p>
+        </div>
+        <div class="values">
+          <article class="card" data-reveal><h3>Transparency</h3><p>Donors, partners, and communities should understand where resources go and what they unlock.</p></article>
+          <article class="card" data-reveal><h3>Accountability</h3><p>Campaigns need measurable goals, honest reporting, and decisions grounded in field reality.</p></article>
+          <article class="card" data-reveal><h3>Impact</h3><p>We focus on interventions that remove practical barriers to education access and continuity.</p></article>
+          <article class="card" data-reveal><h3>Innovation</h3><p>Digital tools and better measurement help teams learn faster and communicate more clearly.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta" data-reveal>
+          <div>
+            <h2>Join our mission</h2>
+            <p>Move from understanding the campaign to supporting it directly through the tracked donation experience.</p>
+          </div>
+          <a class="button button--accent" href="donate.html" data-join-mission>Go to donate page</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <section class="footer__column"><h4>HopeTrack</h4><p>A fictional NGO website built to demonstrate senior-level campaign design, GA4 implementation, and attribution strategy.</p></section>
+        <section class="footer__column"><h4>Platform</h4><ul class="footer__links"><li><a href="index.html">Homepage</a></li><li><a href="donate.html">Donation flow</a></li><li><a href="utm-framework.html">UTM framework</a></li></ul></section>
+        <section class="footer__column"><h4>Programs</h4><ul class="footer__links"><li><a href="programs.html">DRC Congo</a></li><li><a href="programs.html">Kenya</a></li><li><a href="programs.html">Bangladesh</a></li></ul></section>
+        <section class="footer__column"><h4>Company</h4><ul class="footer__links"><li><a href="about.html">Mission</a></li><li><a href="about.html">Leadership</a></li><li><a href="about.html">Values</a></li></ul></section>
+        <section class="footer__column"><h4>Connect</h4><ul class="footer__links"><li><a href="mailto:hello@hopetrack.org">hello@hopetrack.org</a></li><li><a href="donate.html">Support now</a></li><li><a href="utm-framework.html">Resources</a></li></ul></section>
+        <section class="footer__column"><h4>Legal</h4><ul class="footer__links"><li><a href="mailto:hello@hopetrack.org">Privacy</a></li><li><a href="mailto:hello@hopetrack.org">Terms</a></li><li><a href="mailto:hello@hopetrack.org">Safeguarding</a></li></ul></section>
+      </div>
+      <div class="footer__base">Copyright 2026 HopeTrack International. Built as a portfolio demonstration for Save the Children International applications.</div>
+    </div>
+  </footer>
+
+  <script>
+    const HopeTrackAnalytics = {
+      track: (eventName, params = {}) => {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', eventName, {
+            ...params,
+            timestamp: new Date().toISOString(),
+            environment: 'portfolio_demo'
+          });
+        }
+        console.log('[HopeTrack Analytics]', eventName, params);
+      }
+    };
+
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    document.querySelector('[data-join-mission]').addEventListener('click', () => {
+      HopeTrackAnalytics.track('join_mission_click', { page: 'about' });
+    });
+
+    document.querySelectorAll('[data-team-member]').forEach((card) => {
+      let tracked = false;
+      card.addEventListener('mouseenter', () => {
+        if (tracked) return;
+        tracked = true;
+        HopeTrackAnalytics.track('team_member_view', {
+          member_name: card.dataset.teamMember,
+          page: 'about'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
