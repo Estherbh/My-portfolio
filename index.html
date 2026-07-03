@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Public portfolio of data, analytics, reporting, GA4, Looker Studio, Google Sheets, and dashboard case studies aligned with communications and fundraising analytics roles.">
-  <meta property="og:title" content="Esther B. | Data, Analytics & Reporting Portfolio">
-  <meta property="og:description" content="Portfolio featuring GA4, Looker Studio, Google Sheets reporting, donor journey analysis, and confidential dashboard case studies.">
-  <title>Esther B. | Data, Analytics & Reporting Portfolio</title>
+  <meta name="description" content="Operations Data & AI Specialist portfolio featuring analytics systems, AI products, reporting workflows, GA4, Looker Studio, Google Sheets, and confidential operational dashboards.">
+  <meta property="og:title" content="Esther Bahati | Operations Data & AI Specialist">
+  <meta property="og:description" content="Portfolio of operations, analytics, AI, automation, product building, and field-facing dashboard work.">
+  <title>Esther Bahati | Operations Data & AI Specialist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -14,33 +14,39 @@
     :root {
       --bg: #f5f2ec;
       --surface: #ffffff;
-      --surface-alt: #ece6db;
+      --surface-alt: #f8f5f0;
+      --surface-strong: #ebe4d8;
       --text: #1f1d19;
-      --muted: #655f55;
-      --line: #d6cec1;
-      --line-strong: #bcae9d;
+      --muted: #615a50;
+      --line: #ddd4c8;
+      --line-strong: #c3b4a2;
       --accent: #2f5d50;
+      --accent-strong: #254a40;
       --accent-2: #6b4e2d;
-      --shadow: 0 2px 8px rgba(28, 24, 18, 0.08);
-      --radius: 10px;
+      --shadow: 0 8px 24px rgba(26, 22, 17, 0.05);
+      --radius: 12px;
       --container: 1180px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: "Public Sans", sans-serif;
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.68;
       color: var(--text);
       background: var(--bg);
     }
+
     a { color: inherit; text-decoration: none; }
+
     a:focus-visible {
       outline: 3px solid rgba(47, 93, 80, 0.18);
       outline-offset: 3px;
     }
+
     .skip-link {
       position: absolute;
       top: -48px;
@@ -51,16 +57,23 @@
       border: 1px solid var(--line);
       border-radius: 8px;
     }
+
     .skip-link:focus { top: 16px; }
+
     .container {
       width: min(100% - 32px, var(--container));
       margin: 0 auto;
     }
+
     .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
       border-bottom: 1px solid var(--line);
       background: rgba(245, 242, 236, 0.96);
       backdrop-filter: blur(10px);
     }
+
     .site-header__inner {
       display: flex;
       align-items: center;
@@ -68,174 +81,373 @@
       gap: 24px;
       min-height: 72px;
     }
+
     .brand {
       font-family: "Space Grotesk", sans-serif;
       font-size: 1.05rem;
       font-weight: 700;
       letter-spacing: -0.03em;
     }
+
     .nav {
       display: none;
-      gap: 20px;
+      gap: 18px;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
+
     .nav a:hover { color: var(--text); }
+
     .page {
-      padding: 56px 0 80px;
+      padding: 40px 0 80px;
     }
-    .hero {
-      display: grid;
-      gap: 24px;
-      padding: 16px 0 48px;
-    }
+
     h1, h2, h3 {
       margin: 0;
       font-family: "Space Grotesk", sans-serif;
       line-height: 1.08;
       letter-spacing: -0.04em;
     }
+
     h1 {
-      max-width: 820px;
-      font-size: clamp(2.7rem, 5vw, 4rem);
+      font-size: clamp(2.8rem, 5vw, 4.3rem);
     }
+
     h2 {
-      font-size: clamp(1.9rem, 3.4vw, 2.4rem);
+      font-size: clamp(1.8rem, 3vw, 2.35rem);
     }
+
     h3 {
-      font-size: 1.15rem;
+      font-size: 1.16rem;
     }
+
+    p { margin: 0; }
+
+    .muted,
+    .hero__subtitle,
     .hero__lede,
     .section__lede,
     .card__summary,
-    .fit-list li,
-    .project-list li,
-    .note,
-    .footer__text {
+    .card li,
+    .achievement__detail,
+    .contact-card__text,
+    .footer__text,
+    .about-copy p,
+    .photo-note {
       color: var(--muted);
     }
+
+    .hero {
+      display: grid;
+      gap: 20px;
+      padding: 12px 0 28px;
+    }
+
+    .hero__layout {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .hero__eyebrow {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero__subtitle {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
     .hero__lede {
       max-width: 760px;
-      margin: 0;
-      font-size: 1.04rem;
+      font-size: 1.05rem;
     }
-    .hero__meta,
-    .fit-grid,
+
+    .hero__actions,
+    .card__links,
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero__pillars,
+    .hero__stats,
+    .contact-grid,
+    .achievement-grid,
     .project-grid,
-    .process-grid,
+    .delivery-grid,
     .footer-grid {
       display: grid;
       gap: 16px;
     }
+
     .panel,
-    .card {
+    .card,
+    .achievement,
+    .delivery-card,
+    .contact-card,
+    .photo-card {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--surface);
       box-shadow: var(--shadow);
     }
-    .panel {
+
+    .panel,
+    .card,
+    .achievement,
+    .delivery-card,
+    .contact-card,
+    .photo-card {
       padding: 22px;
     }
-    .fit-list,
-    .project-list {
-      margin: 14px 0 0;
-      padding-left: 18px;
+
+    .photo-card {
+      background: var(--surface-alt);
     }
-    .fit-list li + li,
-    .project-list li + li {
-      margin-top: 8px;
-    }
-    .section {
-      padding-top: 48px;
-    }
-    .section__head {
-      max-width: 760px;
-      margin-bottom: 24px;
-    }
-    .section__lede {
-      margin-top: 14px;
-    }
-    .card {
+
+    .photo-frame {
       display: grid;
-      gap: 18px;
+      place-items: center;
+      aspect-ratio: 4 / 5;
+      border: 1px dashed var(--line-strong);
+      border-radius: 10px;
+      background: #fffdf9;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
       padding: 20px;
+      overflow: hidden;
     }
-    .card__type {
-      color: var(--accent-2);
-      font-size: 0.83rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .card__summary {
-      margin: 0;
+
+    .photo-placeholder {
+      display: none;
     }
-    .card__links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .card__links--offset {
+
+    .photo-note {
       margin-top: 14px;
+      font-size: 0.92rem;
     }
+
+    .hero__pillar {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    .hero__pillar strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .hero__stat {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    .hero__stat-value {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.8rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
-      padding: 0 14px;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 16px;
       border: 1px solid var(--line-strong);
       border-radius: 8px;
       background: var(--surface);
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       font-weight: 600;
       transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
     }
+
     .button:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
+
     .button--primary {
       border-color: var(--accent);
       background: var(--accent);
       color: #ffffff;
     }
+
     .button--primary:hover {
-      background: #264d42;
+      background: var(--accent-strong);
       color: #ffffff;
     }
-    .process-card {
-      padding: 18px 20px;
+
+    .button--ghost {
+      background: var(--surface-alt);
+    }
+
+    .section {
+      padding-top: 52px;
+    }
+
+    .section__head {
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .section__lede {
+      margin-top: 14px;
+    }
+
+    .about-copy {
+      display: grid;
+      gap: 16px;
+      max-width: 900px;
+    }
+
+    .contact-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .contact-card__text {
+      margin-bottom: 16px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 14px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--surface);
+      font-weight: 600;
     }
-    .process-card p {
-      margin: 8px 0 0;
-      color: var(--muted);
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
+
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+    }
+
+    .achievement {
+      display: grid;
+      gap: 8px;
+    }
+
+    .achievement__value {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.8rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .achievement__label {
+      font-weight: 700;
+    }
+
+    .achievement__detail {
+      font-size: 0.95rem;
+    }
+
+    .card {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card__type {
+      color: var(--accent-2);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .card__summary {
+      margin-top: 10px;
+    }
+
+    .project-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .project-list li + li {
+      margin-top: 8px;
+    }
+
+    .delivery-card p {
+      margin-top: 10px;
+    }
+
     .footer {
       padding: 48px 0 20px;
     }
+
     .footer-grid {
       border-top: 1px solid var(--line);
-      padding-top: 20px;
+      padding-top: 22px;
+      align-items: start;
     }
+
     .footer__text {
-      margin: 0;
       font-size: 0.94rem;
     }
-    @media (min-width: 840px) {
+
+    @media (min-width: 860px) {
       .nav { display: inline-flex; }
-      .hero__meta,
-      .fit-grid,
-      .process-grid,
+      .hero__layout {
+        grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.7fr);
+      }
+      .hero__pillars {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .hero__stats,
+      .achievement-grid,
+      .project-grid,
+      .delivery-grid,
       .footer-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .project-grid {
+      .contact-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1120px) {
+      .achievement-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 859px) {
+      .page {
+        padding: 28px 0 64px;
       }
     }
   </style>
@@ -245,12 +457,12 @@
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <div class="brand">Esther B. / Data, Analytics & Reporting</div>
+      <div class="brand">Esther Bahati / Operations Data &amp; AI</div>
       <nav class="nav" aria-label="Primary">
-        <a href="#selected-work">Selected work</a>
-        <a href="#role-fit">Role fit</a>
-        <a href="#confidential-work">Confidential work</a>
-        <a href="#delivery">Delivery style</a>
+        <a href="#about">About</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -258,39 +470,166 @@
   <main class="page" id="main-content">
     <div class="container">
       <section class="hero">
-        <h1>Public portfolio for communications, reporting, and marketing analytics work.</h1>
-        <p class="hero__lede">This portfolio is built around the type of work expected from a Data & Analytics Specialist operating across web analytics, campaign reporting, donor conversion, Google Sheets, Looker Studio, and stakeholder-facing dashboards. It combines public deliverables with sanitized case studies for confidential product work.</p>
+        <div class="hero__layout">
+          <div>
+            <p class="hero__eyebrow">Operations • Data Analytics • AI • Automation • Product Building • Field Operations</p>
+            <h1>Operations Data &amp; AI Specialist</h1>
+            <p class="hero__subtitle">Building AI &amp; Automation Solutions for Managers, NGOs, and Businesses.</p>
+            <p class="hero__lede">
+              I design data systems, automation workflows, reporting layers, and AI-enabled products that help leaders operate with more clarity, faster decisions, and less technical friction. This portfolio brings together public analytics work, product thinking, and sanitized operational case studies from real field environments.
+            </p>
 
-        <div class="hero__meta">
-          <article class="panel">
-            <h3>What this portfolio proves</h3>
-            <ul class="fit-list">
-              <li>GA4 event tracking and UTM governance.</li>
-              <li>Looker Studio reporting for non-technical stakeholders.</li>
-              <li>Google Sheets as an interim multi-source reporting layer.</li>
-              <li>Cross-channel interpretation and donor journey analysis.</li>
-            </ul>
+            <div class="hero__actions" style="margin-top: 22px;">
+              <a class="button button--primary" href="assets/Esther-Bahati-Resume.pdf" target="_blank" rel="noreferrer">Download Resume</a>
+              <a class="button" href="#contact">Contact Me</a>
+              <a class="button button--ghost" href="https://www.linkedin.com/in/esther-cbahati" target="_blank" rel="noreferrer">Let's Connect</a>
+            </div>
+          </div>
+
+          <aside class="photo-card">
+            <div class="photo-frame">
+              <img src="assets/profile.jpg" alt="Professional portrait of Esther Bahati" onerror="this.style.display='none'; this.parentNode.querySelector('.photo-placeholder').style.display='block';">
+              <div class="photo-placeholder">Place your photo at<br><strong>/assets/profile.jpg</strong></div>
+            </div>
+            <p class="photo-note">Recommended image: 1200 x 1500 px, JPG or PNG, clear background, portrait crop. Place it in <strong>/assets/profile.jpg</strong>.</p>
+          </aside>
+        </div>
+
+        <div class="hero__pillars">
+          <article class="hero__pillar">
+            <strong>Operations-grounded</strong>
+            Built with real operational constraints in mind, not only demo environments.
           </article>
-          <article class="panel">
-            <h3>Public links</h3>
-            <div class="card__links card__links--offset">
-              <a class="button button--primary" href="https://datastudio.google.com/s/mzac46DbYlE" target="_blank" rel="noreferrer">Open Looker Studio</a>
-              <a class="button" href="https://docs.google.com/spreadsheets/d/1Jb6ThjeA4Yh59ytm_vs3oh-uj4N6mCaCMycv1Am5vJk/edit?usp=sharing" target="_blank" rel="noreferrer">Open Unified Reporting Sheet</a>
-              <a class="button" href="https://docs.google.com/spreadsheets/d/1yRjlZdXVFjySUQVqpP2nDmzuz1Gtw4lxJ_zyzdFmxhA/edit?usp=sharing" target="_blank" rel="noreferrer">Open Donor Journey Sheet</a>
+          <article class="hero__pillar">
+            <strong>Decision-oriented</strong>
+            Reporting and automation designed to reduce ambiguity for managers and teams.
+          </article>
+          <article class="hero__pillar">
+            <strong>Privacy-aware</strong>
+            Product thinking shaped by user sovereignty, sensitive workflows, and responsible data handling.
+          </article>
+        </div>
+
+        <div class="hero__stats">
+          <article class="hero__stat">
+            <span class="hero__stat-value">7</span>
+            <div class="muted">sales platforms managed as part of logistics operations support at Virunga National Park Foundation.</div>
+          </article>
+          <article class="hero__stat">
+            <span class="hero__stat-value">3</span>
+            <div class="muted">working languages used across professional communication: English, French, and Swahili.</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section__head">
+          <h2>About Me</h2>
+        </div>
+        <div class="about-copy">
+          <p>Hello, I'm Esther Bahati.</p>
+          <p>I am an Operations Data &amp; AI Specialist passionate about technology and literature. I love growing, learning more, discovering new things, and taking on challenges because the feeling of being stuck is unbearable to me.</p>
+          <p>As a great lover of novels, I also enjoy writing poetry.</p>
+          <p>I speak professional English, native French, and Swahili. I hold a Machine Learning certification, but I train myself even more through practice by continuously building projects.</p>
+          <p>Professionally, I design data, artificial intelligence, and automation solutions to help managers, entrepreneurs, and businesses improve their operations and make better decisions. In short, I build data-driven solutions that allow people, even the less technical ones, to make use of data.</p>
+          <p>Recently, I have also started creating content around artificial intelligence and technology to help managers understand and use AI without technical jargon. My belief is simple: leaders should be able to master AI and benefit from it without necessarily going through long technical training if they do not have the time or desire to become experts.</p>
+          <p>I am also the creator of Executive Assistant Briefing, a proactive AI-powered executive assistant that analyzes emails and WhatsApp conversations, detects anomalies and missed actions, and generates personalized briefings and real-time alerts to help leaders stay organized and make better decisions. Users can also interact directly with it through WhatsApp.</p>
+          <p>And because privacy is important to me, users remain fully sovereign over their data and conversations. Nothing is stored on my servers except certain technical identifiers and assistant-related data, solely to allow service backup and restoration, for example if a user loses their phone or changes devices. It is subscription-based, of course.</p>
+          <p>Currently, I work as a Traceability System Supervisor at the Virunga National Park Foundation, where I oversee traceability systems and data management across multiple operational areas. I also contribute to logistics operations, with the management of seven sales platforms.</p>
+          <p>The details of my professional experience can be found in my resume, but I have included a few projects here to convince you to let me be part of your team.</p>
+          <p>I usually go by Esther Bahati, while my full legal name on my CV and official documents is CIBALONZA BAHATIE ESTHER.</p>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section__head">
+          <h2>Contact</h2>
+          <p class="section__lede">If you are hiring for a role that sits between operations, analytics, AI, and product execution, I would be happy to connect.</p>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-card">
+            <h3>Reach me directly</h3>
+            <p class="contact-card__text">For opportunities, interviews, freelance collaborations, or portfolio questions.</p>
+            <div class="contact-links">
+              <a class="contact-link" href="mailto:estherbahaticb@gmail.com">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+                Email
+              </a>
+              <a class="contact-link" href="https://wa.me/243997264738" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.72 7.05L4 20l1.57-4.08A8 8 0 1 1 20 11.5Z"></path><path d="M8.7 9.7c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4l.6 1.4c.1.2.1.4 0 .6l-.5.8c.5 1 1.3 1.8 2.3 2.3l.8-.5c.2-.1.4-.1.6 0l1.4.6c.4.1.4.3.4.5v.5c0 .2 0 .4-.4.6-.5.2-1 .3-1.5.2-2.9-.7-5.2-3-5.9-5.9-.1-.5 0-1 .2-1.5Z"></path></svg>
+                WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="contact-card">
+            <h3>Professional profiles</h3>
+            <p class="contact-card__text">You can also review my background, code, and public work through these links.</p>
+            <div class="contact-links">
+              <a class="contact-link" href="https://www.linkedin.com/in/esther-cbahati" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55C7.15 3.87 6.3 3 5.26 3S3.38 3.87 3.38 4.95c0 1.07.84 1.94 1.86 1.94h.02c1.05 0 1.9-.87 1.9-1.94ZM20.62 13.1c0-3.51-1.87-5.14-4.37-5.14-2.01 0-2.9 1.1-3.4 1.88V8.5H9.48c.04.89 0 11.5 0 11.5h3.37v-6.42c0-.34.02-.67.13-.91.27-.67.88-1.37 1.91-1.37 1.35 0 1.89 1.03 1.89 2.54V20h3.37v-6.9Z"></path></svg>
+                LinkedIn
+              </a>
+              <a class="contact-link" href="https://github.com/Estherbh" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.11.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.52-2.56-.29-5.25-1.28-5.25-5.71 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.19 1.18A10.9 10.9 0 0 1 12 6.03c.97 0 1.95.13 2.86.38 2.22-1.49 3.18-1.18 3.18-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.7 5.41-5.27 5.69.41.36.78 1.08.78 2.18 0 1.58-.01 2.85-.01 3.24 0 .3.2.67.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"></path></svg>
+                GitHub
+              </a>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="section" id="selected-work">
+      <section class="section" id="achievements">
         <div class="section__head">
-          <h2>Selected work</h2>
-          <p class="section__lede">The public work is intentionally varied. Some pieces show implementation and instrumentation. Others show reporting logic, decision support, or communication clarity.</p>
+          <h2>Key Achievements</h2>
+          <p class="section__lede">Where exact business metrics cannot be disclosed publicly, this section highlights measurable scope, product ownership, and delivery outcomes that can be supported by the work shown in this portfolio.</p>
+        </div>
+        <div class="achievement-grid">
+          <article class="achievement">
+            <div class="achievement__value">7</div>
+            <div class="achievement__label">Sales platforms supported</div>
+            <p class="achievement__detail">Contributed to logistics operations with the management of seven sales platforms alongside traceability responsibilities at Virunga National Park Foundation.</p>
+          </article>
+          <article class="achievement">
+            <div class="achievement__value">3</div>
+            <div class="achievement__label">Professional languages</div>
+            <p class="achievement__detail">Operate across professional English, native French, and Swahili, supporting communication in multilingual operational environments.</p>
+          </article>
+          <article class="achievement">
+            <div class="achievement__value">2</div>
+            <div class="achievement__label">Public Google Sheets systems</div>
+            <p class="achievement__detail">Published portfolio-ready reporting systems for unified marketing reporting and donor journey analysis, each paired with stakeholder-friendly documentation.</p>
+          </article>
+          <article class="achievement">
+            <div class="achievement__value">1</div>
+            <div class="achievement__label">AI product created</div>
+            <p class="achievement__detail">Designed Executive Assistant Briefing as a proactive AI product combining monitoring, anomaly detection, briefing generation, and WhatsApp interaction.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section__head">
+          <h2>Selected Projects</h2>
+          <p class="section__lede">The project mix is intentional: analytics implementation, reporting systems, executive storytelling, AI product design, and confidential dashboards from operational environments.</p>
         </div>
 
         <div class="project-grid">
           <article class="card">
-            <div class="card__type">GA4 / Tracking / UTM</div>
+            <div class="card__type">AI Product / Executive Workflow / Privacy-first</div>
+            <div>
+              <h3>Executive Assistant Briefing</h3>
+              <p class="card__summary">A proactive AI executive assistant built to analyze emails and WhatsApp conversations, detect anomalies, missed actions, and important signals, then generate personalized briefings and real-time alerts for leaders.</p>
+            </div>
+            <ul class="project-list">
+              <li>Combines proactive monitoring with direct user interaction through WhatsApp.</li>
+              <li>Designed for non-technical decision-makers who need signal, not noise.</li>
+              <li>Built around privacy-first architecture and user sovereignty over conversations and data.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card__type">GA4 / Tracking / UTM Governance</div>
             <div>
               <h3>HopeTrack Demo Site</h3>
               <p class="card__summary">A fictional nonprofit campaign site built to demonstrate event tracking, donation journey instrumentation, and stakeholder-friendly UTM standards.</p>
@@ -298,7 +637,7 @@
             <ul class="project-list">
               <li>Custom GA4 events across landing, content, and donate flows.</li>
               <li>Documented naming standards for campaign attribution.</li>
-              <li>Portfolio-ready static site suitable for GitHub Pages.</li>
+              <li>Public static implementation suitable for GitHub Pages.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="projects/hopetrack/index.html">Open Site</a>
@@ -307,7 +646,7 @@
           </article>
 
           <article class="card">
-            <div class="card__type">Google Sheets / Looker Studio</div>
+            <div class="card__type">Google Sheets / Looker Studio / Multi-source Reporting</div>
             <div>
               <h3>Unified Marketing Reporting Template</h3>
               <p class="card__summary">A multi-source reporting workbook designed as an interim analytics layer before full BI integration, paired with a stakeholder-facing Looker Studio output.</p>
@@ -325,15 +664,15 @@
           </article>
 
           <article class="card">
-            <div class="card__type">CRM / Funnel / Retention</div>
+            <div class="card__type">CRM / Funnel / Membership Conversion</div>
             <div>
-              <h3>Donor Journey & Membership Funnel Analysis</h3>
+              <h3>Donor Journey &amp; Membership Funnel Analysis</h3>
               <p class="card__summary">A Google Sheets-based donor journey analysis focused on acquisition quality, first-gift conversion, repeat giving, and monthly membership.</p>
             </div>
             <ul class="project-list">
               <li>Built for fundraising and communications analytics roles.</li>
-              <li>Shows where the funnel leaks and where quality donors come from.</li>
-              <li>Includes country logic aligned with DRC / regional NGO storytelling.</li>
+              <li>Shows where the funnel leaks and where stronger donor quality comes from.</li>
+              <li>Includes DRC-aligned country logic for more realistic regional storytelling.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="https://docs.google.com/spreadsheets/d/1yRjlZdXVFjySUQVqpP2nDmzuz1Gtw4lxJ_zyzdFmxhA/edit?usp=sharing" target="_blank" rel="noreferrer">Open Google Sheet</a>
@@ -342,56 +681,23 @@
           </article>
 
           <article class="card">
-            <div class="card__type">Storytelling / Cross-channel analysis</div>
+            <div class="card__type">Storytelling / Cross-channel Interpretation</div>
             <div>
               <h3>Cross-Channel Campaign Insights One-Pager</h3>
-              <p class="card__summary">A concise performance summary designed to show how campaign data can be translated into clear recommendations for non-technical stakeholders.</p>
+              <p class="card__summary">A concise performance summary showing how campaign data can be translated into recommendations that non-technical stakeholders can act on quickly.</p>
             </div>
             <ul class="project-list">
-              <li>Compares channel contribution beyond traffic volume alone.</li>
+              <li>Compares attention-driving channels with contribution-driving channels.</li>
               <li>Distills reporting into three insights and three actions.</li>
-              <li>Works as a portfolio counterpart to dashboard-heavy projects.</li>
+              <li>Complements dashboard-heavy projects with executive narrative clarity.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="projects/cross-channel-campaign-insights/index.html">Open One-Pager</a>
             </div>
           </article>
-        </div>
-      </section>
 
-      <section class="section" id="role-fit">
-        <div class="section__head">
-          <h2>How this portfolio maps to the target role</h2>
-          <p class="section__lede">The overall structure is deliberate. Each project was chosen to cover one or more responsibilities typically expected in communications, growth, and fundraising analytics roles.</p>
-        </div>
-        <div class="fit-grid">
-          <article class="panel">
-            <h3>Measurement and reporting</h3>
-            <ul class="fit-list">
-              <li>GA4 implementation and conversion tracking.</li>
-              <li>Looker Studio delivery for non-technical stakeholders.</li>
-              <li>Google Sheets reporting systems used as interim BI layers.</li>
-            </ul>
-          </article>
-          <article class="panel">
-            <h3>Funnel and channel analysis</h3>
-            <ul class="fit-list">
-              <li>Cross-channel performance interpretation.</li>
-              <li>Donor journey logic across first gift, repeat giving, and membership.</li>
-              <li>Decision-oriented reporting instead of metric-heavy dashboards alone.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="confidential-work">
-        <div class="section__head">
-          <h2>Confidential product work</h2>
-          <p class="section__lede">Some professional work cannot expose source code, raw exports, credentials, or live data. For those projects, this portfolio uses sanitized case studies that focus on structure, reporting logic, and business value.</p>
-        </div>
-        <div class="project-grid">
           <article class="card">
-            <div class="card__type">Full-stack / Sensitive operations</div>
+            <div class="card__type">Confidential Product / Sensitive Operations</div>
             <div>
               <h3>Security Intelligence Dashboard</h3>
               <p class="card__summary">A confidential dashboard case study centered on multi-source monitoring, KPI visibility, and operational reporting under high-sensitivity constraints.</p>
@@ -399,7 +705,7 @@
             <ul class="project-list">
               <li>Dashboard logic for decision support in sensitive contexts.</li>
               <li>Structured visibility across multiple operational signals.</li>
-              <li>Case-study format preserves confidentiality without weakening credibility.</li>
+              <li>Presented in a sanitized case-study format that protects confidential data.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="projects/security-intelligence-dashboard-drc/index.html">Open Case Study</a>
@@ -407,14 +713,14 @@
           </article>
 
           <article class="card">
-            <div class="card__type">Full-stack / KPI visibility</div>
+            <div class="card__type">Confidential Product / KPI Visibility</div>
             <div>
               <h3>Virunga Performance Dashboard</h3>
               <p class="card__summary">A confidential dashboard case study focused on KPI centralization, stakeholder reporting, and interface clarity in a live professional environment.</p>
             </div>
             <ul class="project-list">
               <li>Performance reporting designed for recurring stakeholder review.</li>
-              <li>Experience beyond mock datasets and public demo systems.</li>
+              <li>Experience built in real operational conditions rather than mock datasets alone.</li>
               <li>Public presentation intentionally sanitized to protect data privacy.</li>
             </ul>
             <div class="card__links">
@@ -426,25 +732,25 @@
 
       <section class="section" id="delivery">
         <div class="section__head">
-          <h2>How the work is delivered</h2>
-          <p class="section__lede">The portfolio is meant to feel operational rather than performative. Each artifact is presented in the format most natural to the work itself.</p>
+          <h2>How I Build</h2>
+          <p class="section__lede">The work is presented in the format most appropriate to its purpose: operational transparency, stakeholder readability, or responsible confidentiality.</p>
         </div>
-        <div class="process-grid">
-          <article class="process-card">
-            <h3>Sheets where reporting logic matters</h3>
-            <p>Google Sheets is used when the goal is to expose formulas, KPI structure, or source-to-output transparency.</p>
+        <div class="delivery-grid">
+          <article class="delivery-card">
+            <h3>Operations first</h3>
+            <p>I build with operational reality in mind, which means systems have to survive messy inputs, non-technical users, and real decision pressure.</p>
           </article>
-          <article class="process-card">
-            <h3>Looker Studio where stakeholder visibility matters</h3>
-            <p>Looker Studio is used when the priority is quick interpretation and executive-level review.</p>
+          <article class="delivery-card">
+            <h3>Analytics that informs action</h3>
+            <p>Dashboards, sheets, and one-pagers are designed to help people decide what to do next, not just admire metrics.</p>
           </article>
-          <article class="process-card">
-            <h3>HTML where explanation and narrative matter</h3>
-            <p>HTML case studies and one-pagers are used when the portfolio needs to show communication clarity, not just tool knowledge.</p>
+          <article class="delivery-card">
+            <h3>AI without unnecessary jargon</h3>
+            <p>I am especially interested in making AI useful to managers and leaders who need leverage, not a technical lecture.</p>
           </article>
-          <article class="process-card">
-            <h3>Sanitized pages where confidentiality matters</h3>
-            <p>Private dashboard work is documented at a responsible level that shows real capability without exposing protected systems or data.</p>
+          <article class="delivery-card">
+            <h3>Confidentiality handled responsibly</h3>
+            <p>Private dashboards and sensitive work are documented in a way that preserves credibility while protecting systems, organizations, and users.</p>
           </article>
         </div>
       </section>
@@ -453,8 +759,29 @@
 
   <footer class="footer">
     <div class="container footer-grid">
-      <p class="footer__text">Public portfolio repository for data, analytics, reporting, GA4, Google Sheets, Looker Studio, and dashboard case studies.</p>
-      <p class="footer__text">All confidential work is intentionally sanitized. Public Sheets and Looker Studio links are included where sharing is appropriate.</p>
+      <div>
+        <p class="footer__text">Portfolio of operations, analytics, AI, automation, reporting systems, and field-facing product work.</p>
+      </div>
+      <div>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:estherbahaticb@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+            Email
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/esther-cbahati" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55C7.15 3.87 6.3 3 5.26 3S3.38 3.87 3.38 4.95c0 1.07.84 1.94 1.86 1.94h.02c1.05 0 1.9-.87 1.9-1.94ZM20.62 13.1c0-3.51-1.87-5.14-4.37-5.14-2.01 0-2.9 1.1-3.4 1.88V8.5H9.48c.04.89 0 11.5 0 11.5h3.37v-6.42c0-.34.02-.67.13-.91.27-.67.88-1.37 1.91-1.37 1.35 0 1.89 1.03 1.89 2.54V20h3.37v-6.9Z"></path></svg>
+            LinkedIn
+          </a>
+          <a class="contact-link" href="https://github.com/Estherbh" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.11.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.52-2.56-.29-5.25-1.28-5.25-5.71 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.19 1.18A10.9 10.9 0 0 1 12 6.03c.97 0 1.95.13 2.86.38 2.22-1.49 3.18-1.18 3.18-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.7 5.41-5.27 5.69.41.36.78 1.08.78 2.18 0 1.58-.01 2.85-.01 3.24 0 .3.2.67.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"></path></svg>
+            GitHub
+          </a>
+          <a class="contact-link" href="https://wa.me/243997264738" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.72 7.05L4 20l1.57-4.08A8 8 0 1 1 20 11.5Z"></path><path d="M8.7 9.7c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4l.6 1.4c.1.2.1.4 0 .6l-.5.8c.5 1 1.3 1.8 2.3 2.3l.8-.5c.2-.1.4-.1.6 0l1.4.6c.4.1.4.3.4.5v.5c0 .2 0 .4-.4.6-.5.2-1 .3-1.5.2-2.9-.7-5.2-3-5.9-5.9-.1-.5 0-1 .2-1.5Z"></path></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 </body>

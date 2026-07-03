@@ -1,10 +1,11 @@
-# Esther B. - Data, Analytics & Reporting Portfolio
+# Esther Bahati - Operations Data & AI Specialist Portfolio
 
-Public portfolio for communications, marketing analytics, reporting systems, GA4 instrumentation, Looker Studio, Google Sheets, and dashboard case studies.
+Public portfolio for operations, analytics, AI, automation, reporting systems, GA4 instrumentation, Looker Studio, Google Sheets, and confidential dashboard case studies.
 
 ## Public portfolio page
 
 - GitHub Pages landing page: [index.html](index.html)
+- Asset placement instructions: [assets/README.md](assets/README.md)
 
 ## Public project links
 
