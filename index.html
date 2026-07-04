@@ -287,6 +287,14 @@
       font-size: 48px;
       font-weight: 700;
       color: #ffffff;
+      overflow: hidden;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .photo-card__caption {
@@ -611,7 +619,9 @@
           </div>
 
           <aside class="photo-card">
-            <div class="photo-frame" aria-label="Esther Bahati avatar">EB</div>
+            <div class="photo-frame">
+              <img src="assets/profile.jpg" alt="Professional portrait of Esther Bahati">
+            </div>
             <p class="photo-card__caption">Operations-focused portfolio blending analytics systems, AI product thinking, and field-ready reporting.</p>
           </aside>
         </div>
