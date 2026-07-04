@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Executive Assistant Briefing is an AI SaaS concept by Esther Bahati designed to turn executive communications into actionable briefings and alerts.">
+  <title>Executive Assistant Briefing™ | Esther Bahati</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2ec;
+      --surface: #ffffff;
+      --surface-alt: #f8f5f0;
+      --text: #1f1d19;
+      --muted: #615a50;
+      --line: #ddd4c8;
+      --accent: #2f5d50;
+      --accent-strong: #254a40;
+      --shadow: 0 8px 24px rgba(26, 22, 17, 0.05);
+      --radius: 12px;
+      --container: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Public Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible {
+      outline: 3px solid rgba(47, 93, 80, 0.18);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--container));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(245, 242, 236, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 72px;
+    }
+
+    .brand,
+    h1,
+    h2,
+    h3 {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.04em;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+    }
+
+    .button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .button--primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .button--primary:hover {
+      background: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    .page {
+      padding: 44px 0 80px;
+    }
+
+    .hero,
+    .section-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 34px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.05;
+    }
+
+    .lede {
+      max-width: 760px;
+      font-size: 1.04rem;
+      color: var(--muted);
+    }
+
+    .hero__meta,
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero__meta {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .meta-card,
+    .section-card {
+      padding: 22px;
+      background: var(--surface-alt);
+    }
+
+    .meta-card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.12;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    .grid {
+      margin-top: 28px;
+    }
+
+    @media (min-width: 860px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <div class="brand">Esther Bahati / Operations Data &amp; AI</div>
+      <div>
+        <a class="button" href="index.html">Back to portfolio</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <section class="hero">
+        <div class="eyebrow">AI product / executive workflow / privacy-first</div>
+        <h1>Executive Assistant Briefing™</h1>
+        <p class="lede">
+          Executive Assistant Briefing™ is a product concept designed to help leaders stay ahead of missed actions,
+          anomalies, and fragmented communication across email and WhatsApp. The product is currently in development,
+          with a beta target for Q3 2026.
+        </p>
+        <div class="hero__meta">
+          <article class="meta-card">
+            <strong>Product direction</strong>
+            Turn executive communications into clear briefings, alerts, and actionable follow-up.
+          </article>
+          <article class="meta-card">
+            <strong>Target user</strong>
+            Managers and executives who need signal clarity without technical friction.
+          </article>
+          <article class="meta-card">
+            <strong>Stack direction</strong>
+            n8n, WhatsApp API, IMAP, Supabase, and LLM orchestration.
+          </article>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="section-card">
+          <h2>What the product does</h2>
+          <ul>
+            <li>Analyzes incoming communications to surface anomalies, missed tasks, and emerging priorities.</li>
+            <li>Builds structured executive briefings instead of leaving leaders buried in message volume.</li>
+            <li>Supports fast interaction through WhatsApp for users who need immediate operational visibility.</li>
+          </ul>
+        </section>
+
+        <section class="section-card">
+          <h2>Why it matters</h2>
+          <ul>
+            <li>Many leaders operate in information-heavy environments where the real problem is not access, but interpretation.</li>
+            <li>Important actions are often missed because signal is mixed with low-value noise.</li>
+            <li>The product is designed to reduce that burden while preserving user trust and data sovereignty.</li>
+          </ul>
+        </section>
+
+        <section class="section-card">
+          <h2>Design principles</h2>
+          <ul>
+            <li>Operational usefulness over novelty.</li>
+            <li>Privacy-aware architecture and minimal data retention.</li>
+            <li>Direct language for decision-makers rather than technical jargon.</li>
+          </ul>
+        </section>
+
+        <section class="section-card">
+          <h2>Current status</h2>
+          <p>
+            The product is in active concept and build preparation. This portfolio page exists to document the product direction,
+            the operational problem it addresses, and the system thinking behind it before public beta.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

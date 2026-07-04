@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Étude de cas NRC DRC sur un pipeline Information Management reliant KoboToolbox, DHIS2, Power BI et un cadre de contrôle qualité des données.">
+  <title>NRC DRC | Kobo, DHIS2 et Data Quality Pipeline</title>
+  <style>
+    :root {
+      --color-primary: #1a5f7a;
+      --color-primary-dark: #0f3d52;
+      --color-primary-light: #22a6b3;
+      --color-accent: #27ae60;
+      --color-accent-dark: #1e8449;
+      --color-warning: #f39c12;
+      --color-danger: #e74c3c;
+      --color-dark: #1a1a2e;
+      --color-dark-muted: #2d3436;
+      --color-muted: #636e72;
+      --color-light: #f0f4f8;
+      --color-white: #ffffff;
+      --color-border: #dfe6e9;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.14);
+      --shadow-xl: 0 16px 64px rgba(0,0,0,0.18);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 48px;
+      --space-xl: 80px;
+      --space-xxl: 120px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul,
+    ol,
+    dl,
+    dd,
+    figure,
+    blockquote,
+    pre {
+      margin: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--color-dark);
+      background: var(--color-light);
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .page-shell {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(240, 244, 248, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      min-height: 72px;
+    }
+
+    .site-header__title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--color-primary-dark);
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .site-nav a,
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-white);
+      color: var(--color-dark);
+      transition: var(--transition);
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible,
+    .resource-link:hover,
+    .resource-link:focus-visible {
+      border-color: var(--color-primary);
+      background: #eaf4f7;
+      outline: none;
+    }
+
+    .site-nav a:active,
+    .resource-link:active {
+      transform: translateY(1px);
+    }
+
+    .site-main {
+      padding: var(--space-xl) 0 var(--space-xxl);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.8fr);
+      gap: var(--space-lg);
+      align-items: start;
+      margin-bottom: var(--space-xl);
+    }
+
+    .summary-panel,
+    .panel,
+    .stat-card,
+    .evidence-card,
+    .code-card,
+    .method-card,
+    .deliverable-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-panel {
+      padding: 36px;
+    }
+
+    .summary-panel h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--color-dark);
+      margin-bottom: var(--space-md);
+    }
+
+    .summary-panel p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--color-dark-muted);
+    }
+
+    .summary-panel__meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-lg);
+    }
+
+    .meta-tile {
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: #f7fbfc;
+      border: 1px solid var(--color-border);
+    }
+
+    .meta-tile strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--color-primary-dark);
+    }
+
+    .meta-tile span {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+      color: var(--color-muted);
+    }
+
+    .resource-panel {
+      padding: 28px;
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .resource-panel h2,
+    .section-block h2 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--color-dark);
+      margin-bottom: 18px;
+    }
+
+    .resource-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .resource-link small {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      color: var(--color-muted);
+    }
+
+    .resource-link strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.4;
+      color: var(--color-dark);
+    }
+
+    .section-block {
+      margin-top: var(--space-xl);
+    }
+
+    .section-block__intro {
+      max-width: 820px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--color-dark-muted);
+      margin-bottom: var(--space-lg);
+    }
+
+    .problem-solution {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .panel h3,
+    .method-card h3,
+    .stat-card h3,
+    .evidence-card h3,
+    .code-card h3,
+    .deliverable-card h3 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--color-dark);
+      margin-bottom: 14px;
+    }
+
+    .panel ul,
+    .method-card ul,
+    .deliverable-card ul {
+      padding-left: 20px;
+    }
+
+    .panel li,
+    .method-card li,
+    .deliverable-card li {
+      margin-bottom: 10px;
+      color: var(--color-dark-muted);
+    }
+
+    .pipeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 22px;
+      list-style: none;
+      padding: 0;
+      margin-top: var(--space-md);
+    }
+
+    .pipeline::before {
+      content: "";
+      position: absolute;
+      top: 44px;
+      left: 9%;
+      right: 9%;
+      height: 2px;
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--color-primary) 0 12px,
+        transparent 12px 22px
+      );
+      animation: flow-line 1.8s linear infinite;
+      opacity: 0.8;
+    }
+
+    .pipeline__step {
+      position: relative;
+      z-index: 1;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 22px 18px 18px;
+      min-height: 220px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .pipeline__step:hover,
+    .pipeline__step:focus-within {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pipeline__node {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      background: var(--color-primary-dark);
+      color: var(--color-white);
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .pipeline__step p {
+      color: var(--color-dark-muted);
+    }
+
+    .pipeline__details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      color: var(--color-muted);
+    }
+
+    .pipeline__step:hover .pipeline__details,
+    .pipeline__step:focus-within .pipeline__details {
+      max-height: 180px;
+      margin-top: 14px;
+    }
+
+    .method-grid,
+    .deliverables-grid,
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .method-card,
+    .deliverable-card,
+    .evidence-card {
+      padding: 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .stat-card {
+      padding: 24px;
+      min-height: 220px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .stat-card__value {
+      font-family: var(--font-heading);
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--color-primary-dark);
+    }
+
+    .stat-card__label {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--color-dark);
+    }
+
+    .stat-card__trend {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      background: #eef8f1;
+      color: var(--color-accent-dark);
+      font-weight: 600;
+    }
+
+    .stat-card small {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--color-muted);
+    }
+
+    .code-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .code-card {
+      padding: 24px;
+    }
+
+    .code-card pre {
+      margin-top: 18px;
+      padding: 18px;
+      overflow-x: auto;
+      border-radius: var(--radius-sm);
+      background: #f8fbfc;
+      border: 1px solid var(--color-border);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--color-dark);
+    }
+
+    .token-keyword { color: var(--color-primary); }
+    .token-function { color: var(--color-accent); }
+    .token-string { color: #e17055; }
+    .token-comment { color: var(--color-muted); font-style: italic; }
+    .token-number { color: var(--color-warning); }
+
+    .evidence-card blockquote {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--color-dark);
+      margin-bottom: 18px;
+    }
+
+    .evidence-card p {
+      color: var(--color-muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .site-footer {
+      padding: var(--space-lg) 0 var(--space-xl);
+      border-top: 1px solid var(--color-border);
+      color: var(--color-muted);
+    }
+
+    .site-footer__inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .utility-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      background: #eaf4f7;
+      color: var(--color-primary-dark);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    @keyframes flow-line {
+      from { background-position: 0 0; }
+      to { background-position: 44px 0; }
+    }
+
+    @media (max-width: 1080px) {
+      .overview-grid,
+      .problem-solution,
+      .stats-grid,
+      .method-grid,
+      .deliverables-grid,
+      .evidence-grid,
+      .code-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline::before {
+        top: 0;
+        bottom: 0;
+        left: 21px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        background-image: repeating-linear-gradient(
+          180deg,
+          var(--color-primary) 0 12px,
+          transparent 12px 22px
+        );
+      }
+
+      .summary-panel__meta {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        width: min(100% - 24px, 1200px);
+      }
+
+      .site-header__inner {
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .summary-panel {
+        padding: 24px;
+      }
+
+      .summary-panel h1 {
+        font-size: 36px;
+      }
+
+      .resource-panel,
+      .panel,
+      .method-card,
+      .deliverable-card,
+      .evidence-card,
+      .code-card,
+      .stat-card {
+        padding: 20px;
+      }
+
+      .stat-card__value {
+        font-size: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="page-shell site-header__inner">
+      <div class="site-header__title">NRC DRC - Education IM Pipeline</div>
+      <nav class="site-nav" aria-label="Navigation de la page">
+        <a href="#problem">Contexte</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#results">Résultats</a>
+        <a href="#evidence">Preuves terrain</a>
+        <a href="#deliverables">Livrables</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="page-shell">
+      <section class="overview-grid reveal">
+        <article class="summary-panel">
+          <div class="utility-kicker">Case Study | KoboToolbox · DHIS2 · Power BI</div>
+          <h1>Standardiser la collecte école, fiabiliser le contrôle qualité et livrer un reporting exploitable le jour même.</h1>
+          <p>
+            Cette étude de cas présente un pipeline Information Management conçu pour le suivi du programme éducation en RDC.
+            Le dispositif relie un XLSForm KoboToolbox, une logique de validation orientée NRC, un cadre de Ratio de Vérification
+            des Résultats et des mesures Power BI destinées au pilotage opérationnel et au reporting bailleurs.
+          </p>
+          <div class="summary-panel__meta">
+            <div class="meta-tile">
+              <strong>Problème traité</strong>
+              <span>Données terrain hétérogènes, validation lente, écarts de reporting et faible traçabilité des corrections.</span>
+            </div>
+            <div class="meta-tile">
+              <strong>Réponse IM</strong>
+              <span>Contrôles embarqués dans Kobo, consolidation structurée, audit trail et indicateurs lisibles pour revue programme.</span>
+            </div>
+            <div class="meta-tile">
+              <strong>Usage visé</strong>
+              <span>Équipes NRC éducation, superviseurs terrain, IMO, MEAL et reporting donateurs sous contrainte de délai.</span>
+            </div>
+          </div>
+        </article>
+
+        <aside class="resource-panel panel">
+          <h2>Artifacts</h2>
+          <div class="resource-list">
+            <a class="resource-link" href="nrc_education_monitoring_v2_2026.xlsx">
+              <div>
+                <small>XLSForm Kobo</small>
+                <strong>nrc_education_monitoring_v2_2026.xlsx</strong>
+              </div>
+            </a>
+            <a class="resource-link" href="nrc_dqa_template.xlsx">
+              <div>
+                <small>DQA Workbook</small>
+                <strong>nrc_dqa_template.xlsx</strong>
+              </div>
+            </a>
+            <a class="resource-link" href="README.md">
+              <div>
+                <small>Documentation</small>
+                <strong>README du projet</strong>
+              </div>
+            </a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-block reveal" id="problem">
+        <h2>Problem and Response</h2>
+        <p class="section-block__intro">
+          Sur un portefeuille éducation multi-territoires, le risque principal n’est pas seulement la donnée manquante.
+          Le vrai risque est la décision prise sur une donnée non vérifiée, mal documentée ou tardivement consolidée.
+          La réponse proposée ici structure la qualité dès la collecte et maintient la traçabilité jusqu’au reporting.
+        </p>
+        <div class="problem-solution">
+          <article class="panel">
+            <h3>Observed field constraints</h3>
+            <ul>
+              <li>Superviseurs et enquêteurs travaillent dans des contextes de mobilité, connectivité et sécurité variables.</li>
+              <li>Les chiffres d’inscription, PDI et enseignants doivent être plausibles avant d’être repris dans un tableau de bord.</li>
+              <li>Les écarts entre registres, photos de preuve et valeurs rapportées doivent être visibles avant le reporting bailleur.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>IM design choices</h3>
+            <ul>
+              <li>Contraintes Kobo ciblant les erreurs les plus coûteuses : doublons, ratios incohérents, formats non conformes et logiques de date.</li>
+              <li>Grille DQA avec seuils lisibles pour completeness, RVR, retard de revue et actions prioritaires par école.</li>
+              <li>Mesures DAX orientées programme pour passer du simple volume de données à la gestion des exceptions.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block reveal" id="pipeline">
+        <h2>End-to-End Pipeline</h2>
+        <p class="section-block__intro">
+          Le flux suit une logique simple : validation au point de capture, enrichissement contrôlé, vérification indépendante,
+          puis mise à disposition d’indicateurs pour revue opérationnelle. Chaque étape a un responsable, une sortie attendue
+          et un mécanisme de contrôle associé.
+        </p>
+        <ol class="pipeline" aria-label="Pipeline de données NRC">
+          <li class="pipeline__step">
+            <div class="pipeline__node">1</div>
+            <h3>Collecte Kobo</h3>
+            <p>Formulaire mobile structuré pour écoles, effectifs, protection et vérification photo.</p>
+            <div class="pipeline__details">
+              Le formulaire impose les codes école, les contrôles de plage, la capture GPS et la cohérence PDI/inscrits avant soumission.
+            </div>
+          </li>
+          <li class="pipeline__step">
+            <div class="pipeline__node">2</div>
+            <h3>Staging DHIS2</h3>
+            <p>Consolidation par indicateur, territoire et période de revue.</p>
+            <div class="pipeline__details">
+              Les éléments de données sont harmonisés pour éviter les écarts de nomenclature entre terrain, programme et reporting.
+            </div>
+          </li>
+          <li class="pipeline__step">
+            <div class="pipeline__node">3</div>
+            <h3>DQA and RVR</h3>
+            <p>Audit des enregistrements, calcul du RVR et journal des écarts critiques.</p>
+            <div class="pipeline__details">
+              Les priorités sont triées par gravité afin de décider rapidement quelles écoles doivent être revérifiées avant diffusion.
+            </div>
+          </li>
+          <li class="pipeline__step">
+            <div class="pipeline__node">4</div>
+            <h3>Power BI Layer</h3>
+            <p>Mesures DAX pour visualiser qualité, couverture et besoins de suivi.</p>
+            <div class="pipeline__details">
+              Les cartes et vues territoire distinguent les volumes rapportés des volumes réellement vérifiés.
+            </div>
+          </li>
+          <li class="pipeline__step">
+            <div class="pipeline__node">5</div>
+            <h3>Decision Use</h3>
+            <p>Revue programme, feedback terrain et reporting donateur dans la même journée.</p>
+            <div class="pipeline__details">
+              Les cas critiques alimentent immédiatement les équipes protection, éducation et supervision terrain.
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section-block reveal">
+        <h2>Methodology</h2>
+        <p class="section-block__intro">
+          Le design suit une logique d’Information Management appliquée à l’humanitaire : standard de capture, qualité mesurable,
+          documentation des exceptions et séparation claire entre production de données et décision.
+        </p>
+        <div class="method-grid">
+          <article class="method-card">
+            <h3>Form logic</h3>
+            <ul>
+              <li>Listes en cascade province/territoire pour éviter les erreurs de localisation.</li>
+              <li>Messages de contrainte en français, utilisables directement par un enquêteur en RDC.</li>
+              <li>Calculs protégés pour totals, parité, PTR, pourcentage PDI et taux de qualification.</li>
+            </ul>
+          </article>
+          <article class="method-card">
+            <h3>DQA controls</h3>
+            <ul>
+              <li>Contrôles de complétude, doublons, plausibilité, cohérence interne et délai de revue.</li>
+              <li>Priorisation automatique des records à reprendre avant diffusion.</li>
+              <li>RVR distinct du simple contrôle de complétude pour sécuriser le reporting bailleur.</li>
+            </ul>
+          </article>
+          <article class="method-card">
+            <h3>Reporting design</h3>
+            <ul>
+              <li>Mesures DAX centrées sur l’usage programme, pas seulement sur le volume de données.</li>
+              <li>Visualisation des écoles à risque et des territoires nécessitant un appui de supervision.</li>
+              <li>Audit log pour garder la mémoire des corrections et décisions de validation.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block reveal" id="results">
+        <h2>Results and Performance</h2>
+        <p class="section-block__intro">
+          Les résultats ci-dessous sont présentés comme une synthèse de performance du pipeline.
+          Ils montrent ce que gagne une équipe lorsqu’elle standardise la collecte et relie directement la qualité de la donnée
+          à la revue opérationnelle.
+        </p>
+        <div class="stats-grid">
+          <article class="stat-card" data-count-card>
+            <div class="stat-card__value" data-target="94" data-suffix="%">0%</div>
+            <h3>RVR compliant records</h3>
+            <p class="stat-card__label">Part des indicateurs vérifiés ou acceptables après contrôle croisé des sources.</p>
+            <div class="stat-card__trend">↑ improvement vs baseline</div>
+            <small>Baseline: 61% before standardized XLSForm and DQA sequencing.</small>
+          </article>
+          <article class="stat-card" data-count-card>
+            <div class="stat-card__value" data-target="4" data-prefix="< " data-suffix="h">&lt; 4h</div>
+            <h3>Reporting turnaround</h3>
+            <p class="stat-card__label">Temps nécessaire pour produire une vue exploitable après intégration DHIS2.</p>
+            <div class="stat-card__trend">↑ improvement vs baseline</div>
+            <small>Baseline: 5-7 days between field collection and donor-ready update.</small>
+          </article>
+          <article class="stat-card" data-count-card>
+            <div class="stat-card__value" data-target="30">0</div>
+            <h3>Schools audited</h3>
+            <p class="stat-card__label">Écoles revues dans le tableau DQA avec priorisation automatique des cas critiques.</p>
+            <div class="stat-card__trend">↑ improvement vs baseline</div>
+            <small>Baseline: records reviewed ad hoc without common severity thresholds.</small>
+          </article>
+          <article class="stat-card" data-count-card>
+            <div class="stat-card__value" data-target="6">0</div>
+            <h3>Critical records isolated</h3>
+            <p class="stat-card__label">Cas bloqués avant diffusion afin d’éviter des chiffres non vérifiés en reporting.</p>
+            <div class="stat-card__trend">↑ improvement vs baseline</div>
+            <small>Baseline: critical issues mixed with routine submissions in flat exports.</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block reveal">
+        <h2>Power BI Measures</h2>
+        <p class="section-block__intro">
+          Les mesures ci-dessous sont conçues pour une couche Power BI alimentée par les exports Kobo et les tables de vérification.
+          L’objectif n’est pas de surcharger un dashboard, mais d’exposer les signaux utilisés en revue programme.
+        </p>
+        <div class="code-grid">
+          <article class="code-card">
+            <h3>Total Enrolled</h3>
+            <pre><code><span class="token-keyword">Total Enrolled</span> = 
+<span class="token-function">SUM</span>(<span class="token-string">'Education Monitoring'</span>[total_enrolled])</code></pre>
+          </article>
+          <article class="code-card">
+            <h3>IDP Enrollment Rate</h3>
+            <pre><code><span class="token-keyword">IDP Enrollment Rate</span> = 
+<span class="token-function">DIVIDE</span>(
+    <span class="token-function">SUM</span>(<span class="token-string">'Education Monitoring'</span>[idp_total]),
+    [<span class="token-keyword">Total Enrolled</span>],
+    <span class="token-number">0</span>
+)</code></pre>
+          </article>
+          <article class="code-card">
+            <h3>Qualified Teacher Rate</h3>
+            <pre><code><span class="token-keyword">Qualified Teacher Rate</span> = 
+<span class="token-function">DIVIDE</span>(
+    <span class="token-function">SUM</span>(<span class="token-string">'Education Monitoring'</span>[qualified_teachers]),
+    <span class="token-function">SUM</span>(<span class="token-string">'Education Monitoring'</span>[total_teachers]),
+    <span class="token-number">0</span>
+)</code></pre>
+          </article>
+          <article class="code-card">
+            <h3>Average RVR Score</h3>
+            <pre><code><span class="token-comment">-- Average score used before donor reporting cut-off</span>
+<span class="token-keyword">Average RVR Score</span> = 
+<span class="token-function">AVERAGE</span>(<span class="token-string">'DQA Validation'</span>[RVR_Score])</code></pre>
+          </article>
+          <article class="code-card">
+            <h3>Critical School Flag</h3>
+            <pre><code><span class="token-keyword">Critical School Flag</span> = 
+<span class="token-keyword">IF</span>(
+    [<span class="token-keyword">Average RVR Score</span>] &lt; <span class="token-number">0.8</span>
+        || [<span class="token-keyword">IDP Enrollment Rate</span>] &gt; <span class="token-number">0.3</span>,
+    <span class="token-string">"Immediate review"</span>,
+    <span class="token-string">"Routine follow-up"</span>
+)</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block reveal" id="evidence">
+        <h2>Field Evidence</h2>
+        <p class="section-block__intro">
+          Les exemples suivants illustrent le type d’usage opérationnel attendu d’un tel système.
+          Ils mettent l’accent sur la décision et non sur la simple collecte.
+        </p>
+        <div class="evidence-grid">
+          <article class="evidence-card">
+            <h3>Protection flagging</h3>
+            <blockquote>Data collected in Masisi territory showed 34% IDP children - flagged automatically for protection team review.</blockquote>
+            <p>Le signal n’est pas seulement statistique : il déclenche un besoin de coordination intersectorielle.</p>
+          </article>
+          <article class="evidence-card">
+            <h3>Constraint value</h3>
+            <blockquote>RVR score improved from 61% to 94% after implementing standardized XLSForm with built-in constraints.</blockquote>
+            <p>Le gain provient de la prévention des erreurs à la source et d’une revue plus rapide des exceptions.</p>
+          </article>
+          <article class="evidence-card">
+            <h3>Reporting speed</h3>
+            <blockquote>Reporting time reduced from 5-7 days to under 4 hours after DHIS2 integration, enabling same-day donor updates.</blockquote>
+            <p>Cette réduction change directement la capacité de pilotage programme pendant une période de mise en œuvre active.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block reveal" id="deliverables">
+        <h2>Deliverables in This Project</h2>
+        <p class="section-block__intro">
+          Les livrables ont été pensés pour être directement auditables. Le formulaire couvre la collecte et les contraintes,
+          le classeur DQA structure la vérification et le README documente l’usage de bout en bout.
+        </p>
+        <div class="deliverables-grid">
+          <article class="deliverable-card">
+            <h3>XLSForm Kobo</h3>
+            <ul>
+              <li>Métadonnées, identification, profil école, inscriptions, enseignants, protection et vérification photo.</li>
+              <li>Listes en cascade province/territoire et messages d’erreur en français.</li>
+              <li>Calculs protégés pour les indicateurs sensibles terrain.</li>
+            </ul>
+          </article>
+          <article class="deliverable-card">
+            <h3>DQA Workbook</h3>
+            <ul>
+              <li>Dashboard qualité avec seuils couleur, actions prioritaires et délai de revue.</li>
+              <li>Règles de validation documentées pour audit, formation et contrôle continu.</li>
+              <li>RVR calculator et audit log utilisables comme pièces de supervision.</li>
+            </ul>
+          </article>
+          <article class="deliverable-card">
+            <h3>Project README</h3>
+            <ul>
+              <li>Guide d’utilisation KoboToolbox, DQA et Power BI.</li>
+              <li>Standards techniques appliqués et liste des compétences démontrées.</li>
+              <li>Documentation compacte pour revue par recruteur technique ou responsable IM.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell site-footer__inner">
+      <p>NRC DRC - Education Program IM Pipeline</p>
+      <p>KoboToolbox · DHIS2 · Power BI · Data Quality Assurance</p>
+    </div>
+  </footer>
+
+  <script>
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const valueNode = entry.target.querySelector('.stat-card__value');
+        const target = Number(valueNode.dataset.target || 0);
+        const prefix = valueNode.dataset.prefix || '';
+        const suffix = valueNode.dataset.suffix || '';
+        const duration = 1200;
+        const startTime = performance.now();
+
+        const tick = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(target * eased);
+          valueNode.textContent = `${prefix}${current}${suffix}`;
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        };
+
+        requestAnimationFrame(tick);
+        countObserver.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.35
+    });
+
+    document.querySelectorAll('[data-count-card]').forEach((card) => {
+      countObserver.observe(card);
+    });
+  </script>
+</body>
+</html>

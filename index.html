@@ -82,6 +82,12 @@
       min-height: 72px;
     }
 
+    .site-header__controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .brand {
       font-family: "Space Grotesk", sans-serif;
       font-size: 1.05rem;
@@ -98,8 +104,47 @@
 
     .nav a:hover { color: var(--text); }
 
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: rgba(47, 93, 80, 0.04);
+    }
+
+    .lang-switch__button {
+      min-height: 32px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+    }
+
+    .lang-switch__button:hover,
+    .lang-switch__button:focus-visible {
+      background: rgba(47, 93, 80, 0.08);
+      outline: none;
+    }
+
+    .lang-switch__button.is-active {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
     .page {
       padding: 40px 0 80px;
+      transition: opacity 180ms ease;
+    }
+
+    .page.is-language-transitioning {
+      opacity: 0.72;
     }
 
     h1, h2, h3 {
@@ -457,12 +502,18 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <div class="brand">Esther Bahati / Operations Data &amp; AI</div>
-      <nav class="nav" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="site-header__controls">
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -515,15 +566,15 @@
         <div class="hero__pillars">
           <article class="hero__pillar">
             <strong>Operations-grounded</strong>
-            Built with real operational constraints in mind, not only demo environments.
+            <p>Built with real operational constraints in mind, not only demo environments.</p>
           </article>
           <article class="hero__pillar">
             <strong>Decision-oriented</strong>
-            Reporting and automation designed to reduce ambiguity for managers and teams.
+            <p>Reporting and automation designed to reduce ambiguity for managers and teams.</p>
           </article>
           <article class="hero__pillar">
             <strong>Privacy-aware</strong>
-            Product thinking shaped by user sovereignty, sensitive workflows, and responsible data handling.
+            <p>Product thinking shaped by user sovereignty, sensitive workflows, and responsible data handling.</p>
           </article>
         </div>
 
@@ -632,64 +683,116 @@
         </div>
 
         <div class="project-grid">
-          <article class="card">
-            <div class="card__type">AI Product / Executive Workflow / Privacy-first</div>
+          <article class="card" data-project="executive-assistant">
+            <div class="card__type">n8n | WhatsApp API | IMAP | Supabase | LLM | Automation</div>
             <div>
-              <h3>Executive Assistant Briefing</h3>
-              <p class="card__summary">A proactive AI executive assistant built to analyze emails and WhatsApp conversations, detect anomalies, missed actions, and important signals, then generate personalized briefings and real-time alerts for leaders.</p>
+              <h3>Executive Assistant Briefing™ — AI SaaS Product</h3>
+              <p class="card__summary">Product currently in development — Beta Q3 2026.</p>
             </div>
             <ul class="project-list">
-              <li>Combines proactive monitoring with direct user interaction through WhatsApp.</li>
-              <li>Designed for non-technical decision-makers who need signal, not noise.</li>
-              <li>Built around privacy-first architecture and user sovereignty over conversations and data.</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <div class="card__type">GA4 / Tracking / UTM Governance</div>
-            <div>
-              <h3>HopeTrack Demo Site</h3>
-              <p class="card__summary">A fictional nonprofit campaign site built to demonstrate event tracking, donation journey instrumentation, and stakeholder-friendly UTM standards.</p>
-            </div>
-            <ul class="project-list">
-              <li>Custom GA4 events across landing, content, and donate flows.</li>
-              <li>Documented naming standards for campaign attribution.</li>
-              <li>Public static implementation suitable for GitHub Pages.</li>
+              <li>Built to detect anomalies, missed actions, and priority signals across executive communications.</li>
+              <li>Combines proactive briefings, real-time alerts, and WhatsApp interaction for non-technical leaders.</li>
+              <li>Designed around privacy-conscious workflows and operational decision support.</li>
             </ul>
             <div class="card__links">
-              <a class="button button--primary" href="projects/hopetrack/index.html">Open Site</a>
+              <a class="button button--primary" href="executive-assistant.html">Open Product Page</a>
+            </div>
+          </article>
+
+          <article class="card" data-project="hopetrack-ga4">
+            <div class="card__type">GA4 | UTM Tracking | HTML | JavaScript | GitHub Pages</div>
+            <div>
+              <h3>HopeTrack NGO Demo Site — GA4 &amp; UTM Framework</h3>
+              <p class="card__summary">A full demo site showing campaign instrumentation, donation journey tracking, and a usable UTM governance framework for nonprofit reporting.</p>
+            </div>
+            <ul class="project-list">
+              <li>Implements GA4 events across homepage, donation flow, and supporter interactions.</li>
+              <li>Documents attribution standards that non-technical teams can actually apply consistently.</li>
+              <li>Published as a standalone GitHub Pages project to demonstrate real deployment readiness.</li>
+            </ul>
+            <div class="card__links">
+              <a class="button button--primary" href="https://estherbh.github.io/hopetrack/" target="_blank" rel="noreferrer">Open Site</a>
               <a class="button" href="projects/hopetrack/utm-framework.html">Open UTM Framework</a>
             </div>
           </article>
 
-          <article class="card">
-            <div class="card__type">Google Sheets / Looker Studio / Multi-source Reporting</div>
+          <article class="card" data-project="unified-marketing">
+            <div class="card__type">Google Sheets | KPI Framework | Multi-source | Reporting</div>
             <div>
               <h3>Unified Marketing Reporting Template</h3>
-              <p class="card__summary">A multi-source reporting workbook designed as an interim analytics layer before full BI integration, paired with a stakeholder-facing Looker Studio output.</p>
+              <p class="card__summary">A structured Google Sheets reporting system for combining campaign, CRM, web, and channel metrics into one operational decision layer.</p>
             </div>
             <ul class="project-list">
-              <li>Combines social, web, email, and CRM-style inputs.</li>
-              <li>Includes KPI dashboard, weekly reporting, governance notes, and Looker-ready tabs.</li>
-              <li>Positioned as a practical decision tool, not just a spreadsheet.</li>
+              <li>Built as an interim reporting layer before full BI maturity.</li>
+              <li>Includes KPI definitions, reporting governance, and stakeholder-friendly weekly views.</li>
+              <li>Demonstrates how Google Sheets can stay disciplined, auditable, and executive-ready.</li>
             </ul>
             <div class="card__links">
-              <a class="button button--primary" href="projects/unified-marketing-reporting-template/index.html">Open Case Study</a>
-              <a class="button" href="https://docs.google.com/spreadsheets/d/1Jb6ThjeA4Yh59ytm_vs3oh-uj4N6mCaCMycv1Am5vJk/edit?usp=sharing" target="_blank" rel="noreferrer">Open Google Sheet</a>
-              <a class="button" href="https://datastudio.google.com/s/mzac46DbYlE" target="_blank" rel="noreferrer">Open Looker Studio</a>
+              <a class="button button--primary" href="https://docs.google.com/spreadsheets/d/1yRjlZdXVFjySUQVqpP2nDmzuz1Gtw4lxJ_zyzdFmxhA/edit?usp=sharing" target="_blank" rel="noreferrer">Open Google Sheet</a>
+              <a class="button" href="projects/unified-marketing-reporting-template/index.html">Open Case Study</a>
             </div>
           </article>
 
-          <article class="card">
-            <div class="card__type">CRM / Funnel / Membership Conversion</div>
+          <article class="card" data-project="looker-dashboard">
+            <div class="card__type">Looker Studio | Data Visualization | Marketing Analytics</div>
             <div>
-              <h3>Donor Journey &amp; Membership Funnel Analysis</h3>
-              <p class="card__summary">A Google Sheets-based donor journey analysis focused on acquisition quality, first-gift conversion, repeat giving, and monthly membership.</p>
+              <h3>Campaign Performance Dashboard — Looker Studio</h3>
+              <p class="card__summary">An executive-facing dashboard layer translating campaign data into a clean performance view for fast interpretation and stakeholder review.</p>
             </div>
             <ul class="project-list">
-              <li>Built for fundraising and communications analytics roles.</li>
-              <li>Shows where the funnel leaks and where stronger donor quality comes from.</li>
-              <li>Includes DRC-aligned country logic for more realistic regional storytelling.</li>
+              <li>Focuses on trend visibility, conversion logic, and signal clarity rather than decorative charts.</li>
+              <li>Extends the HopeTrack reporting system into a presentation layer for management audiences.</li>
+              <li>Designed to support narrative reporting, not only raw channel metrics.</li>
+            </ul>
+            <div class="card__links">
+              <a class="button button--primary" href="https://datastudio.google.com/reporting/d1498de9-f250-4123-8025-fe51c02657ae" target="_blank" rel="noreferrer">Open Looker Studio</a>
+            </div>
+          </article>
+
+          <article class="card" data-project="nrc-pipeline">
+            <div class="card__type">KoboToolbox | DHIS2 | Power BI | DQA | XLSForm</div>
+            <div>
+              <h3>NRC Education IM Pipeline — DRC</h3>
+              <p class="card__summary">End-to-end information management pipeline for NRC's Education program in Eastern DRC. Production-ready XLSForm, DQA template with RVR calculator, and full case study documenting the KoboToolbox → DHIS2 → Power BI workflow.</p>
+            </div>
+            <ul class="project-list">
+              <li>Includes Kobo-ready field logic with French constraints, cascading administrative geography, and built-in consistency checks.</li>
+              <li>Ships with a DQA workbook covering validation rules, audit trail, and Ratio de Vérification des Résultats.</li>
+              <li>Translates field collection into a senior-level IM case study focused on operational use, not only technical implementation.</li>
+            </ul>
+            <div class="card__links">
+              <a class="button button--primary" href="projects/nrc-im-pipeline/kobo-dhis2-case-study.html">Case Study</a>
+              <a class="button" href="projects/nrc-im-pipeline/nrc_education_monitoring_v2_2026.xlsx">Download XLSForm</a>
+              <a class="button" href="projects/nrc-im-pipeline/nrc_dqa_template.xlsx">Download DQA Template</a>
+            </div>
+          </article>
+
+          <article class="card" data-project="classify">
+            <div class="card__type">Python | Machine Learning | Classification | GitHub</div>
+            <div>
+              <h3>Classi-fy — Machine Learning Classification</h3>
+              <p class="card__summary">A machine learning classification project built to demonstrate practical modelling, structured experimentation, and interpretable outputs.</p>
+            </div>
+            <ul class="project-list">
+              <li>Built in Python with a focus on applied classification workflows rather than toy notebook outputs.</li>
+              <li>Shows foundational ML implementation, experimentation discipline, and code organization.</li>
+              <li>Published on GitHub as a public technical reference for recruiters and collaborators.</li>
+            </ul>
+            <div class="card__links">
+              <a class="button button--primary" href="https://github.com/Estherbh/Classi-fy" target="_blank" rel="noreferrer">Open GitHub</a>
+            </div>
+          </article>
+
+          <article class="card" data-project="donor-journey">
+            <div class="card__type">CRM | Funnel | Membership Conversion</div>
+            <div>
+              <h3>Donor Journey &amp; Membership Funnel Analysis</h3>
+              <p class="card__summary">A donor journey analysis focused on acquisition quality, first-gift conversion, repeat giving, and monthly membership performance.</p>
+            </div>
+            <ul class="project-list">
+              <li>Maps the key drop-off points between visit, donation start, conversion, and repeat giving.</li>
+              <li>Built to support communications, fundraising, and stakeholder-facing performance reviews.</li>
+              <li>Pairs sheet-based analysis with a companion page for faster interpretation.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="https://docs.google.com/spreadsheets/d/1yRjlZdXVFjySUQVqpP2nDmzuz1Gtw4lxJ_zyzdFmxhA/edit?usp=sharing" target="_blank" rel="noreferrer">Open Google Sheet</a>
@@ -697,48 +800,48 @@
             </div>
           </article>
 
-          <article class="card">
-            <div class="card__type">Storytelling / Cross-channel Interpretation</div>
+          <article class="card" data-project="cross-channel">
+            <div class="card__type">Storytelling | Cross-channel Interpretation | One-pager</div>
             <div>
               <h3>Cross-Channel Campaign Insights One-Pager</h3>
-              <p class="card__summary">A concise performance summary showing how campaign data can be translated into recommendations that non-technical stakeholders can act on quickly.</p>
+              <p class="card__summary">A concise performance summary designed to convert campaign data into decisions that non-technical stakeholders can act on quickly.</p>
             </div>
             <ul class="project-list">
-              <li>Compares attention-driving channels with contribution-driving channels.</li>
-              <li>Distills reporting into three insights and three actions.</li>
-              <li>Complements dashboard-heavy projects with executive narrative clarity.</li>
+              <li>Separates attention metrics from contribution-driving metrics to improve interpretation.</li>
+              <li>Distills the reporting story into clear insights and practical next actions.</li>
+              <li>Complements dashboard-heavy work with leadership-friendly narrative reporting.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="projects/cross-channel-campaign-insights/index.html">Open One-Pager</a>
             </div>
           </article>
 
-          <article class="card">
-            <div class="card__type">Confidential Product / Sensitive Operations</div>
+          <article class="card" data-project="security-dashboard">
+            <div class="card__type">Confidential Product | Sensitive Operations | Monitoring</div>
             <div>
               <h3>Security Intelligence Dashboard</h3>
               <p class="card__summary">A confidential dashboard case study centered on multi-source monitoring, KPI visibility, and operational reporting under high-sensitivity constraints.</p>
             </div>
             <ul class="project-list">
-              <li>Dashboard logic for decision support in sensitive contexts.</li>
-              <li>Structured visibility across multiple operational signals.</li>
-              <li>Presented in a sanitized case-study format that protects confidential data.</li>
+              <li>Built around decision support in environments where exposure of live data is not acceptable.</li>
+              <li>Demonstrates reporting structure, visibility logic, and sanitised product storytelling.</li>
+              <li>Shows experience in translating sensitive field signals into usable management outputs.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="projects/security-intelligence-dashboard-drc/index.html">Open Case Study</a>
             </div>
           </article>
 
-          <article class="card">
-            <div class="card__type">Confidential Product / KPI Visibility</div>
+          <article class="card" data-project="virunga-dashboard">
+            <div class="card__type">Confidential Product | KPI Visibility | Stakeholder Reporting</div>
             <div>
               <h3>Virunga Performance Dashboard</h3>
               <p class="card__summary">A confidential dashboard case study focused on KPI centralization, stakeholder reporting, and interface clarity in a live professional environment.</p>
             </div>
             <ul class="project-list">
-              <li>Performance reporting designed for recurring stakeholder review.</li>
-              <li>Experience built in real operational conditions rather than mock datasets alone.</li>
-              <li>Public presentation intentionally sanitized to protect data privacy.</li>
+              <li>Reflects reporting work built under real operational conditions rather than only mock datasets.</li>
+              <li>Prioritises recurring review, KPI structure, and interface clarity for practical use.</li>
+              <li>Public presentation is intentionally sanitized to protect operational data.</li>
             </ul>
             <div class="card__links">
               <a class="button button--primary" href="projects/virunga-dashboard/index.html">Open Case Study</a>
@@ -801,5 +904,179 @@
       </div>
     </div>
   </footer>
+  <script>
+    const DEFAULT_LANGUAGE = 'en';
+    let currentLanguage = DEFAULT_LANGUAGE;
+
+    const translations = [
+      { selector: '.brand', en: 'Esther Bahati / Operations Data & AI', fr: 'Esther Bahati / Opérations, Données et IA' },
+      { selector: '.nav a[href="#about"]', en: 'About', fr: 'À propos' },
+      { selector: '.nav a[href="#achievements"]', en: 'Achievements', fr: 'Réalisations' },
+      { selector: '.nav a[href="#projects"]', en: 'Projects', fr: 'Projets' },
+      { selector: '.nav a[href="#contact"]', en: 'Contact', fr: 'Contact' },
+      { selector: '.skip-link', en: 'Skip to main content', fr: 'Aller au contenu principal' },
+      { selector: '.hero__eyebrow', en: 'Operations / Data Analytics / AI / Automation / Product Building / Field Operations', fr: 'Opérations / Analyse de données / IA / Automatisation / Construction de produits / Opérations terrain' },
+      { selector: '.hero h1', en: 'Operations Data & AI Specialist', fr: 'Spécialiste Opérations, Données et IA' },
+      { selector: '.hero__subtitle', en: 'Building AI & Automation Solutions for Managers, NGOs, and Businesses.', fr: 'Je conçois des solutions IA et automatisation pour les managers, les ONG et les entreprises.' },
+      { selector: '.hero__lede', en: 'I design data systems, automation workflows, reporting layers, and AI-enabled products that help leaders operate with more clarity, faster decisions, and less technical friction. This portfolio brings together public analytics work, product thinking, and sanitized operational case studies from real field environments.', fr: 'Je conçois des systèmes de données, des workflows d’automatisation, des couches de reporting et des produits appuyés par l’IA pour aider les décideurs à travailler avec plus de clarté, des décisions plus rapides et moins de friction technique. Ce portfolio réunit des travaux publics en analytique, de la réflexion produit et des études de cas opérationnelles assainies issues d’environnements terrain réels.' },
+      { selector: '.hero__actions .button--primary', en: 'Download CV', fr: 'Télécharger le CV' },
+      { selector: '.hero__actions .button:not(.button--primary):not(.button--ghost)', en: 'Contact Me', fr: 'Me contacter' },
+      { selector: '.hero__actions .button--ghost', en: "Let's Connect", fr: 'Échangeons' },
+      { selector: '.hero__pillar:nth-of-type(1) strong', en: 'Operations-grounded', fr: 'Ancré dans les opérations' },
+      { selector: '.hero__pillar:nth-of-type(1) p', en: 'Built with real operational constraints in mind, not only demo environments.', fr: 'Conçu avec de vraies contraintes opérationnelles en tête, pas seulement pour des environnements de démonstration.' },
+      { selector: '.hero__pillar:nth-of-type(2) strong', en: 'Decision-oriented', fr: 'Orienté décision' },
+      { selector: '.hero__pillar:nth-of-type(2) p', en: 'Reporting and automation designed to reduce ambiguity for managers and teams.', fr: 'Reporting et automatisation pensés pour réduire l’ambiguïté pour les managers et les équipes.' },
+      { selector: '.hero__pillar:nth-of-type(3) strong', en: 'Privacy-aware', fr: 'Attentif à la confidentialité' },
+      { selector: '.hero__pillar:nth-of-type(3) p', en: 'Product thinking shaped by user sovereignty, sensitive workflows, and responsible data handling.', fr: 'Réflexion produit façonnée par la souveraineté des utilisateurs, les workflows sensibles et une gestion responsable des données.' },
+      { selector: '.hero__stat:nth-of-type(1) .muted', en: 'sales platforms managed as part of logistics operations support at Virunga National Park Foundation.', fr: 'plateformes de vente gérées dans le cadre de l’appui aux opérations logistiques à la Fondation du Parc National des Virunga.' },
+      { selector: '.hero__stat:nth-of-type(2) .muted', en: 'working languages used across professional communication: English, French, and Swahili.', fr: 'langues de travail utilisées en communication professionnelle : anglais, français et swahili.' },
+      { selector: '#about .section__head h2', en: 'About Me', fr: 'À propos de moi' },
+      { selector: '#about .about-copy p:nth-of-type(1)', en: "Hello, I'm Esther Bahati.", fr: 'Bonjour, je suis Esther Bahati.' },
+      { selector: '#about .about-copy p:nth-of-type(2)', en: 'I am an Operations Data & AI Specialist passionate about technology and literature. I love growing, learning more, discovering new things, and taking on challenges because the feeling of being stuck is unbearable to me.', fr: 'Je suis une spécialiste en opérations, données et IA, passionnée par la technologie et la littérature. J’aime progresser, apprendre davantage, découvrir de nouvelles choses et relever des défis, car la sensation de stagnation m’est insupportable.' },
+      { selector: '#about .about-copy p:nth-of-type(3)', en: 'As a great lover of novels, I also enjoy writing poetry.', fr: 'Grande amatrice de romans, j’aime aussi écrire de la poésie.' },
+      { selector: '#about .about-copy p:nth-of-type(4)', en: 'I speak professional English, native French, and Swahili. I hold a Machine Learning certification, but I train myself even more through practice by continuously building projects.', fr: 'Je travaille en anglais professionnel, en français langue maternelle et en swahili. Je possède une certification en machine learning, mais je progresse surtout par la pratique en construisant continuellement des projets.' },
+      { selector: '#about .about-copy p:nth-of-type(5)', en: 'Professionally, I design data, artificial intelligence, and automation solutions to help managers, entrepreneurs, and businesses improve their operations and make better decisions. In short, I build data-driven solutions that allow people, even the less technical ones, to make use of data.', fr: 'Professionnellement, je conçois des solutions de données, d’intelligence artificielle et d’automatisation pour aider les managers, les entrepreneurs et les organisations à améliorer leurs opérations et à prendre de meilleures décisions. En bref, je construis des solutions pilotées par les données qui permettent à chacun, même aux moins techniques, d’en tirer parti.' },
+      { selector: '#about .about-copy p:nth-of-type(6)', en: 'Recently, I have also started creating content around artificial intelligence and technology to help managers understand and use AI without technical jargon. My belief is simple: leaders should be able to master AI and benefit from it without necessarily going through long technical training if they do not have the time or desire to become experts.', fr: 'Récemment, j’ai aussi commencé à créer du contenu autour de l’intelligence artificielle et de la technologie pour aider les managers à comprendre et utiliser l’IA sans jargon technique. Ma conviction est simple : les décideurs doivent pouvoir maîtriser l’IA et en bénéficier sans forcément suivre de longues formations techniques s’ils n’ont ni le temps ni l’envie de devenir experts.' },
+      { selector: '#about .about-copy p:nth-of-type(7)', en: 'I am also the creator of Executive Assistant Briefing, a proactive AI-powered executive assistant that analyzes emails and WhatsApp conversations, detects anomalies and missed actions, and generates personalized briefings and real-time alerts to help leaders stay organized and make better decisions. Users can also interact directly with it through WhatsApp.', fr: 'Je suis également la créatrice de Executive Assistant Briefing, un assistant exécutif proactif alimenté par l’IA qui analyse les e-mails et les conversations WhatsApp, détecte les anomalies et les actions manquées, puis génère des briefings personnalisés et des alertes en temps réel pour aider les dirigeants à rester organisés et à mieux décider. Les utilisateurs peuvent aussi interagir directement avec lui via WhatsApp.' },
+      { selector: '#about .about-copy p:nth-of-type(8)', en: 'And because privacy is important to me, users remain fully sovereign over their data and conversations. Nothing is stored on my servers except certain technical identifiers and assistant-related data, solely to allow service backup and restoration, for example if a user loses their phone or changes devices. It is subscription-based, of course 😂.', fr: 'Et parce que la confidentialité est importante pour moi, les utilisateurs restent pleinement souverains sur leurs données et leurs conversations. Rien n’est stocké sur mes serveurs en dehors de certains identifiants techniques et de données liées à l’assistant, uniquement pour permettre la sauvegarde et la restauration du service, par exemple si un utilisateur perd son téléphone ou change d’appareil. Le service est bien sûr proposé par abonnement 😂.' },
+      { selector: '#about .about-copy p:nth-of-type(9)', en: 'Currently, I work as a Traceability System Supervisor at the Virunga National Park Foundation, where I oversee traceability systems and data management across multiple operational areas. I also contribute to logistics operations, with the management of seven sales platforms.', fr: 'Actuellement, je travaille comme superviseure du système de traçabilité à la Fondation du Parc National des Virunga, où je supervise les systèmes de traçabilité et la gestion des données sur plusieurs zones opérationnelles. Je contribue aussi aux opérations logistiques, notamment à travers la gestion de sept plateformes de vente.' },
+      { selector: '#about .about-copy p:nth-of-type(10)', en: 'The details of my professional experience can be found in my resume, but I have included a few projects here to convince you to let me be part of your team.', fr: 'Les détails de mon expérience professionnelle se trouvent dans mon CV, mais j’ai inclus ici quelques projets pour vous convaincre de me laisser rejoindre votre équipe.' },
+      { selector: '#about .about-copy p:nth-of-type(11)', en: 'I usually go by Esther Bahati, while my full legal name on my CV and official documents is CIBALONZA BAHATU ESTHER.', fr: 'Je me présente généralement sous le nom Esther Bahati, tandis que mon nom légal complet sur mon CV et mes documents officiels est CIBALONZA BAHATU ESTHER.' },
+      { selector: '#contact .section__head h2', en: 'Contact', fr: 'Contact' },
+      { selector: '#contact .section__lede', en: 'If you are hiring for a role that sits between operations, analytics, AI, and product execution, I would be happy to connect.', fr: 'Si vous recrutez pour un rôle à l’intersection des opérations, de l’analytique, de l’IA et de l’exécution produit, je serais ravie d’échanger.' },
+      { selector: '#contact .contact-card:nth-of-type(1) h3', en: 'Reach me directly', fr: 'Me joindre directement' },
+      { selector: '#contact .contact-card:nth-of-type(1) .contact-card__text', en: 'For opportunities, interviews, freelance collaborations, or portfolio questions.', fr: 'Pour des opportunités, des entretiens, des collaborations freelance ou des questions sur mon portfolio.' },
+      { selector: '#contact .contact-card:nth-of-type(2) h3', en: 'Professional profiles', fr: 'Profils professionnels' },
+      { selector: '#contact .contact-card:nth-of-type(2) .contact-card__text', en: 'You can also review my background, code, and public work through these links.', fr: 'Vous pouvez aussi consulter mon parcours, mon code et mes travaux publics à travers ces liens.' },
+      { selector: '#achievements .section__head h2', en: 'Key Achievements', fr: 'Réalisations clés' },
+      { selector: '#achievements .section__lede', en: 'Where exact business metrics cannot be disclosed publicly, this section highlights measurable scope, product ownership, and delivery outcomes that can be supported by the work shown in this portfolio.', fr: 'Lorsque les métriques exactes ne peuvent pas être divulguées publiquement, cette section met en avant l’ampleur mesurable du travail, la responsabilité produit et les résultats de livraison qui peuvent être étayés par les travaux présentés dans ce portfolio.' },
+      { selector: '.achievement:nth-of-type(1) .achievement__label', en: 'Sales platforms supported', fr: 'Plateformes de vente appuyées' },
+      { selector: '.achievement:nth-of-type(1) .achievement__detail', en: 'Contributed to logistics operations with the management of seven sales platforms alongside traceability responsibilities at Virunga National Park Foundation.', fr: 'Contribution aux opérations logistiques avec la gestion de sept plateformes de vente, en parallèle des responsabilités de traçabilité à la Fondation du Parc National des Virunga.' },
+      { selector: '.achievement:nth-of-type(2) .achievement__label', en: 'Professional languages', fr: 'Langues professionnelles' },
+      { selector: '.achievement:nth-of-type(2) .achievement__detail', en: 'Operate across professional English, native French, and Swahili, supporting communication in multilingual operational environments.', fr: 'Travaille en anglais professionnel, en français langue maternelle et en swahili, au service d’environnements opérationnels multilingues.' },
+      { selector: '.achievement:nth-of-type(3) .achievement__label', en: 'Public reporting systems', fr: 'Systèmes de reporting publics' },
+      { selector: '.achievement:nth-of-type(3) .achievement__detail', en: 'Published portfolio-ready reporting systems spanning Google Sheets, Looker Studio, case studies, and downloadable technical assets.', fr: 'Publication de systèmes de reporting prêts pour portfolio, couvrant Google Sheets, Looker Studio, des études de cas et des livrables techniques téléchargeables.' },
+      { selector: '.achievement:nth-of-type(4) .achievement__label', en: 'AI product created', fr: 'Produit IA créé' },
+      { selector: '.achievement:nth-of-type(4) .achievement__detail', en: 'Designed Executive Assistant Briefing as a proactive AI product combining monitoring, anomaly detection, briefing generation, and WhatsApp interaction.', fr: 'Conception de Executive Assistant Briefing comme produit IA proactif combinant monitoring, détection d’anomalies, génération de briefings et interaction WhatsApp.' },
+      { selector: '#projects .section__head h2', en: 'Selected Projects', fr: 'Projets sélectionnés' },
+      { selector: '#projects .section__lede', en: 'The project mix is intentional: analytics implementation, reporting systems, executive storytelling, AI product design, and confidential dashboards from operational environments.', fr: 'La sélection de projets est volontaire : mise en œuvre analytique, systèmes de reporting, narration exécutive, conception de produits IA et tableaux de bord confidentiels issus d’environnements opérationnels.' },
+      { selector: '[data-project="executive-assistant"] .card__summary', en: 'Product currently in development — Beta Q3 2026.', fr: 'Produit en cours de développement — Bêta T3 2026.' },
+      { selector: '[data-project="executive-assistant"] h3', en: 'Executive Assistant Briefing™ — AI SaaS Product', fr: 'Executive Assistant Briefing™ — Produit SaaS IA' },
+      { selector: '[data-project="executive-assistant"] li:nth-of-type(1)', en: 'Built to detect anomalies, missed actions, and priority signals across executive communications.', fr: 'Conçu pour détecter les anomalies, les actions manquées et les signaux prioritaires dans les communications exécutives.' },
+      { selector: '[data-project="executive-assistant"] li:nth-of-type(2)', en: 'Combines proactive briefings, real-time alerts, and WhatsApp interaction for non-technical leaders.', fr: 'Combine des briefings proactifs, des alertes en temps réel et une interaction WhatsApp pour des dirigeants non techniques.' },
+      { selector: '[data-project="executive-assistant"] li:nth-of-type(3)', en: 'Designed around privacy-conscious workflows and operational decision support.', fr: 'Pensé autour de workflows soucieux de la confidentialité et de l’aide à la décision opérationnelle.' },
+      { selector: '[data-project="executive-assistant"] .card__links .button', en: 'Open Product Page', fr: 'Ouvrir la page produit' },
+      { selector: '[data-project="hopetrack-ga4"] h3', en: 'HopeTrack NGO Demo Site — GA4 & UTM Framework', fr: 'Site démo ONG HopeTrack — Cadre GA4 et UTM' },
+      { selector: '[data-project="hopetrack-ga4"] .card__summary', en: 'A full demo site showing campaign instrumentation, donation journey tracking, and a usable UTM governance framework for nonprofit reporting.', fr: 'Un site démo complet montrant l’instrumentation de campagne, le suivi du parcours de don et un cadre UTM réellement utilisable pour le reporting associatif.' },
+      { selector: '[data-project="hopetrack-ga4"] li:nth-of-type(1)', en: 'Implements GA4 events across homepage, donation flow, and supporter interactions.', fr: 'Implémente des événements GA4 sur la homepage, le flux de don et les interactions des supporters.' },
+      { selector: '[data-project="hopetrack-ga4"] li:nth-of-type(2)', en: 'Documents attribution standards that non-technical teams can actually apply consistently.', fr: 'Documente des standards d’attribution que des équipes non techniques peuvent réellement appliquer de manière cohérente.' },
+      { selector: '[data-project="hopetrack-ga4"] li:nth-of-type(3)', en: 'Published as a standalone GitHub Pages project to demonstrate real deployment readiness.', fr: 'Publié comme projet autonome GitHub Pages pour démontrer une vraie capacité de mise en production.' },
+      { selector: '[data-project="hopetrack-ga4"] .card__links .button--primary', en: 'Open Site', fr: 'Ouvrir le site' },
+      { selector: '[data-project="hopetrack-ga4"] .card__links .button:nth-of-type(2)', en: 'Open UTM Framework', fr: 'Ouvrir le cadre UTM' },
+      { selector: '[data-project="unified-marketing"] .card__summary', en: 'A structured Google Sheets reporting system for combining campaign, CRM, web, and channel metrics into one operational decision layer.', fr: 'Un système de reporting structuré sous Google Sheets pour combiner les métriques de campagne, CRM, web et canal dans une même couche de décision opérationnelle.' },
+      { selector: '[data-project="unified-marketing"] h3', en: 'Unified Marketing Reporting Template', fr: 'Modèle unifié de reporting marketing' },
+      { selector: '[data-project="unified-marketing"] li:nth-of-type(1)', en: 'Built as an interim reporting layer before full BI maturity.', fr: 'Conçu comme couche de reporting intermédiaire avant une maturité BI complète.' },
+      { selector: '[data-project="unified-marketing"] li:nth-of-type(2)', en: 'Includes KPI definitions, reporting governance, and stakeholder-friendly weekly views.', fr: 'Inclut des définitions KPI, une gouvernance de reporting et des vues hebdomadaires lisibles par les parties prenantes.' },
+      { selector: '[data-project="unified-marketing"] li:nth-of-type(3)', en: 'Demonstrates how Google Sheets can stay disciplined, auditable, and executive-ready.', fr: 'Montre comment Google Sheets peut rester discipliné, auditable et prêt pour un usage exécutif.' },
+      { selector: '[data-project="unified-marketing"] .card__links .button--primary', en: 'Open Google Sheet', fr: 'Ouvrir le Google Sheet' },
+      { selector: '[data-project="unified-marketing"] .card__links .button:nth-of-type(2)', en: 'Open Case Study', fr: 'Ouvrir l’étude de cas' },
+      { selector: '[data-project="looker-dashboard"] h3', en: 'Campaign Performance Dashboard — Looker Studio', fr: 'Dashboard de performance de campagne — Looker Studio' },
+      { selector: '[data-project="looker-dashboard"] .card__summary', en: 'An executive-facing dashboard layer translating campaign data into a clean performance view for fast interpretation and stakeholder review.', fr: 'Une couche dashboard orientée exécutif qui transforme les données de campagne en une vue de performance claire pour une lecture rapide et la revue des parties prenantes.' },
+      { selector: '[data-project="looker-dashboard"] li:nth-of-type(1)', en: 'Focuses on trend visibility, conversion logic, and signal clarity rather than decorative charts.', fr: 'Se concentre sur la visibilité des tendances, la logique de conversion et la clarté du signal plutôt que sur des graphiques décoratifs.' },
+      { selector: '[data-project="looker-dashboard"] li:nth-of-type(2)', en: 'Extends the HopeTrack reporting system into a presentation layer for management audiences.', fr: 'Prolonge le système de reporting HopeTrack en couche de présentation pour des audiences de management.' },
+      { selector: '[data-project="looker-dashboard"] li:nth-of-type(3)', en: 'Designed to support narrative reporting, not only raw channel metrics.', fr: 'Conçu pour soutenir un reporting narratif, pas seulement des métriques brutes par canal.' },
+      { selector: '[data-project="looker-dashboard"] .card__links .button--primary', en: 'Open Looker Studio', fr: 'Ouvrir Looker Studio' },
+      { selector: '[data-project="nrc-pipeline"] h3', en: 'NRC Education IM Pipeline — DRC', fr: 'Pipeline IM Éducation NRC — RDC' },
+      { selector: '[data-project="nrc-pipeline"] .card__summary', en: "End-to-end information management pipeline for NRC's Education program in Eastern DRC. Production-ready XLSForm, DQA template with RVR calculator, and full case study documenting the KoboToolbox → DHIS2 → Power BI workflow.", fr: "Pipeline de gestion de l'information de bout en bout pour le programme Éducation de NRC en RDC orientale. XLSForm prêt à déployer, modèle DQA avec calculateur RVR, et étude de cas complète KoboToolbox → DHIS2 → Power BI." },
+      { selector: '[data-project="nrc-pipeline"] li:nth-of-type(1)', en: 'Includes Kobo-ready field logic with French constraints, cascading administrative geography, and built-in consistency checks.', fr: 'Inclut une logique terrain prête pour Kobo, avec contraintes en français, géographie administrative en cascade et contrôles de cohérence intégrés.' },
+      { selector: '[data-project="nrc-pipeline"] li:nth-of-type(2)', en: 'Ships with a DQA workbook covering validation rules, audit trail, and Ratio de Vérification des Résultats.', fr: 'Est livré avec un classeur DQA couvrant règles de validation, audit trail et Ratio de Vérification des Résultats.' },
+      { selector: '[data-project="nrc-pipeline"] li:nth-of-type(3)', en: 'Translates field collection into a senior-level IM case study focused on operational use, not only technical implementation.', fr: 'Transforme la collecte terrain en étude de cas IM de niveau senior, centrée sur l’usage opérationnel et pas seulement sur l’implémentation technique.' },
+      { selector: '[data-project="nrc-pipeline"] .card__links .button--primary', en: 'Case Study', fr: 'Étude de cas' },
+      { selector: '[data-project="nrc-pipeline"] .card__links .button:nth-of-type(2)', en: 'Download XLSForm', fr: 'Télécharger le XLSForm' },
+      { selector: '[data-project="nrc-pipeline"] .card__links .button:nth-of-type(3)', en: 'Download DQA Template', fr: 'Télécharger le modèle DQA' },
+      { selector: '[data-project="classify"] .card__summary', en: 'A machine learning classification project built to demonstrate practical modelling, structured experimentation, and interpretable outputs.', fr: 'Un projet de classification en machine learning conçu pour démontrer une modélisation pratique, une expérimentation structurée et des résultats interprétables.' },
+      { selector: '[data-project="classify"] h3', en: 'Classi-fy — Machine Learning Classification', fr: 'Classi-fy — Classification en machine learning' },
+      { selector: '[data-project="classify"] li:nth-of-type(1)', en: 'Built in Python with a focus on applied classification workflows rather than toy notebook outputs.', fr: 'Construit en Python avec une attention portée aux workflows de classification appliqués plutôt qu’à de simples notebooks de démonstration.' },
+      { selector: '[data-project="classify"] li:nth-of-type(2)', en: 'Shows foundational ML implementation, experimentation discipline, and code organization.', fr: 'Montre la mise en œuvre de fondamentaux ML, la discipline d’expérimentation et l’organisation du code.' },
+      { selector: '[data-project="classify"] li:nth-of-type(3)', en: 'Published on GitHub as a public technical reference for recruiters and collaborators.', fr: 'Publié sur GitHub comme référence technique publique pour recruteurs et collaborateurs.' },
+      { selector: '[data-project="classify"] .card__links .button--primary', en: 'Open GitHub', fr: 'Ouvrir GitHub' },
+      { selector: '[data-project="donor-journey"] .card__summary', en: 'A donor journey analysis focused on acquisition quality, first-gift conversion, repeat giving, and monthly membership performance.', fr: 'Une analyse du parcours donateur centrée sur la qualité d’acquisition, la conversion du premier don, la fidélisation et la performance des adhésions mensuelles.' },
+      { selector: '[data-project="donor-journey"] h3', en: 'Donor Journey & Membership Funnel Analysis', fr: 'Analyse du parcours donateur et du tunnel d’adhésion' },
+      { selector: '[data-project="donor-journey"] li:nth-of-type(1)', en: 'Maps the key drop-off points between visit, donation start, conversion, and repeat giving.', fr: 'Cartographie les points de fuite clés entre visite, démarrage du don, conversion et fidélisation.' },
+      { selector: '[data-project="donor-journey"] li:nth-of-type(2)', en: 'Built to support communications, fundraising, and stakeholder-facing performance reviews.', fr: 'Conçue pour soutenir les équipes communication, fundraising et les revues de performance destinées aux parties prenantes.' },
+      { selector: '[data-project="donor-journey"] li:nth-of-type(3)', en: 'Pairs sheet-based analysis with a companion page for faster interpretation.', fr: 'Associe une analyse sur feuille à une page compagnon pour une interprétation plus rapide.' },
+      { selector: '[data-project="donor-journey"] .card__links .button--primary', en: 'Open Google Sheet', fr: 'Ouvrir le Google Sheet' },
+      { selector: '[data-project="donor-journey"] .card__links .button:nth-of-type(2)', en: 'Open Companion Page', fr: 'Ouvrir la page compagnon' },
+      { selector: '[data-project="cross-channel"] .card__summary', en: 'A concise performance summary designed to convert campaign data into decisions that non-technical stakeholders can act on quickly.', fr: 'Un résumé de performance concis conçu pour transformer les données de campagne en décisions rapidement exploitables par des parties prenantes non techniques.' },
+      { selector: '[data-project="cross-channel"] h3', en: 'Cross-Channel Campaign Insights One-Pager', fr: 'One-pager d’insights de campagne cross-canal' },
+      { selector: '[data-project="cross-channel"] li:nth-of-type(1)', en: 'Separates attention metrics from contribution-driving metrics to improve interpretation.', fr: 'Sépare les métriques d’attention des métriques qui génèrent vraiment la contribution pour améliorer l’interprétation.' },
+      { selector: '[data-project="cross-channel"] li:nth-of-type(2)', en: 'Distills the reporting story into clear insights and practical next actions.', fr: 'Condense l’histoire du reporting en insights clairs et en prochaines actions concrètes.' },
+      { selector: '[data-project="cross-channel"] li:nth-of-type(3)', en: 'Complements dashboard-heavy work with leadership-friendly narrative reporting.', fr: 'Complète les projets très orientés dashboard par un reporting narratif adapté au leadership.' },
+      { selector: '[data-project="cross-channel"] .card__links .button--primary', en: 'Open One-Pager', fr: 'Ouvrir le one-pager' },
+      { selector: '[data-project="security-dashboard"] .card__summary', en: 'A confidential dashboard case study centered on multi-source monitoring, KPI visibility, and operational reporting under high-sensitivity constraints.', fr: 'Une étude de cas de dashboard confidentiel centrée sur le monitoring multi-source, la visibilité KPI et le reporting opérationnel sous fortes contraintes de sensibilité.' },
+      { selector: '[data-project="security-dashboard"] h3', en: 'Security Intelligence Dashboard', fr: 'Dashboard de renseignement sécuritaire' },
+      { selector: '[data-project="security-dashboard"] li:nth-of-type(1)', en: 'Built around decision support in environments where exposure of live data is not acceptable.', fr: 'Construit autour de l’aide à la décision dans des environnements où l’exposition de données réelles n’est pas acceptable.' },
+      { selector: '[data-project="security-dashboard"] li:nth-of-type(2)', en: 'Demonstrates reporting structure, visibility logic, and sanitised product storytelling.', fr: 'Démontre une structure de reporting, une logique de visibilité et une narration produit assainie.' },
+      { selector: '[data-project="security-dashboard"] li:nth-of-type(3)', en: 'Shows experience in translating sensitive field signals into usable management outputs.', fr: 'Montre une expérience dans la traduction de signaux terrain sensibles en sorties utilisables pour le management.' },
+      { selector: '[data-project="security-dashboard"] .card__links .button--primary', en: 'Open Case Study', fr: 'Ouvrir l’étude de cas' },
+      { selector: '[data-project="virunga-dashboard"] .card__summary', en: 'A confidential dashboard case study focused on KPI centralization, stakeholder reporting, and interface clarity in a live professional environment.', fr: 'Une étude de cas de dashboard confidentiel axée sur la centralisation des KPI, le reporting aux parties prenantes et la clarté d’interface dans un environnement professionnel réel.' },
+      { selector: '[data-project="virunga-dashboard"] h3', en: 'Virunga Performance Dashboard', fr: 'Dashboard de performance Virunga' },
+      { selector: '[data-project="virunga-dashboard"] li:nth-of-type(1)', en: 'Reflects reporting work built under real operational conditions rather than only mock datasets.', fr: 'Reflète un travail de reporting construit dans de vraies conditions opérationnelles et pas seulement à partir de jeux de données fictifs.' },
+      { selector: '[data-project="virunga-dashboard"] li:nth-of-type(2)', en: 'Prioritises recurring review, KPI structure, and interface clarity for practical use.', fr: 'Priorise la revue récurrente, la structure KPI et la clarté d’interface pour un usage pratique.' },
+      { selector: '[data-project="virunga-dashboard"] li:nth-of-type(3)', en: 'Public presentation is intentionally sanitized to protect operational data.', fr: 'La présentation publique est volontairement assainie pour protéger les données opérationnelles.' },
+      { selector: '[data-project="virunga-dashboard"] .card__links .button--primary', en: 'Open Case Study', fr: 'Ouvrir l’étude de cas' },
+      { selector: '#delivery .section__head h2', en: 'How I Build', fr: 'Ma façon de construire' },
+      { selector: '#delivery .section__lede', en: 'The work is presented in the format most appropriate to its purpose: operational transparency, stakeholder readability, or responsible confidentiality.', fr: 'Le travail est présenté dans le format le plus adapté à son objectif : transparence opérationnelle, lisibilité pour les parties prenantes ou confidentialité responsable.' },
+      { selector: '#delivery .delivery-card:nth-of-type(1) h3', en: 'Operations first', fr: 'Les opérations d’abord' },
+      { selector: '#delivery .delivery-card:nth-of-type(1) p', en: 'I build with operational reality in mind, which means systems have to survive messy inputs, non-technical users, and real decision pressure.', fr: 'Je construis avec la réalité opérationnelle en tête, ce qui signifie que les systèmes doivent supporter des entrées imparfaites, des utilisateurs non techniques et une vraie pression de décision.' },
+      { selector: '#delivery .delivery-card:nth-of-type(2) h3', en: 'Analytics that informs action', fr: 'Une analytique qui mène à l’action' },
+      { selector: '#delivery .delivery-card:nth-of-type(2) p', en: 'Dashboards, sheets, and one-pagers are designed to help people decide what to do next, not just admire metrics.', fr: 'Les dashboards, feuilles et one-pagers sont conçus pour aider à décider de la prochaine action, pas seulement pour admirer des métriques.' },
+      { selector: '#delivery .delivery-card:nth-of-type(3) h3', en: 'AI without unnecessary jargon', fr: 'Une IA sans jargon inutile' },
+      { selector: '#delivery .delivery-card:nth-of-type(3) p', en: 'I am especially interested in making AI useful to managers and leaders who need leverage, not a technical lecture.', fr: 'Je m’intéresse particulièrement à rendre l’IA utile aux managers et aux dirigeants qui ont besoin de levier, pas d’un cours technique.' },
+      { selector: '#delivery .delivery-card:nth-of-type(4) h3', en: 'Confidentiality handled responsibly', fr: 'Confidentialité gérée avec responsabilité' },
+      { selector: '#delivery .delivery-card:nth-of-type(4) p', en: 'Private dashboards and sensitive work are documented in a way that preserves credibility while protecting systems, organizations, and users.', fr: 'Les dashboards privés et les travaux sensibles sont documentés d’une manière qui préserve la crédibilité tout en protégeant les systèmes, les organisations et les utilisateurs.' },
+      { selector: '.footer__text', en: 'Portfolio of operations, analytics, AI, automation, reporting systems, and field-facing product work.', fr: 'Portfolio consacré aux opérations, à l’analytique, à l’IA, à l’automatisation, aux systèmes de reporting et aux produits orientés terrain.' }
+    ];
+
+    function assignTranslations() {
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        element.dataset.en = item.en;
+        element.dataset.fr = item.fr;
+      });
+    }
+
+    function applyLanguage(language) {
+      const page = document.querySelector('.page');
+      page.classList.add('is-language-transitioning');
+
+      document.querySelectorAll('[data-en][data-fr]').forEach((element) => {
+        const value = language === 'fr' ? element.dataset.fr : element.dataset.en;
+        element.textContent = value;
+      });
+
+      document.documentElement.lang = language;
+      currentLanguage = language;
+
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+
+      window.setTimeout(() => {
+        page.classList.remove('is-language-transitioning');
+      }, 180);
+    }
+
+    assignTranslations();
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => {
+        applyLanguage(button.dataset.languageButton);
+      });
+    });
+
+    applyLanguage(DEFAULT_LANGUAGE);
+  </script>
 </body>
 </html>
