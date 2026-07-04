@@ -104,37 +104,43 @@
 
     .nav a:hover { color: var(--text); }
 
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px;
-      border: 1px solid var(--accent);
-      border-radius: 999px;
-      background: rgba(47, 93, 80, 0.04);
+    .lang-switch,
+    .lang-switcher {
+      display: flex;
+      gap: 0;
+      padding: 0;
+      border: 1.5px solid #1a5f7a;
+      border-radius: 20px;
+      overflow: hidden;
+      background: transparent;
     }
 
-    .lang-switch__button {
-      min-height: 32px;
-      padding: 0 12px;
-      border: 0;
-      border-radius: 999px;
+    .lang-switch__button,
+    .lang-btn {
+      min-height: auto;
+      padding: 4px 12px;
+      border: none;
+      border-radius: 0;
       background: transparent;
-      color: var(--accent);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+      color: #1a5f7a;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
     .lang-switch__button:hover,
-    .lang-switch__button:focus-visible {
-      background: rgba(47, 93, 80, 0.08);
+    .lang-switch__button:focus-visible,
+    .lang-btn:hover,
+    .lang-btn:focus-visible {
+      background: rgba(26, 95, 122, 0.08);
       outline: none;
     }
 
-    .lang-switch__button.is-active {
-      background: var(--accent);
+    .lang-switch__button.is-active,
+    .lang-btn.active {
+      background: #1a5f7a;
       color: #ffffff;
     }
 
@@ -265,19 +271,22 @@
       text-align: center;
     }
 
-    .photo-frame {
-      display: grid;
-      place-items: center;
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
+    .photo-frame,
+    .avatar-initials {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
       background: linear-gradient(135deg, #1a5f7a, #22a6b3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      text-align: center;
       box-shadow: 0 8px 32px rgba(26, 95, 122, 0.3);
-      color: #ffffff;
-      font-family: "Poppins", "Space Grotesk", sans-serif;
-      font-size: 36px;
+      font-family: "Poppins", sans-serif;
+      font-size: 48px;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      color: #ffffff;
     }
 
     .photo-card__caption {
@@ -400,34 +409,46 @@
       flex: 0 0 18px;
     }
 
-    .achievement {
+    .achievement,
+    .achievement-card {
       display: grid;
-      gap: 10px;
+      gap: 0;
       align-content: start;
-      padding: 26px 22px;
-      background: linear-gradient(180deg, #ffffff 0%, #f9f7f2 100%);
-      text-align: left;
+      padding: 32px 24px;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      border-top: 4px solid #1a5f7a;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      text-align: center;
     }
 
-    .achievement__value {
+    .achievement__value,
+    .achievement-number {
+      display: block;
+      margin-bottom: 12px;
       color: #1a5f7a;
-      font-family: "Space Grotesk", sans-serif;
+      font-family: "Poppins", sans-serif;
       font-size: 64px;
       font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.06em;
+      line-height: 1;
+      letter-spacing: 0;
     }
 
-    .achievement__label {
-      color: var(--text);
+    .achievement__label,
+    .achievement-label {
+      margin-bottom: 8px;
+      color: #1a1a2e;
       font-size: 16px;
-      font-weight: 700;
-      line-height: 1.35;
+      font-weight: 600;
+      line-height: 1.4;
     }
 
-    .achievement__detail {
+    .achievement__detail,
+    .achievement-description {
       font-size: 14px;
-      line-height: 1.55;
+      color: #636e72;
+      line-height: 1.5;
     }
 
     .card {
@@ -435,11 +456,16 @@
       gap: 16px;
     }
 
-    .project-grid {
-      counter-reset: none;
+    .project-grid,
+    .project-grid .card,
+    .project-grid .card::before,
+    .project-grid .card::after {
+      counter-reset: none !important;
+      counter-increment: none !important;
     }
 
-    .project-grid .card::before {
+    .project-grid .card::before,
+    .project-grid .card::after {
       content: none !important;
       display: none !important;
     }
