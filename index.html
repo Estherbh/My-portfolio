@@ -271,6 +271,26 @@
       text-align: center;
     }
 
+    .profile-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a5f7a 0%, #22a6b3 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -2px;
+      box-shadow:
+        0 8px 32px rgba(26, 95, 122, 0.35),
+        0 0 0 4px rgba(34, 166, 179, 0.2);
+      flex-shrink: 0;
+      user-select: none;
+    }
+
     .photo-frame,
     .avatar-initials {
       width: 140px;
@@ -417,11 +437,20 @@
       flex: 0 0 18px;
     }
 
+    .achievement-grid,
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
     .achievement,
     .achievement-card {
-      display: grid;
-      gap: 0;
-      align-content: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
       padding: 32px 24px;
       background: #ffffff;
       border-radius: 16px;
@@ -429,47 +458,46 @@
       border-top: 4px solid #1a5f7a;
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
       text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .achievement-card:hover,
+    .achievement:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.14);
     }
 
     .achievement__value,
     .achievement-number {
       display: block;
-      margin-bottom: 12px;
       color: #1a5f7a;
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 64px;
       font-weight: 700;
       line-height: 1;
-      letter-spacing: 0;
     }
 
     .achievement__label,
     .achievement-label {
-      margin-bottom: 8px;
       color: #1a1a2e;
       font-size: 16px;
       font-weight: 600;
-      line-height: 1.4;
+      display: block;
     }
 
     .achievement__detail,
-    .achievement-description {
-      font-size: 14px;
+    .achievement-description,
+    .achievement-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
       color: #636e72;
       line-height: 1.5;
+      display: block;
     }
 
     .card {
       display: grid;
       gap: 16px;
-    }
-
-    .project-grid,
-    .project-grid .card,
-    .project-grid .card::before,
-    .project-grid .card::after {
-      counter-reset: none !important;
-      counter-increment: none !important;
     }
 
     .project-grid .card::before,
@@ -535,7 +563,6 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
       .hero__stats,
-      .achievement-grid,
       .project-grid,
       .delivery-grid,
       .footer-grid {
@@ -547,7 +574,8 @@
     }
 
     @media (min-width: 1120px) {
-      .achievement-grid {
+      .achievement-grid,
+      .achievements-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
@@ -619,9 +647,7 @@
           </div>
 
           <aside class="photo-card">
-            <div class="photo-frame">
-              <img src="assets/profile.jpg" alt="Professional portrait of Esther Bahati">
-            </div>
+            <div class="profile-avatar">EB</div>
             <p class="photo-card__caption">Operations-focused portfolio blending analytics systems, AI product thinking, and field-ready reporting.</p>
           </aside>
         </div>
@@ -715,26 +741,26 @@
           <h2>Key Achievements</h2>
           <p class="section__lede">Where exact business metrics cannot be disclosed publicly, this section highlights measurable scope, product ownership, and delivery outcomes that can be supported by the work shown in this portfolio.</p>
         </div>
-        <div class="achievement-grid">
-          <article class="achievement">
-            <div class="achievement__value">7</div>
-            <div class="achievement__label">Sales platforms supported</div>
-            <p class="achievement__detail">Contributed to logistics operations with the management of seven sales platforms alongside traceability responsibilities at Virunga National Park Foundation.</p>
+        <div class="achievement-grid achievements-grid">
+          <article class="achievement achievement-card">
+            <span class="achievement__value achievement-number">7</span>
+            <span class="achievement__label achievement-label">Sales platforms supported</span>
+            <span class="achievement__detail achievement-desc">Contributed to logistics operations with the management of seven sales platforms alongside traceability responsibilities at Virunga National Park Foundation.</span>
           </article>
-          <article class="achievement">
-            <div class="achievement__value">3</div>
-            <div class="achievement__label">Professional languages</div>
-            <p class="achievement__detail">Operate across professional English, native French, and Swahili, supporting communication in multilingual operational environments.</p>
+          <article class="achievement achievement-card">
+            <span class="achievement__value achievement-number">3</span>
+            <span class="achievement__label achievement-label">Professional languages</span>
+            <span class="achievement__detail achievement-desc">Operate across professional English, native French, and Swahili, supporting communication in multilingual operational environments.</span>
           </article>
-          <article class="achievement">
-            <div class="achievement__value">2</div>
-            <div class="achievement__label">Public Google Sheets systems</div>
-            <p class="achievement__detail">Published portfolio-ready reporting systems for unified marketing reporting and donor journey analysis, each paired with stakeholder-friendly documentation.</p>
+          <article class="achievement achievement-card">
+            <span class="achievement__value achievement-number">2</span>
+            <span class="achievement__label achievement-label">Public Google Sheets systems</span>
+            <span class="achievement__detail achievement-desc">Published portfolio-ready reporting systems for unified marketing reporting and donor journey analysis, each paired with stakeholder-friendly documentation.</span>
           </article>
-          <article class="achievement">
-            <div class="achievement__value">1</div>
-            <div class="achievement__label">AI product created</div>
-            <p class="achievement__detail">Designed Executive Assistant Briefing as a proactive AI product combining monitoring, anomaly detection, briefing generation, and WhatsApp interaction.</p>
+          <article class="achievement achievement-card">
+            <span class="achievement__value achievement-number">1</span>
+            <span class="achievement__label achievement-label">AI product created</span>
+            <span class="achievement__detail achievement-desc">Designed Executive Assistant Briefing as a proactive AI product combining monitoring, anomaly detection, briefing generation, and WhatsApp interaction.</span>
           </article>
         </div>
       </section>
