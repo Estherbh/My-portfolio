@@ -206,6 +206,7 @@
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
+      margin: 0 0 10px;
     }
 
     .hero__name {
@@ -216,15 +217,6 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.15;
-    }
-
-    .hero__legal {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
     }
 
     .hero__subtitle {
@@ -281,13 +273,10 @@
     }
 
     .photo-card {
-      display: grid;
-      place-items: center;
-      gap: 14px;
       min-height: 100%;
       background: var(--surface-alt);
-      padding: 28px 16px;
-      text-align: center;
+      padding: 0;
+      overflow: hidden;
     }
 
     .profile-avatar {
@@ -312,20 +301,12 @@
 
     .photo-frame,
     .avatar-initials {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border-radius: inherit;
       background: linear-gradient(135deg, #1a5f7a, #22a6b3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(26, 95, 122, 0.3);
-      font-family: "Poppins", sans-serif;
-      font-size: 48px;
-      font-weight: 700;
-      color: #ffffff;
+      display: block;
       overflow: hidden;
     }
 
@@ -337,9 +318,7 @@
     }
 
     .photo-card__caption {
-      max-width: 240px;
-      color: var(--muted);
-      font-size: 0.95rem;
+      display: none;
     }
 
     .hero__pillar {
@@ -625,11 +604,10 @@
       <section class="hero">
         <div class="hero__layout">
           <div>
-            <p class="hero__eyebrow">Data Analytics · Information Management · AI Automation · Field Operations · Product Building</p>
             <p class="hero__name">Esther Bahati</p>
-            <p class="hero__legal">CIBALONZA BAHATI ESTHER</p>
+            <p class="hero__eyebrow">Data Analytics · Information Management · AI Automation · Field Operations · Product Building</p>
             <h1>Data Analyst &amp; AI Automation Builder</h1>
-            <p class="hero__subtitle">I turn complex data into clear decisions — for NGOs, managers, and businesses.</p>
+            <p class="hero__subtitle">I turn complex data into clear decisions for NGOs, managers, and businesses.</p>
             <p class="hero__lede">
               I design data systems, automation workflows, reporting layers, and AI-enabled products that help leaders operate with more clarity, faster decisions, and less technical friction. This portfolio brings together public analytics work, product thinking, and sanitized operational case studies from real field environments.
             </p>
@@ -664,7 +642,6 @@
             <div class="photo-frame">
               <img src="assets/profile.jpg" alt="Professional portrait of Esther Bahati">
             </div>
-            <p class="photo-card__caption">Operations-focused portfolio blending analytics systems, AI product thinking, and field-ready reporting.</p>
           </aside>
         </div>
 
@@ -683,16 +660,6 @@
           </article>
         </div>
 
-        <div class="hero__stats">
-          <article class="hero__stat">
-            <span class="hero__stat-value">7</span>
-            <div class="muted">sales platforms managed as part of logistics operations support at Virunga National Park Foundation.</div>
-          </article>
-          <article class="hero__stat">
-            <span class="hero__stat-value">3</span>
-            <div class="muted">working languages used across professional communication: English, French, and Swahili.</div>
-          </article>
-        </div>
       </section>
 
       <section class="section" id="about">
@@ -707,7 +674,7 @@
           <p>Professionally, I design data, artificial intelligence, and automation solutions to help managers, entrepreneurs, and businesses improve their operations and make better decisions. In short, I build data-driven solutions that allow people, even the less technical ones, to make use of data.</p>
           <p>Recently, I have also started creating content around artificial intelligence and technology to help managers understand and use AI without technical jargon. My belief is simple: leaders should be able to master AI and benefit from it without necessarily going through long technical training if they do not have the time or desire to become experts.</p>
           <p>I am also the creator of Executive Assistant Briefing, a proactive AI-powered executive assistant that analyzes emails and WhatsApp conversations, detects anomalies and missed actions, and generates personalized briefings and real-time alerts to help leaders stay organized and make better decisions. Users can also interact directly with it through WhatsApp.</p>
-          <p>And because privacy is important to me, users remain fully sovereign over their data and conversations. Nothing is stored on my servers except certain technical identifiers and assistant-related data, solely to allow service backup and restoration, for example if a user loses their phone or changes devices. It is subscription-based, of course 😂.</p>
+          <p>And because privacy is important to me, users remain fully sovereign over their data and conversations. Nothing is stored on my servers except certain technical identifiers and assistant-related data, solely to allow service backup and restoration, for example if a user loses their phone or changes devices. It is subscription-based, of course.</p>
           <p>Currently, I work as a Traceability System Supervisor at the Virunga National Park Foundation, where I oversee traceability systems and data management across multiple operational areas. I also contribute to logistics operations, with the management of seven sales platforms.</p>
           <p>The details of my professional experience can be found in my resume, but I have included a few projects here to convince you to let me be part of your team.</p>
           <p>I usually go by Esther Bahati, while my full legal name on my CV and official documents is CIBALONZA BAHATI ESTHER.</p>
@@ -758,16 +725,6 @@
           <p class="section__lede">Where exact business metrics cannot be disclosed publicly, this section highlights measurable scope, product ownership, and delivery outcomes that can be supported by the work shown in this portfolio.</p>
         </div>
         <div class="achievement-grid achievements-grid">
-          <article class="achievement achievement-card">
-            <span class="achievement__value achievement-number">7</span>
-            <span class="achievement__label achievement-label">Sales platforms supported</span>
-            <span class="achievement__detail achievement-desc">Contributed to logistics operations with the management of seven sales platforms alongside traceability responsibilities at Virunga National Park Foundation.</span>
-          </article>
-          <article class="achievement achievement-card">
-            <span class="achievement__value achievement-number">3</span>
-            <span class="achievement__label achievement-label">Professional languages</span>
-            <span class="achievement__detail achievement-desc">Operate across professional English, native French, and Swahili, supporting communication in multilingual operational environments.</span>
-          </article>
           <article class="achievement achievement-card">
             <span class="achievement__value achievement-number">2</span>
             <span class="achievement__label achievement-label">Public Google Sheets systems</span>
@@ -1152,7 +1109,14 @@
       { selector: '.hero__legal', en: 'CIBALONZA BAHATI ESTHER', fr: 'CIBALONZA BAHATI ESTHER' },
       { selector: '.hero h1', en: 'Data Analyst & AI Automation Builder', fr: 'Data Analyst & AI Automation Builder' },
       { selector: '.hero__subtitle', en: 'I turn complex data into clear decisions — for NGOs, managers, and businesses.', fr: 'Je transforme des donnees complexes en decisions claires — pour les ONG, les managers et les entreprises.' },
-      { selector: '#about .about-copy p:nth-of-type(2)', en: 'I work across operations, data, and AI, and I am passionate about technology and literature. I love growing, learning more, discovering new things, and taking on challenges because the feeling of being stuck is unbearable to me.', fr: 'Je travaille entre operations, donnees et IA, et je suis passionnee par la technologie et la litterature. J aime progresser, apprendre davantage, decouvrir de nouvelles choses et relever des defis, car la sensation de stagnation m est insupportable.' }
+      { selector: '#about .about-copy p:nth-of-type(2)', en: 'I work across operations, data, and AI, and I am passionate about technology and literature. I love growing, learning more, discovering new things, and taking on challenges because the feeling of being stuck is unbearable to me.', fr: 'Je travaille entre operations, donnees et IA, et je suis passionnee par la technologie et la litterature. J aime progresser, apprendre davantage, decouvrir de nouvelles choses et relever des defis, car la sensation de stagnation m est insupportable.' },
+      { selector: '.hero__name', en: 'Esther Bahati', fr: 'Esther Bahati' },
+      { selector: '.hero__eyebrow', en: 'Data Analytics · Information Management · AI Automation · Field Operations · Product Building', fr: 'Analyse de donnees · Gestion de l information · Automatisation IA · Operations terrain · Construction de produits' },
+      { selector: '.hero h1', en: 'Data Analyst & AI Automation Builder', fr: 'Data Analyst & AI Automation Builder' },
+      { selector: '.hero__subtitle', en: 'I turn complex data into clear decisions for NGOs, managers, and businesses.', fr: 'Je transforme des donnees complexes en decisions claires pour les ONG, les managers et les entreprises.' },
+      { selector: '#about .about-copy p:nth-of-type(2)', en: 'I work across operations, data, and AI, and I am passionate about technology and literature. I love growing, learning more, discovering new things, and taking on challenges because the feeling of being stuck is unbearable to me.', fr: 'Je travaille entre operations, donnees et IA, et je suis passionnee par la technologie et la litterature. J aime progresser, apprendre davantage, decouvrir de nouvelles choses et relever des defis, car la sensation de stagnation m est insupportable.' },
+      { selector: '#about .about-copy p:nth-of-type(8)', en: 'And because privacy is important to me, users remain fully sovereign over their data and conversations. Nothing is stored on my servers except certain technical identifiers and assistant-related data, solely to allow service backup and restoration, for example if a user loses their phone or changes devices. It is subscription-based, of course.', fr: 'Et parce que la confidentialite est importante pour moi, les utilisateurs restent pleinement souverains sur leurs donnees et leurs conversations. Rien n est stocke sur mes serveurs en dehors de certains identifiants techniques et de donnees liees a l assistant, uniquement pour permettre la sauvegarde et la restauration du service, par exemple si un utilisateur perd son telephone ou change d appareil. Le service est bien sur propose par abonnement.' },
+      { selector: '#about .about-copy p:nth-of-type(11)', en: 'I usually go by Esther Bahati, while my full legal name on my CV and official documents is CIBALONZA BAHATI ESTHER.', fr: 'Je me presente generalement sous le nom Esther Bahati, tandis que mon nom legal complet sur mon CV et mes documents officiels est CIBALONZA BAHATI ESTHER.' }
     ];
 
     function assignTranslations() {
