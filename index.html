@@ -9,7 +9,7 @@
   <title>Esther Bahati | Operations Data & AI Specialist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f5f2ec;
@@ -256,33 +256,34 @@
     }
 
     .photo-card {
+      display: grid;
+      place-items: center;
+      gap: 14px;
+      min-height: 100%;
       background: var(--surface-alt);
-      padding: 16px;
+      padding: 28px 16px;
+      text-align: center;
     }
 
     .photo-frame {
       display: grid;
       place-items: center;
-      aspect-ratio: 4 / 5;
-      border: 1px dashed var(--line-strong);
-      border-radius: 10px;
-      background: #fffdf9;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #1a5f7a, #22a6b3);
+      box-shadow: 0 8px 32px rgba(26, 95, 122, 0.3);
+      color: #ffffff;
+      font-family: "Poppins", "Space Grotesk", sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .photo-card__caption {
+      max-width: 240px;
       color: var(--muted);
-      text-align: center;
       font-size: 0.95rem;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-placeholder {
-      display: none;
     }
 
     .hero__pillar {
@@ -401,27 +402,46 @@
 
     .achievement {
       display: grid;
-      gap: 8px;
+      gap: 10px;
+      align-content: start;
+      padding: 26px 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9f7f2 100%);
+      text-align: left;
     }
 
     .achievement__value {
+      color: #1a5f7a;
       font-family: "Space Grotesk", sans-serif;
-      font-size: 1.8rem;
-      line-height: 1;
-      letter-spacing: -0.04em;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.06em;
     }
 
     .achievement__label {
+      color: var(--text);
+      font-size: 16px;
       font-weight: 700;
+      line-height: 1.35;
     }
 
     .achievement__detail {
-      font-size: 0.95rem;
+      font-size: 14px;
+      line-height: 1.55;
     }
 
     .card {
       display: grid;
       gap: 16px;
+    }
+
+    .project-grid {
+      counter-reset: none;
+    }
+
+    .project-grid .card::before {
+      content: none !important;
+      display: none !important;
     }
 
     .card__type {
@@ -434,6 +454,15 @@
 
     .card__summary {
       margin-top: 10px;
+    }
+
+    .card__note {
+      padding: 12px 14px;
+      border-left: 3px solid #1a5f7a;
+      border-radius: 8px;
+      background: #f2f7f9;
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
     .project-list {
@@ -556,10 +585,8 @@
           </div>
 
           <aside class="photo-card">
-            <div class="photo-frame">
-              <img src="assets/profile.jpg" alt="Professional portrait of Esther Bahati" onerror="this.style.display='none'; this.parentNode.querySelector('.photo-placeholder').style.display='block';">
-              <div class="photo-placeholder">Place your photo at<br><strong>/assets/profile.jpg</strong></div>
-            </div>
+            <div class="photo-frame" aria-label="Esther Bahati avatar">EB</div>
+            <p class="photo-card__caption">Operations-focused portfolio blending analytics systems, AI product thinking, and field-ready reporting.</p>
           </aside>
         </div>
 
@@ -794,9 +821,9 @@
               <li>Built to support communications, fundraising, and stakeholder-facing performance reviews.</li>
               <li>Pairs sheet-based analysis with a companion page for faster interpretation.</li>
             </ul>
+            <p class="card__note">Dataset shared with Unified Marketing Reporting Template — filtered view for donor journey analysis.</p>
             <div class="card__links">
-              <a class="button button--primary" href="https://docs.google.com/spreadsheets/d/1yRjlZdXVFjySUQVqpP2nDmzuz1Gtw4lxJ_zyzdFmxhA/edit?usp=sharing" target="_blank" rel="noreferrer">Open Google Sheet</a>
-              <a class="button" href="projects/donor-journey-analysis/index.html">Open Companion Page</a>
+              <a class="button button--primary" href="projects/donor-journey-analysis/index.html">Open Companion Page</a>
             </div>
           </article>
 
@@ -920,6 +947,7 @@
       { selector: '.hero__subtitle', en: 'Building AI & Automation Solutions for Managers, NGOs, and Businesses.', fr: 'Je conçois des solutions IA et automatisation pour les managers, les ONG et les entreprises.' },
       { selector: '.hero__lede', en: 'I design data systems, automation workflows, reporting layers, and AI-enabled products that help leaders operate with more clarity, faster decisions, and less technical friction. This portfolio brings together public analytics work, product thinking, and sanitized operational case studies from real field environments.', fr: 'Je conçois des systèmes de données, des workflows d’automatisation, des couches de reporting et des produits appuyés par l’IA pour aider les décideurs à travailler avec plus de clarté, des décisions plus rapides et moins de friction technique. Ce portfolio réunit des travaux publics en analytique, de la réflexion produit et des études de cas opérationnelles assainies issues d’environnements terrain réels.' },
       { selector: '.hero__actions .button--primary', en: 'Download CV', fr: 'Télécharger le CV' },
+      { selector: '.photo-card__caption', en: 'Operations-focused portfolio blending analytics systems, AI product thinking, and field-ready reporting.', fr: 'Portfolio orienté opérations, mêlant systèmes analytiques, réflexion produit IA et reporting prêt pour le terrain.' },
       { selector: '.hero__actions .button:not(.button--primary):not(.button--ghost)', en: 'Contact Me', fr: 'Me contacter' },
       { selector: '.hero__actions .button--ghost', en: "Let's Connect", fr: 'Échangeons' },
       { selector: '.hero__pillar:nth-of-type(1) strong', en: 'Operations-grounded', fr: 'Ancré dans les opérations' },
@@ -1005,8 +1033,8 @@
       { selector: '[data-project="donor-journey"] li:nth-of-type(1)', en: 'Maps the key drop-off points between visit, donation start, conversion, and repeat giving.', fr: 'Cartographie les points de fuite clés entre visite, démarrage du don, conversion et fidélisation.' },
       { selector: '[data-project="donor-journey"] li:nth-of-type(2)', en: 'Built to support communications, fundraising, and stakeholder-facing performance reviews.', fr: 'Conçue pour soutenir les équipes communication, fundraising et les revues de performance destinées aux parties prenantes.' },
       { selector: '[data-project="donor-journey"] li:nth-of-type(3)', en: 'Pairs sheet-based analysis with a companion page for faster interpretation.', fr: 'Associe une analyse sur feuille à une page compagnon pour une interprétation plus rapide.' },
-      { selector: '[data-project="donor-journey"] .card__links .button--primary', en: 'Open Google Sheet', fr: 'Ouvrir le Google Sheet' },
-      { selector: '[data-project="donor-journey"] .card__links .button:nth-of-type(2)', en: 'Open Companion Page', fr: 'Ouvrir la page compagnon' },
+      { selector: '[data-project="donor-journey"] .card__note', en: 'Dataset shared with Unified Marketing Reporting Template — filtered view for donor journey analysis.', fr: 'Jeu de données partagé avec le modèle unifié de reporting marketing — vue filtrée pour l’analyse du parcours donateur.' },
+      { selector: '[data-project="donor-journey"] .card__links .button--primary', en: 'Open Companion Page', fr: 'Ouvrir la page compagnon' },
       { selector: '[data-project="cross-channel"] .card__summary', en: 'A concise performance summary designed to convert campaign data into decisions that non-technical stakeholders can act on quickly.', fr: 'Un résumé de performance concis conçu pour transformer les données de campagne en décisions rapidement exploitables par des parties prenantes non techniques.' },
       { selector: '[data-project="cross-channel"] h3', en: 'Cross-Channel Campaign Insights One-Pager', fr: 'One-pager d’insights de campagne cross-canal' },
       { selector: '[data-project="cross-channel"] li:nth-of-type(1)', en: 'Separates attention metrics from contribution-driving metrics to improve interpretation.', fr: 'Sépare les métriques d’attention des métriques qui génèrent vraiment la contribution pour améliorer l’interprétation.' },
