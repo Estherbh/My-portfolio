@@ -161,7 +161,7 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 5vw, 4.3rem);
+      font-size: clamp(2.35rem, 4.4vw, 3.6rem);
     }
 
     h2 {
@@ -206,6 +206,16 @@
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
+    }
+
+    .hero__name {
+      margin: 10px 0 8px;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
     }
 
     .hero__subtitle {
@@ -614,6 +624,7 @@
         <div class="hero__layout">
           <div>
             <p class="hero__eyebrow">Data Analytics · Information Management · AI Automation · Field Operations · Product Building</p>
+            <p class="hero__name">CIBALONZA BAHATI ESTHER</p>
             <h1>Data Analyst &amp; AI Automation Builder</h1>
             <p class="hero__subtitle">I turn complex data into clear decisions — for NGOs, managers, and businesses.</p>
             <p class="hero__lede">
@@ -696,7 +707,7 @@
           <p>And because privacy is important to me, users remain fully sovereign over their data and conversations. Nothing is stored on my servers except certain technical identifiers and assistant-related data, solely to allow service backup and restoration, for example if a user loses their phone or changes devices. It is subscription-based, of course 😂.</p>
           <p>Currently, I work as a Traceability System Supervisor at the Virunga National Park Foundation, where I oversee traceability systems and data management across multiple operational areas. I also contribute to logistics operations, with the management of seven sales platforms.</p>
           <p>The details of my professional experience can be found in my resume, but I have included a few projects here to convince you to let me be part of your team.</p>
-          <p>I usually go by Esther Bahati, while my full legal name on my CV and official documents is CIBALONZA BAHATU ESTHER.</p>
+          <p>I usually go by Esther Bahati, while my full legal name on my CV and official documents is CIBALONZA BAHATI ESTHER.</p>
         </div>
       </section>
 
@@ -1127,7 +1138,12 @@
       { selector: '#delivery .delivery-card:nth-of-type(3) p', en: 'I am especially interested in making AI useful to managers and leaders who need leverage, not a technical lecture.', fr: 'Je m’intéresse particulièrement à rendre l’IA utile aux managers et aux dirigeants qui ont besoin de levier, pas d’un cours technique.' },
       { selector: '#delivery .delivery-card:nth-of-type(4) h3', en: 'Confidentiality handled responsibly', fr: 'Confidentialité gérée avec responsabilité' },
       { selector: '#delivery .delivery-card:nth-of-type(4) p', en: 'Private dashboards and sensitive work are documented in a way that preserves credibility while protecting systems, organizations, and users.', fr: 'Les dashboards privés et les travaux sensibles sont documentés d’une manière qui préserve la crédibilité tout en protégeant les systèmes, les organisations et les utilisateurs.' },
-      { selector: '.footer__text', en: 'Portfolio of operations, analytics, AI, automation, reporting systems, and field-facing product work.', fr: 'Portfolio consacré aux opérations, à l’analytique, à l’IA, à l’automatisation, aux systèmes de reporting et aux produits orientés terrain.' }
+      { selector: '.footer__text', en: 'Portfolio of operations, analytics, AI, automation, reporting systems, and field-facing product work.', fr: 'Portfolio consacré aux opérations, à l’analytique, à l’IA, à l’automatisation, aux systèmes de reporting et aux produits orientés terrain.' },
+      { selector: '.hero__eyebrow', en: 'Data Analytics · Information Management · AI Automation · Field Operations · Product Building', fr: 'Analyse de donnees · Gestion de l information · Automatisation IA · Operations terrain · Construction de produits' },
+      { selector: '.hero__name', en: 'CIBALONZA BAHATI ESTHER', fr: 'CIBALONZA BAHATI ESTHER' },
+      { selector: '.hero h1', en: 'Data Analyst & AI Automation Builder', fr: 'Data Analyst & AI Automation Builder' },
+      { selector: '.hero__subtitle', en: 'I turn complex data into clear decisions — for NGOs, managers, and businesses.', fr: 'Je transforme des donnees complexes en decisions claires — pour les ONG, les managers et les entreprises.' },
+      { selector: '#about .about-copy p:nth-of-type(11)', en: 'I usually go by Esther Bahati, while my full legal name on my CV and official documents is CIBALONZA BAHATI ESTHER.', fr: 'Je me presente generalement sous le nom Esther Bahati, tandis que mon nom legal complet sur mon CV et mes documents officiels est CIBALONZA BAHATI ESTHER.' }
     ];
 
     function assignTranslations() {
