@@ -95,6 +95,32 @@
       border-color: var(--primary);
       color: #ffffff;
     }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--primary);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+    }
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-switch__button.is-active {
+      background: var(--primary);
+      color: #fff;
+    }
     .hero {
       padding: 92px 0 54px;
       text-align: center;
@@ -298,7 +324,13 @@
         <a class="active" href="donate.html">Donate</a>
         <a href="utm-framework.html">UTM Framework</a>
       </nav>
-      <a class="button button--accent" href="#donation-form">Give now</a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
+        <a class="button button--accent" href="#donation-form">Give now</a>
+      </div>
     </div>
   </header>
 
@@ -412,6 +444,39 @@
   </footer>
 
   <script>
+    const translations = [
+      { selector: 'title', en: 'HopeTrack International | Donate', fr: 'HopeTrack International | Faire un don' },
+      { selector: '.nav a:nth-of-type(1)', en: 'Home', fr: 'Accueil' },
+      { selector: '.nav a:nth-of-type(2)', en: 'About', fr: 'À propos' },
+      { selector: '.nav a:nth-of-type(3)', en: 'Programs', fr: 'Programmes' },
+      { selector: '.nav a:nth-of-type(4)', en: 'Donate', fr: 'Faire un don' },
+      { selector: '.nav a:nth-of-type(5)', en: 'UTM Framework', fr: 'Cadre UTM' },
+      { selector: '.header-actions .button--accent', en: 'Give now', fr: 'Donner maintenant' },
+      { selector: '.hero__pill', en: 'Donation journey and conversion tracking', fr: 'Parcours de don et suivi de conversion' },
+      { selector: 'h1', en: 'Make a Difference Today', fr: 'Agissez dès aujourd hui' },
+      { selector: '.hero p', en: 'A polished donation flow that feels clear, trustworthy, and conversion-ready while preserving the measurement logic required for GA4 review.', fr: 'Un parcours de don soigné, clair et rassurant, conçu pour convertir tout en préservant la logique de mesure nécessaire à une revue GA4.' },
+      { selector: '#donation-form h2', en: 'Support Education for All 2026', fr: 'Soutenez Education for All 2026' },
+      { selector: '#donation-form > p', en: 'Choose an amount, define your donor type, and complete a donation action that can be analyzed with confidence.', fr: 'Choisissez un montant, définissez votre type de donateur et réalisez une action de don qui peut être analysée avec confiance.' },
+      { selector: '.support-card h3', en: 'Why this flow is structured this way', fr: 'Pourquoi ce parcours est structuré ainsi' },
+      { selector: '.thanks h2', en: 'Donation received', fr: 'Don reçu' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+
     const HopeTrackAnalytics = {
       track: (eventName, params = {}) => {
         if (typeof gtag !== 'undefined') {

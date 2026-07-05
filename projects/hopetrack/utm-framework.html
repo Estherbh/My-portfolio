@@ -95,6 +95,32 @@
       border-color: var(--primary);
       color: #ffffff;
     }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--primary);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+    }
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-switch__button.is-active {
+      background: var(--primary);
+      color: #fff;
+    }
     .hero {
       padding: 92px 0 54px;
       text-align: center;
@@ -276,7 +302,13 @@
         <a href="donate.html">Donate</a>
         <a class="active" href="utm-framework.html">UTM Framework</a>
       </nav>
-      <a class="button button--accent" href="donate.html">Open donate page</a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
+        <a class="button button--accent" href="donate.html">Open donate page</a>
+      </div>
     </div>
   </header>
 
@@ -406,6 +438,41 @@
   </footer>
 
   <script>
+    const translations = [
+      { selector: 'title', en: 'HopeTrack International | UTM Naming Framework', fr: 'HopeTrack International | Cadre de nommage UTM' },
+      { selector: '.nav a:nth-of-type(1)', en: 'Home', fr: 'Accueil' },
+      { selector: '.nav a:nth-of-type(2)', en: 'About', fr: 'À propos' },
+      { selector: '.nav a:nth-of-type(3)', en: 'Programs', fr: 'Programmes' },
+      { selector: '.nav a:nth-of-type(4)', en: 'Donate', fr: 'Faire un don' },
+      { selector: '.nav a:nth-of-type(5)', en: 'UTM Framework', fr: 'Cadre UTM' },
+      { selector: '.header-actions .button--accent', en: 'Open donate page', fr: 'Ouvrir la page de don' },
+      { selector: '.hero__pill', en: 'Campaign tracking standards and attribution logic', fr: 'Standards de tracking campagne et logique d attribution' },
+      { selector: 'h1', en: 'Campaign Tracking Standards - Education for All 2026', fr: 'Standards de tracking campagne - Education for All 2026' },
+      { selector: '.hero p', en: 'A stakeholder-friendly framework for consistent UTM naming, cleaner reporting, and more trustworthy channel attribution across the campaign lifecycle.', fr: 'Un cadre lisible par les parties prenantes pour un nommage UTM cohérent, un reporting plus propre et une attribution plus fiable tout au long de la campagne.' },
+      { selector: '.section:nth-of-type(1) .intro h2', en: 'Why UTM parameters matter', fr: 'Pourquoi les paramètres UTM sont importants' },
+      { selector: '.section:nth-of-type(2) .table-card h2', en: 'Parameter definitions', fr: 'Définition des paramètres' },
+      { selector: '.section:nth-of-type(3) .intro h2', en: 'Naming convention rules', fr: 'Règles de convention de nommage' },
+      { selector: '.section:nth-of-type(4) .table-card h2', en: 'UTM examples', fr: 'Exemples UTM' },
+      { selector: '.builder h2', en: 'Interactive UTM builder', fr: 'Générateur UTM interactif' },
+      { selector: '.section:nth-of-type(6) .intro h2', en: 'Common mistakes', fr: 'Erreurs fréquentes' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+
     const revealItems = document.querySelectorAll('[data-reveal]');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
