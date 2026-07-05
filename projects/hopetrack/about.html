@@ -100,6 +100,32 @@
       border-color: var(--primary);
       color: #ffffff;
     }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--primary);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+    }
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-switch__button.is-active {
+      background: var(--primary);
+      color: #fff;
+    }
     .hero {
       padding: 90px 0 50px;
       text-align: center;
@@ -267,7 +293,13 @@
         <a href="donate.html">Donate</a>
         <a href="utm-framework.html">UTM Framework</a>
       </nav>
-      <a class="button button--accent" href="donate.html">Join the mission</a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
+        <a class="button button--accent" href="donate.html">Join the mission</a>
+      </div>
     </div>
   </header>
 
@@ -384,6 +416,42 @@
   </footer>
 
   <script>
+    const translations = [
+      { selector: 'title', en: 'HopeTrack International | About', fr: 'HopeTrack International | À propos' },
+      { selector: '.nav a:nth-of-type(1)', en: 'Home', fr: 'Accueil' },
+      { selector: '.nav a:nth-of-type(2)', en: 'About', fr: 'À propos' },
+      { selector: '.nav a:nth-of-type(3)', en: 'Programs', fr: 'Programmes' },
+      { selector: '.nav a:nth-of-type(4)', en: 'Donate', fr: 'Faire un don' },
+      { selector: '.nav a:nth-of-type(5)', en: 'UTM Framework', fr: 'Cadre UTM' },
+      { selector: '.header-actions .button--accent', en: 'Join the mission', fr: 'Rejoindre la mission' },
+      { selector: '.hero__pill', en: 'Mission, leadership, and operating model', fr: 'Mission, leadership et modèle opérationnel' },
+      { selector: 'h1', en: 'Who We Are', fr: 'Qui nous sommes' },
+      { selector: '.hero p', en: 'HopeTrack International is a fictional organization built to demonstrate what a disciplined, donor-ready education campaign can look like when design, storytelling, and measurement work together.', fr: 'HopeTrack International est une organisation fictive conçue pour montrer à quoi peut ressembler une campagne éducation disciplinée et prête pour les donateurs lorsque design, narration et mesure travaillent ensemble.' },
+      { selector: '.mission .panel .intro h2', en: 'Built around measurable education outcomes.', fr: 'Construit autour de résultats éducatifs mesurables.' },
+      { selector: '.mission .panel .intro p', en: 'HopeTrack is designed around practical interventions: classroom support, teacher readiness, scholarship continuity, and youth skills development. Every page in the experience is written to feel public-facing while still supporting a serious analytics story underneath.', fr: 'HopeTrack est conçu autour d interventions concrètes : appui en salle de classe, préparation des enseignants, continuité des bourses et développement des compétences des jeunes. Chaque page reste publique dans sa forme tout en soutenant une logique analytique sérieuse.' },
+      { selector: '.mission .panel > p', en: 'For this portfolio project, the goal is not just to “look nonprofit.” It is to create a website that shows operational clarity, credible messaging, and the ability to connect user experience with campaign measurement.', fr: 'Pour ce projet portfolio, l objectif n est pas seulement de “ressembler à une ONG”. Il s agit de créer un site qui montre de la clarté opérationnelle, un message crédible et la capacité à relier expérience utilisateur et mesure de campagne.' },
+      { selector: '.quote', en: '“We believe fundraising should be as transparent, intentional, and accountable as the programs it claims to support.”', fr: '“Nous pensons que le fundraising doit être aussi transparent, intentionnel et responsable que les programmes qu il prétend soutenir.”' },
+      { selector: '.cta h2', en: 'Join our mission', fr: 'Rejoignez notre mission' },
+      { selector: '.cta p', en: 'Move from understanding the campaign to supporting it directly through the tracked donation experience.', fr: 'Passez de la compréhension de la campagne à un soutien direct via l expérience de don instrumentée.' },
+      { selector: '[data-join-mission]', en: 'Go to donate page', fr: 'Aller à la page de don' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+
     const HopeTrackAnalytics = {
       track: (eventName, params = {}) => {
         if (typeof gtag !== 'undefined') {

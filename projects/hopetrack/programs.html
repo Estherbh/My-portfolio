@@ -94,6 +94,32 @@
       border-color: var(--primary);
       color: #ffffff;
     }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--primary);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+    }
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-switch__button.is-active {
+      background: var(--primary);
+      color: #fff;
+    }
     .hero {
       padding: 92px 0 54px;
       text-align: center;
@@ -343,7 +369,13 @@
         <a href="donate.html">Donate</a>
         <a href="utm-framework.html">UTM Framework</a>
       </nav>
-      <a class="button button--accent" href="donate.html">Support now</a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
+        <a class="button button--accent" href="donate.html">Support now</a>
+      </div>
     </div>
   </header>
 
@@ -501,6 +533,40 @@
   </footer>
 
   <script>
+    const translations = [
+      { selector: 'title', en: 'HopeTrack International | Programs', fr: 'HopeTrack International | Programmes' },
+      { selector: '.nav a:nth-of-type(1)', en: 'Home', fr: 'Accueil' },
+      { selector: '.nav a:nth-of-type(2)', en: 'About', fr: 'À propos' },
+      { selector: '.nav a:nth-of-type(3)', en: 'Programs', fr: 'Programmes' },
+      { selector: '.nav a:nth-of-type(4)', en: 'Donate', fr: 'Faire un don' },
+      { selector: '.nav a:nth-of-type(5)', en: 'UTM Framework', fr: 'Cadre UTM' },
+      { selector: '.header-actions .button--accent', en: 'Support now', fr: 'Soutenir maintenant' },
+      { selector: '.hero__pill', en: 'Program pathways and support signals', fr: 'Parcours programme et signaux de soutien' },
+      { selector: 'h1', en: 'Our Programs', fr: 'Nos programmes' },
+      { selector: '.hero p', en: 'Each HopeTrack initiative is presented with the same level of clarity you would expect from a premium product page: concrete outcomes, progress visibility, and a direct path to support.', fr: 'Chaque initiative HopeTrack est présentée avec le même niveau de clarté qu une page produit premium : résultats concrets, visibilité sur la progression et chemin direct vers le soutien.' },
+      { selector: '.intro h2', en: 'Three country programs, one education mission.', fr: 'Trois programmes pays, une seule mission éducative.' },
+      { selector: '.intro p', en: 'The goal here is not just to list programs. It is to frame them as distinct strategic initiatives with their own support logic, momentum, and measurable goals.', fr: 'L objectif ici n est pas seulement de lister des programmes. Il s agit de les présenter comme des initiatives stratégiques distinctes avec leur propre logique de soutien, leur dynamique et leurs objectifs mesurables.' },
+      { selector: '.cta h2', en: 'Move from interest to support.', fr: 'Passez de l intérêt au soutien.' },
+      { selector: '.cta p', en: 'The donation page is structured to keep friction low while still capturing the data points that matter for campaign analysis.', fr: 'La page de don est structurée pour garder peu de friction tout en capturant les points de données utiles à l analyse de campagne.' },
+      { selector: '.cta .button--accent', en: 'Go to donate page', fr: 'Aller à la page de don' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+
     const HopeTrackAnalytics = {
       track: (eventName, params = {}) => {
         if (typeof gtag !== 'undefined') {
