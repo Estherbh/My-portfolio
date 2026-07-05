@@ -57,6 +57,27 @@
       gap: 10px;
       margin-top: 18px;
     }
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+    }
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-switch__button.is-active {
+      background: var(--accent);
+      color: #fff;
+    }
     .button {
       display: inline-flex;
       align-items: center;
@@ -87,6 +108,10 @@
       <h1>Unified Marketing Reporting Template</h1>
       <p class="lede">This project demonstrates how multi-source marketing and donor data can be consolidated in Google Sheets before full BI integration, then surfaced through a stakeholder-facing Looker Studio layer.</p>
       <div class="actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
         <a class="button button--primary" href="https://docs.google.com/spreadsheets/d/1Jb6ThjeA4Yh59ytm_vs3oh-uj4N6mCaCMycv1Am5vJk/edit?usp=sharing" target="_blank" rel="noreferrer">Open Google Sheet</a>
         <a class="button" href="https://datastudio.google.com/s/mzac46DbYlE" target="_blank" rel="noreferrer">Open Looker Studio</a>
         <a class="button" href="../../index.html">Back to portfolio</a>
@@ -116,5 +141,45 @@
       </section>
     </div>
   </main>
+  <script>
+    const translations = [
+      { selector: 'title', en: 'Unified Marketing Reporting Template', fr: 'Modèle unifié de reporting marketing' },
+      { selector: 'meta[name="description"]', attr: 'content', en: 'Case study for a unified marketing reporting template built in Google Sheets and connected to Looker Studio.', fr: 'Étude de cas d un modèle unifié de reporting marketing construit dans Google Sheets et relié à Looker Studio.' },
+      { selector: 'meta[property="og:title"]', attr: 'content', en: 'Unified Marketing Reporting Template', fr: 'Modèle unifié de reporting marketing' },
+      { selector: 'meta[property="og:description"]', attr: 'content', en: 'A Google Sheets reporting system designed as an interim analytics layer before full BI integration.', fr: 'Un système de reporting Google Sheets conçu comme couche analytique intermédiaire avant une intégration BI complète.' },
+      { selector: 'h1', en: 'Unified Marketing Reporting Template', fr: 'Modèle unifié de reporting marketing' },
+      { selector: '.lede', en: 'This project demonstrates how multi-source marketing and donor data can be consolidated in Google Sheets before full BI integration, then surfaced through a stakeholder-facing Looker Studio layer.', fr: 'Ce projet montre comment des données marketing et donateurs multi-sources peuvent être consolidées dans Google Sheets avant une intégration BI complète, puis restituées dans une couche Looker Studio orientée parties prenantes.' },
+      { selector: '.button.button--primary', en: 'Open Google Sheet', fr: 'Ouvrir le Google Sheet' },
+      { selector: '.actions .button:nth-of-type(2)', en: 'Open Looker Studio', fr: 'Ouvrir Looker Studio' },
+      { selector: '.actions .button:nth-of-type(3)', en: 'Back to portfolio', fr: 'Retour au portfolio' },
+      { selector: '.panel:nth-of-type(1) h2', en: 'What it includes', fr: 'Ce que cela inclut' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(1)', en: 'Source tabs for social, web, email, and CRM-style data.', fr: 'Des onglets source pour les données social, web, e-mail et de type CRM.' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(2)', en: 'A KPI dashboard structured across the marketing funnel.', fr: 'Un dashboard KPI structuré selon le funnel marketing.' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(3)', en: 'Weekly and monthly reporting views for non-technical teams.', fr: 'Des vues hebdomadaires et mensuelles pour des équipes non techniques.' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(4)', en: 'Data quality checks, governance notes, and Looker-ready tabs.', fr: 'Des contrôles qualité, notes de gouvernance et onglets prêts pour Looker.' },
+      { selector: '.panel:nth-of-type(2) h2', en: 'Why it matters', fr: 'Pourquoi c est important' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(1)', en: 'Shows Google Sheets as an interim analytics operating layer.', fr: 'Montre Google Sheets comme une couche analytique opérationnelle intermédiaire.' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(2)', en: 'Demonstrates KPI structure, not just dashboard decoration.', fr: 'Démontre une vraie structure KPI, pas seulement de la décoration dashboard.' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(3)', en: 'Bridges raw reporting work and executive-level visualization.', fr: 'Fait le lien entre reporting brut et visualisation de niveau exécutif.' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(4)', en: 'Fits roles where teams need useful reporting before formal BI maturity.', fr: 'Correspond aux contextes où les équipes ont besoin d un reporting utile avant une maturité BI complète.' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        if (item.attr) element.setAttribute(item.attr, item[language]);
+        else element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+  </script>
 </body>
 </html>

@@ -75,6 +75,36 @@
       font-weight: 700;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 0;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lang-switch__button.is-active {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -205,7 +235,11 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <div class="brand">Esther Bahati / Operations Data &amp; AI</div>
-      <div>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
         <a class="button" href="index.html">Back to portfolio</a>
       </div>
     </div>
@@ -275,5 +309,53 @@
       </div>
     </div>
   </main>
+  <script>
+    const translations = [
+      { selector: 'title', en: 'Executive Assistant Briefing | Esther Bahati', fr: 'Executive Assistant Briefing | Esther Bahati' },
+      { selector: 'meta[name="description"]', attr: 'content', en: 'Executive Assistant Briefing is an AI SaaS concept by Esther Bahati designed to turn executive communications into actionable briefings and alerts.', fr: 'Executive Assistant Briefing est un concept SaaS d IA conçu par Esther Bahati pour transformer les communications exécutives en briefings actionnables et en alertes.' },
+      { selector: '.brand', en: 'Esther Bahati / Operations Data & AI', fr: 'Esther Bahati / Données, opérations et IA' },
+      { selector: '.button', en: 'Back to portfolio', fr: 'Retour au portfolio' },
+      { selector: '.eyebrow', en: 'AI product / executive workflow / privacy-first', fr: 'Produit IA / workflow exécutif / confidentialité d abord' },
+      { selector: 'h1', en: 'Executive Assistant Briefing™', fr: 'Executive Assistant Briefing™' },
+      { selector: '.lede', en: 'Executive Assistant Briefing™ is a product concept designed to help leaders stay ahead of missed actions, anomalies, and fragmented communication across email and WhatsApp. The product is currently in development, with a beta target for Q3 2026.', fr: 'Executive Assistant Briefing™ est un concept produit conçu pour aider les dirigeants à anticiper les actions oubliées, les anomalies et la fragmentation des échanges entre e-mail et WhatsApp. Le produit est actuellement en développement, avec une cible bêta pour le T3 2026.' },
+      { selector: '.hero__meta .meta-card:nth-of-type(1)', en: '<strong>Product direction</strong>Turn executive communications into clear briefings, alerts, and actionable follow-up.', fr: '<strong>Direction produit</strong>Transformer les communications exécutives en briefings clairs, alertes et suivis actionnables.' },
+      { selector: '.hero__meta .meta-card:nth-of-type(2)', en: '<strong>Target user</strong>Managers and executives who need signal clarity without technical friction.', fr: '<strong>Utilisateur cible</strong>Managers et dirigeants qui ont besoin de clarté sans friction technique.' },
+      { selector: '.hero__meta .meta-card:nth-of-type(3)', en: '<strong>Stack direction</strong>n8n, WhatsApp API, IMAP, Supabase, and LLM orchestration.', fr: '<strong>Orientation stack</strong>n8n, API WhatsApp, IMAP, Supabase et orchestration LLM.' },
+      { selector: '.section-card:nth-of-type(1) h2', en: 'What the product does', fr: 'Ce que fait le produit' },
+      { selector: '.section-card:nth-of-type(1) li:nth-of-type(1)', en: 'Analyzes incoming communications to surface anomalies, missed tasks, and emerging priorities.', fr: 'Analyse les communications entrantes pour faire ressortir les anomalies, les tâches manquées et les priorités émergentes.' },
+      { selector: '.section-card:nth-of-type(1) li:nth-of-type(2)', en: 'Builds structured executive briefings instead of leaving leaders buried in message volume.', fr: 'Construit des briefings exécutifs structurés au lieu de laisser les dirigeants noyés dans le volume de messages.' },
+      { selector: '.section-card:nth-of-type(1) li:nth-of-type(3)', en: 'Supports fast interaction through WhatsApp for users who need immediate operational visibility.', fr: 'Permet une interaction rapide via WhatsApp pour les utilisateurs qui ont besoin d une visibilité opérationnelle immédiate.' },
+      { selector: '.section-card:nth-of-type(2) h2', en: 'Why it matters', fr: 'Pourquoi c est important' },
+      { selector: '.section-card:nth-of-type(2) li:nth-of-type(1)', en: 'Many leaders operate in information-heavy environments where the real problem is not access, but interpretation.', fr: 'Beaucoup de dirigeants travaillent dans des environnements saturés d information où le vrai problème n est pas l accès, mais l interprétation.' },
+      { selector: '.section-card:nth-of-type(2) li:nth-of-type(2)', en: 'Important actions are often missed because signal is mixed with low-value noise.', fr: 'Des actions importantes sont souvent manquées parce que le signal est mélangé à du bruit de faible valeur.' },
+      { selector: '.section-card:nth-of-type(2) li:nth-of-type(3)', en: 'The product is designed to reduce that burden while preserving user trust and data sovereignty.', fr: 'Le produit est conçu pour réduire cette charge tout en préservant la confiance des utilisateurs et la souveraineté sur les données.' },
+      { selector: '.section-card:nth-of-type(3) h2', en: 'Design principles', fr: 'Principes de conception' },
+      { selector: '.section-card:nth-of-type(3) li:nth-of-type(1)', en: 'Operational usefulness over novelty.', fr: 'Utilité opérationnelle avant nouveauté.' },
+      { selector: '.section-card:nth-of-type(3) li:nth-of-type(2)', en: 'Privacy-aware architecture and minimal data retention.', fr: 'Architecture attentive à la confidentialité et rétention minimale des données.' },
+      { selector: '.section-card:nth-of-type(3) li:nth-of-type(3)', en: 'Direct language for decision-makers rather than technical jargon.', fr: 'Langage direct pour les décideurs plutôt que jargon technique.' },
+      { selector: '.section-card:nth-of-type(4) h2', en: 'Current status', fr: 'Statut actuel' },
+      { selector: '.section-card:nth-of-type(4) p', en: 'The product is in active concept and build preparation. This portfolio page exists to document the product direction, the operational problem it addresses, and the system thinking behind it before public beta.', fr: 'Le produit est en phase active de conception et de préparation du build. Cette page du portfolio documente la direction produit, le problème opérationnel traité et la logique système avant la bêta publique.' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        if (item.attr) {
+          element.setAttribute(item.attr, item[language]);
+        } else {
+          element.innerHTML = item[language];
+        }
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+  </script>
 </body>
 </html>

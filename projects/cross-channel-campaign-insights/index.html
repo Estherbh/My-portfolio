@@ -86,6 +86,37 @@
       background: #fcfaf6;
     }
 
+    .report__header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+    }
+
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lang-switch__button.is-active {
+      background: var(--accent);
+      color: #fff;
+    }
+
     .report__eyebrow {
       margin: 0;
       color: var(--muted);
@@ -316,7 +347,13 @@
     <div class="container">
       <article class="report">
         <header class="report__header" data-reveal>
-          <p class="report__eyebrow">Quarterly stakeholder brief / communications analytics</p>
+          <div class="report__header-top">
+            <p class="report__eyebrow">Quarterly stakeholder brief / communications analytics</p>
+            <div class="lang-switch" aria-label="Language switcher">
+              <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+              <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+            </div>
+          </div>
           <h1>Q1 2026 Campaign Results - What the data tells us</h1>
           <p class="report__lead">
             This one-pager is designed for non-technical stakeholders who need a fast, trustworthy read on campaign performance.
@@ -493,6 +530,34 @@
   </main>
 
   <script>
+    const translations = [
+      { selector: '.skip-link', en: 'Skip to main content', fr: 'Aller au contenu principal' },
+      { selector: '.report__eyebrow', en: 'Quarterly stakeholder brief / communications analytics', fr: 'Brief trimestriel parties prenantes / analytique communication' },
+      { selector: 'h1', en: 'Q1 2026 Campaign Results - What the data tells us', fr: 'Résultats de campagne T1 2026 - Ce que disent les données' },
+      { selector: '.report__lead', en: 'This one-pager is designed for non-technical stakeholders who need a fast, trustworthy read on campaign performance. It prioritizes interpretation over dashboard volume and turns channel data into decisions.', fr: 'Ce one-pager est conçu pour des parties prenantes non techniques qui ont besoin d une lecture rapide et fiable de la performance campagne. Il privilégie l interprétation au volume de dashboard et transforme les données de canaux en décisions.' },
+      { selector: '.section:nth-of-type(1) .section__head h2', en: 'Performance snapshot', fr: 'Vue d ensemble de la performance' },
+      { selector: '.section:nth-of-type(2) .section__head h2', en: 'Channel comparison', fr: 'Comparaison des canaux' },
+      { selector: '.section:nth-of-type(3) .section__head h2', en: 'Three key insights', fr: 'Trois insights clés' },
+      { selector: '.section:nth-of-type(4) .section__head h2', en: 'Recommended actions', fr: 'Actions recommandées' },
+      { selector: '.footer-note', en: 'Portfolio note: all figures are fictional and included only to demonstrate how a communications analytics report can convert cross-channel data into a clear executive narrative.', fr: 'Note portfolio : tous les chiffres sont fictifs et inclus uniquement pour démontrer comment un rapport d analytique communication peut transformer des données cross-canal en récit exécutif clair.' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+
     const revealItems = document.querySelectorAll("[data-reveal]");
 
     const revealObserver = new IntersectionObserver((entries) => {

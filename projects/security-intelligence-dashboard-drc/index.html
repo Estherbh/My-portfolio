@@ -58,6 +58,28 @@
       gap: 10px;
       margin-top: 18px;
     }
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-right: 10px;
+      background: rgba(255,255,255,0.92);
+    }
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-switch__button.is-active {
+      background: var(--accent);
+      color: #fff;
+    }
     .button {
       display: inline-flex;
       align-items: center;
@@ -82,6 +104,10 @@
       <h1>Security Intelligence Dashboard</h1>
       <p class="lede">This project is presented as a sanitized case study because the live environment, source code, and data are confidential. The portfolio version focuses on reporting structure, dashboard logic, and operational value.</p>
       <div class="actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
         <a class="button" href="../../index.html">Back to portfolio</a>
       </div>
 
@@ -123,5 +149,49 @@
       </section>
     </div>
   </main>
+  <script>
+    const translations = [
+      { selector: 'title', en: 'Security Intelligence Dashboard', fr: 'Dashboard de renseignement sécuritaire' },
+      { selector: 'meta[name="description"]', attr: 'content', en: 'Sanitized case study for a confidential security intelligence dashboard project.', fr: 'Étude de cas assainie pour un projet confidentiel de dashboard de renseignement sécuritaire.' },
+      { selector: 'meta[property="og:title"]', attr: 'content', en: 'Security Intelligence Dashboard', fr: 'Dashboard de renseignement sécuritaire' },
+      { selector: 'meta[property="og:description"]', attr: 'content', en: 'Confidential dashboard case study focused on operational visibility, KPI structure, and decision support.', fr: 'Étude de cas confidentielle centrée sur la visibilité opérationnelle, la structuration des KPI et l aide à la décision.' },
+      { selector: 'h1', en: 'Security Intelligence Dashboard', fr: 'Dashboard de renseignement sécuritaire' },
+      { selector: '.lede', en: 'This project is presented as a sanitized case study because the live environment, source code, and data are confidential. The portfolio version focuses on reporting structure, dashboard logic, and operational value.', fr: 'Ce projet est présenté comme une étude de cas assainie parce que l environnement réel, le code source et les données sont confidentiels. La version portfolio met l accent sur la structure du reporting, la logique du dashboard et la valeur opérationnelle.' },
+      { selector: '.button', en: 'Back to portfolio', fr: 'Retour au portfolio' },
+      { selector: '.panel:nth-of-type(1) h2', en: 'Problem', fr: 'Problème' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(1)', en: 'Operational signals were spread across separate sources.', fr: 'Les signaux opérationnels étaient dispersés dans des sources séparées.' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(2)', en: 'Reporting cycles were slower than stakeholders needed.', fr: 'Les cycles de reporting étaient plus lents que les besoins des parties prenantes.' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(3)', en: 'Decision-makers lacked a unified monitoring interface.', fr: 'Les décideurs ne disposaient pas d une interface de suivi unifiée.' },
+      { selector: '.panel:nth-of-type(2) h2', en: 'Contribution', fr: 'Contribution' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(1)', en: 'Structured dashboard views for faster decision support.', fr: 'Structuration des vues du dashboard pour une aide à la décision plus rapide.' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(2)', en: 'Improved reporting flow across multiple categories of information.', fr: 'Amélioration du flux de reporting à travers plusieurs catégories d information.' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(3)', en: 'Helped translate sensitive operational data into clearer interfaces.', fr: 'A aidé à traduire des données opérationnelles sensibles en interfaces plus claires.' },
+      { selector: '.panel:nth-of-type(3) h2', en: 'What it demonstrates', fr: 'Ce que cela démontre' },
+      { selector: '.panel:nth-of-type(3) li:nth-of-type(1)', en: 'Full-stack dashboard thinking in a non-public environment.', fr: 'Une réflexion dashboard de bout en bout dans un environnement non public.' },
+      { selector: '.panel:nth-of-type(3) li:nth-of-type(2)', en: 'KPI structuring under confidentiality and risk constraints.', fr: 'La structuration des KPI sous contraintes de confidentialité et de risque.' },
+      { selector: '.panel:nth-of-type(3) li:nth-of-type(3)', en: 'Responsible handling of protected systems and data.', fr: 'Une gestion responsable des systèmes et données protégés.' },
+      { selector: '.panel:nth-of-type(4) h2', en: 'Confidentiality note', fr: 'Note de confidentialité' },
+      { selector: '.panel:nth-of-type(4) li:nth-of-type(1)', en: 'No raw data, internal URLs, or source code are exposed here.', fr: 'Aucune donnée brute, URL interne ou code source n est exposé ici.' },
+      { selector: '.panel:nth-of-type(4) li:nth-of-type(2)', en: 'Only the reporting logic and product-level story are presented publicly.', fr: 'Seules la logique de reporting et la narration produit sont présentées publiquement.' },
+      { selector: '.panel:nth-of-type(4) li:nth-of-type(3)', en: 'Additional walkthrough detail can be shared privately where appropriate.', fr: 'Des détails complémentaires peuvent être partagés en privé lorsque c est approprié.' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        if (item.attr) element.setAttribute(item.attr, item[language]);
+        else element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+  </script>
 </body>
 </html>

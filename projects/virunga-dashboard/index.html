@@ -58,6 +58,28 @@
       gap: 10px;
       margin-top: 18px;
     }
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-right: 10px;
+      background: rgba(255,255,255,0.92);
+    }
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .lang-switch__button.is-active {
+      background: var(--accent);
+      color: #fff;
+    }
     .button {
       display: inline-flex;
       align-items: center;
@@ -82,6 +104,10 @@
       <h1>Virunga Performance Dashboard</h1>
       <p class="lede">This dashboard project is presented as a public case study rather than a live demo because the professional environment and its data cannot be exposed publicly. The portfolio version focuses on KPI reporting structure, interface clarity, and stakeholder utility.</p>
       <div class="actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
         <a class="button" href="../../index.html">Back to portfolio</a>
       </div>
 
@@ -123,5 +149,49 @@
       </section>
     </div>
   </main>
+  <script>
+    const translations = [
+      { selector: 'title', en: 'Virunga Performance Dashboard', fr: 'Dashboard de performance Virunga' },
+      { selector: 'meta[name="description"]', attr: 'content', en: 'Sanitized case study for a confidential Virunga dashboard project.', fr: 'Étude de cas assainie pour un projet confidentiel de dashboard Virunga.' },
+      { selector: 'meta[property="og:title"]', attr: 'content', en: 'Virunga Performance Dashboard', fr: 'Dashboard de performance Virunga' },
+      { selector: 'meta[property="og:description"]', attr: 'content', en: 'Confidential dashboard case study focused on KPI visibility, monitoring, and stakeholder reporting.', fr: 'Étude de cas confidentielle centrée sur la visibilité des KPI, le monitoring et le reporting aux parties prenantes.' },
+      { selector: 'h1', en: 'Virunga Performance Dashboard', fr: 'Dashboard de performance Virunga' },
+      { selector: '.lede', en: 'This dashboard project is presented as a public case study rather than a live demo because the professional environment and its data cannot be exposed publicly. The portfolio version focuses on KPI reporting structure, interface clarity, and stakeholder utility.', fr: 'Ce projet de dashboard est présenté comme une étude de cas publique plutôt qu une démo live parce que l environnement professionnel et ses données ne peuvent pas être exposés publiquement. La version portfolio met l accent sur la structure KPI, la clarté d interface et l utilité pour les parties prenantes.' },
+      { selector: '.button', en: 'Back to portfolio', fr: 'Retour au portfolio' },
+      { selector: '.panel:nth-of-type(1) h2', en: 'Problem', fr: 'Problème' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(1)', en: 'Stakeholders needed a clearer way to review performance signals.', fr: 'Les parties prenantes avaient besoin d une manière plus claire de relire les signaux de performance.' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(2)', en: 'Important indicators were spread across disconnected summaries.', fr: 'Des indicateurs importants étaient répartis dans des synthèses déconnectées.' },
+      { selector: '.panel:nth-of-type(1) li:nth-of-type(3)', en: 'Monitoring required more structure and better readability.', fr: 'Le monitoring nécessitait davantage de structure et une meilleure lisibilité.' },
+      { selector: '.panel:nth-of-type(2) h2', en: 'Contribution', fr: 'Contribution' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(1)', en: 'Supported KPI centralization in a structured reporting interface.', fr: 'A soutenu la centralisation des KPI dans une interface de reporting structurée.' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(2)', en: 'Improved readability of performance information for ongoing review.', fr: 'A amélioré la lisibilité des informations de performance pour le suivi continu.' },
+      { selector: '.panel:nth-of-type(2) li:nth-of-type(3)', en: 'Helped make dashboard navigation and monitoring more practical.', fr: 'A aidé à rendre la navigation du dashboard et le monitoring plus pratiques.' },
+      { selector: '.panel:nth-of-type(3) h2', en: 'What it demonstrates', fr: 'Ce que cela démontre' },
+      { selector: '.panel:nth-of-type(3) li:nth-of-type(1)', en: 'Dashboard design for non-technical stakeholder use.', fr: 'Une conception dashboard adaptée à des parties prenantes non techniques.' },
+      { selector: '.panel:nth-of-type(3) li:nth-of-type(2)', en: 'Real-world reporting work beyond demo-only datasets.', fr: 'Un travail de reporting réel au-delà de simples jeux de données de démonstration.' },
+      { selector: '.panel:nth-of-type(3) li:nth-of-type(3)', en: 'Professional discretion around confidential systems.', fr: 'Une discrétion professionnelle autour des systèmes confidentiels.' },
+      { selector: '.panel:nth-of-type(4) h2', en: 'Confidentiality note', fr: 'Note de confidentialité' },
+      { selector: '.panel:nth-of-type(4) li:nth-of-type(1)', en: 'No live links, exports, or private code are shared publicly.', fr: 'Aucun lien live, export ou code privé n est partagé publiquement.' },
+      { selector: '.panel:nth-of-type(4) li:nth-of-type(2)', en: 'The portfolio entry is intentionally limited to safe, high-level details.', fr: 'L entrée portfolio est volontairement limitée à des éléments sûrs et de haut niveau.' },
+      { selector: '.panel:nth-of-type(4) li:nth-of-type(3)', en: 'The value shown here is in reporting logic, not in exposed records.', fr: 'La valeur montrée ici réside dans la logique de reporting, pas dans des données exposées.' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        if (item.attr) element.setAttribute(item.attr, item[language]);
+        else element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+  </script>
 </body>
 </html>

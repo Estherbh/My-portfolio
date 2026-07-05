@@ -159,6 +159,36 @@
       color: #ffffff;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 0;
+      border: 1.5px solid var(--accent);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+    }
+
+    .lang-switch__button {
+      padding: 6px 12px;
+      border: 0;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lang-switch__button.is-active {
+      background: var(--accent);
+      color: #fff;
+    }
+
     .hero {
       padding: var(--space-8) 0 var(--space-7);
     }
@@ -442,7 +472,13 @@
         <a href="#insights">Insights</a>
         <a href="#actions">Actions</a>
       </nav>
-      <a class="button button--primary" href="donor-journey-data.csv">Open dataset</a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__button is-active" type="button" data-language-button="en">EN</button>
+          <button class="lang-switch__button" type="button" data-language-button="fr">FR</button>
+        </div>
+        <a class="button button--primary" href="donor-journey-data.csv">Open dataset</a>
+      </div>
     </div>
   </header>
 
@@ -693,6 +729,43 @@
   </footer>
 
   <script>
+    const translations = [
+      { selector: '.skip-link', en: 'Skip to main content', fr: 'Aller au contenu principal' },
+      { selector: '.brand span:last-child', en: 'Portfolio Analysis', fr: 'Analyse de portfolio' },
+      { selector: '.nav a:nth-of-type(1)', en: 'Funnel', fr: 'Tunnel' },
+      { selector: '.nav a:nth-of-type(2)', en: 'Channel quality', fr: 'Qualité des canaux' },
+      { selector: '.nav a:nth-of-type(3)', en: 'Insights', fr: 'Insights' },
+      { selector: '.nav a:nth-of-type(4)', en: 'Actions', fr: 'Actions' },
+      { selector: '.button--primary', en: 'Open dataset', fr: 'Ouvrir le dataset' },
+      { selector: '.eyebrow', en: 'Portfolio project · CRM and fundraising analytics', fr: 'Projet portfolio · CRM et analytique fundraising' },
+      { selector: 'h1', en: 'Donor Journey & Membership Funnel Analysis', fr: 'Analyse du parcours donateur et du tunnel membership' },
+      { selector: '.hero__lead', en: 'This report shows how fictional HopeTrack campaign traffic moves from acquisition to first gift, repeat giving, and monthly membership. The purpose is not to showcase a decorative dashboard, but to show the decision logic a communications or fundraising team would use to improve conversion quality.', fr: 'Ce rapport montre comment le trafic fictif de la campagne HopeTrack passe de l acquisition au premier don, au don répété et au membership mensuel. L objectif n est pas de montrer un dashboard décoratif, mais la logique de décision qu une équipe communication ou fundraising utiliserait pour améliorer la qualité de conversion.' },
+      { selector: '.summary-card h3', en: 'Executive summary', fr: 'Résumé exécutif' },
+      { selector: '.section:nth-of-type(1) .section__head h2', en: 'What the quarter says at a glance', fr: 'Ce que dit le trimestre en un coup d oeil' },
+      { selector: '#funnel .section__head h2', en: 'Funnel performance by stage', fr: 'Performance du tunnel par étape' },
+      { selector: '#channel .section__head h2', en: 'Channel quality matters more than channel volume', fr: 'La qualité des canaux compte plus que leur volume' },
+      { selector: '#insights .section__head h2', en: 'Three insights the team can act on immediately', fr: 'Trois insights actionnables immédiatement' },
+      { selector: '#actions .section__head h2', en: 'Recommended actions for the next reporting cycle', fr: 'Actions recommandées pour le prochain cycle de reporting' },
+      { selector: '.footer-card h2', en: 'Why this project belongs in the portfolio', fr: 'Pourquoi ce projet a sa place dans le portfolio' },
+      { selector: '.footer-card h3', en: 'Portfolio note', fr: 'Note portfolio' }
+    ];
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      translations.forEach((item) => {
+        const element = document.querySelector(item.selector);
+        if (!element) return;
+        element.innerHTML = item[language];
+      });
+      document.querySelectorAll('[data-language-button]').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.languageButton === language);
+      });
+    }
+
+    document.querySelectorAll('[data-language-button]').forEach((button) => {
+      button.addEventListener('click', () => applyLanguage(button.dataset.languageButton));
+    });
+
     const header = document.querySelector("[data-header]");
     const revealItems = document.querySelectorAll("[data-reveal]");
 
